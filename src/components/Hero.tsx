@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { ArrowDown, Github, Linkedin, Mail, Twitter, Sparkles, Facebook} from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Twitter, Sparkles, Facebook } from "lucide-react";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/KlyrhonMiko", label: "GitHub" },
@@ -31,7 +31,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100dvh] flex-col items-center"
+      className="relative flex min-h-[100dvh] flex-col items-center pt-20"
     >
       {/* Animated background blobs */}
       <div className="pointer-events-none absolute inset-0">
@@ -82,7 +82,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/0 via-background/30 to-background" />
 
       {/* Top spacer — smaller than bottom so content sits slightly above center */}
-      <div className="flex-2" />
+      <div className="flex-[2] min-h-[60px]" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center">
         {/* Main heading with animated gradient name */}
@@ -184,7 +184,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.a
         href="#about"
-        className="relative z-10 flex-1 flex flex-col items-center justify-end gap-2 pb-609 sm:pb-8"
+        className="relative z-10 flex-1 flex flex-col items-center justify-end gap-2 pb-12 sm:pb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.6 }}
