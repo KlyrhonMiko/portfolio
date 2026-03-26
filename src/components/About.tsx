@@ -7,7 +7,8 @@ import {
   Palette,
   Database,
   Terminal,
-  Briefcase,
+  Smartphone,
+  LineChart,
   Zap,
   Heart,
   Target,
@@ -16,18 +17,32 @@ import {
 
 const skills = [
   {
-    category: "Frontend",
+    category: "Web Frontend",
     icon: Code2,
     description: "Crafting interactive & responsive interfaces",
     accent: "from-emerald-400 to-teal-500",
     items: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
   },
   {
-    category: "Backend",
+    category: "Mobile",
+    icon: Smartphone,
+    description: "Cross-platform apps with native feel",
+    accent: "from-blue-500 to-indigo-600",
+    items: ["Flutter", "Dart", "Riverpod"],
+  },
+  {
+    category: "ML & Analytics",
+    icon: LineChart,
+    description: "Smart features and clear insights",
+    accent: "from-fuchsia-400 to-purple-500",
+    items: ["Machine Learning", "Data Visualization"],
+  },
+  {
+    category: "Backend & Data",
     icon: Database,
-    description: "Building robust APIs & server logic",
+    description: "APIs, persistence, and managed infrastructure",
     accent: "from-sky-400 to-blue-500",
-    items: ["Node.js", "Express", "PostgreSQL", "FastAPI"],
+    items: ["FastAPI", "PostgreSQL", "Supabase", "SQLite"],
   },
   {
     category: "Design",
@@ -50,19 +65,19 @@ const marqueeRow1 = [
   "Next.js",
   "TypeScript",
   "Tailwind CSS",
-  "Node.js",
-  "Express",
-  "PostgreSQL",
+  "Flutter",
+  "Dart",
+  "Riverpod",
 ];
 const marqueeRow2 = [
   "FastAPI",
-  "Figma",
-  "UI/UX",
-  "Docker",
+  "PostgreSQL",
+  "Supabase",
+  "SQLite",
+  "Machine Learning",
   "Git",
-  "CI/CD",
-  "AWS",
-  "Accessibility",
+  "Docker",
+  "Data Visualization",
 ];
 
 const traits = [
@@ -407,17 +422,20 @@ export default function About() {
             </div>
           </div>
 
-          {/* ── Category Bento Grid ── */}
+          {/* ── Category Bento Grid (lg: 2+1 / 1+2 / 2+1) ── */}
           <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {skills.map((skill, index) => (
+            {skills.map((skill, index) => {
+              const wideLg =
+                index === 0 || index === 3 || index === 4
+                  ? " lg:col-span-2"
+                  : "";
+              return (
               <motion.div
                 key={skill.category}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                className={`group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border-light bg-surface p-4 sm:p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/8${
-                  index === 0 || index === 3 ? " lg:col-span-2" : ""
-                }`}
+                className={`group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border-light bg-surface p-4 sm:p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/8${wideLg}`}
               >
                 {/* Watermark number */}
                 <span className="pointer-events-none absolute -bottom-3 -right-1 select-none text-[80px] font-black leading-none text-heading/[0.03] transition-all duration-500 group-hover:text-heading/[0.06]">
@@ -461,7 +479,8 @@ export default function About() {
                   </div>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
       </div>
