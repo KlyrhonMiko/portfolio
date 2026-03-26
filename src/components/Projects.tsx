@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github, ArrowUpRight, Code2, Layers } from "lucide-react";
+import { ExternalLink, Github, ArrowUpRight, Code2, Layers, Wallet, Wifi, Battery, Signal } from "lucide-react";
 
 const projects = [
   {
@@ -24,27 +24,28 @@ const projects = [
     icon: Layers,
     features: ["Smart Job Matching", "Alumni Network", "ML-Powered Search"],
     mockUrl: "localhost:3000",
+    mockupType: "desktop" as const,
+    live: "https://pace.pasigcity.gov.ph",
   },
   {
-    title: "Sync",
-    subtitle: "Real-time Group Decisions",
+    title: "Koin",
+    subtitle: "Personal Finance Tracker",
     description:
-      "Real-time collaborative decision making for groups. Swipe to vote on restaurants and movies with your friends — powered by WebSockets.",
+      "A sophisticated personal finance tracker built with Flutter, designed to offer a premium and effortless experience for managing your money. It features multi-account support, automated transaction categorization, and insightful analytics to help you stay on top of your financial goals with ease.",
     tags: [
-      "Next.js",
-      "React",
-      "Tailwind CSS",
-      "Node.js",
-      "PostgreSQL",
-      "Supabase",
-      "WebSocket",
+      "Flutter",
+      "Dart",
+      "Riverpod",
+      "SQLite",
+      "Data Visualization",
     ],
-    github: "https://github.com/KlyrhonMiko/sync",
-    live: "https://sync-mvto.onrender.com/",
-    accent: "#7ec8b8",
-    icon: Code2,
-    features: ["Real-time Voting", "Group Rooms", "Swipe Interface"],
-    mockUrl: "sync-app.onrender.com",
+    github: "https://github.com/KlyrhonMiko/koin",
+    accent: "#f5a623",
+    icon: Wallet,
+    features: ["Multi-Account", "Dynamic Dashboard", "Savings Tracker"],
+    mockUrl: "koin.app",
+    mockupType: "mobile" as const,
+    live: undefined,
   },
 ];
 
@@ -57,7 +58,6 @@ export default function Projects() {
       {/* Animated background blobs */}
       <div className="pointer-events-none absolute inset-0">
         <div className="dot-pattern absolute inset-0 opacity-[0.03]" />
-        {/* Large blob top-left — wide slow morph */}
         <div
           className="absolute -left-28 -top-16 h-[420px] w-[420px] opacity-[0.12]"
           style={{
@@ -68,7 +68,6 @@ export default function Projects() {
             borderRadius: "70% 30% 50% 50% / 30% 60% 40% 70%",
           }}
         />
-        {/* Medium blob right — diagonal drift */}
         <div
           className="absolute -right-20 top-1/3 h-[380px] w-[380px] opacity-[0.10]"
           style={{
@@ -78,29 +77,6 @@ export default function Projects() {
               "blob 10s ease-in-out infinite reverse, float-3 16s ease-in-out infinite",
             borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
             filter: "blur(30px)",
-          }}
-        />
-        {/* Small blob bottom-center — accent pulse */}
-        <div
-          className="absolute bottom-10 left-1/2 h-[250px] w-[250px] -translate-x-1/2 opacity-[0.08]"
-          style={{
-            background:
-              "linear-gradient(160deg, var(--color-accent-teal), var(--color-primary-light))",
-            animation:
-              "blob 8s ease-in-out infinite, float-1 14s ease-in-out infinite reverse",
-            borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
-            filter: "blur(45px)",
-          }}
-        />
-        {/* Tiny blob top-right — fast morph */}
-        <div
-          className="absolute right-1/4 top-16 h-[160px] w-[160px] opacity-[0.07]"
-          style={{
-            background: "var(--color-primary)",
-            animation:
-              "blob 7s ease-in-out infinite reverse, float-1 10s ease-in-out infinite",
-            borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
-            filter: "blur(35px)",
           }}
         />
       </div>
@@ -120,10 +96,6 @@ export default function Projects() {
             Featured Projects
           </h2>
           <div className="mx-auto h-0.5 w-20 bg-[#81C784]" />
-          <p className="mx-auto mt-4 max-w-lg text-body">
-            Here are some of my recent projects. Each one was built with care,
-            attention to detail, and a focus on user experience.
-          </p>
         </motion.div>
 
         {/* Projects */}
@@ -145,7 +117,7 @@ export default function Projects() {
                 className="group relative"
               >
                 <div
-                  className={`relative grid items-center gap-0 overflow-hidden rounded-2xl sm:rounded-3xl border border-border-light bg-surface shadow-sm transition-all duration-500 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/8 md:grid-cols-2 ${
+                  className={`relative grid items-center gap-0 overflow-hidden rounded-2xl sm:rounded-3xl border border-border-light bg-surface shadow-sm transition-all duration-500 hover:border-primary/20 hover:shadow-2xl md:grid-cols-2 ${
                     isEven ? "" : "md:[direction:rtl]"
                   }`}
                 >
@@ -156,144 +128,110 @@ export default function Projects() {
                       background: `linear-gradient(135deg, ${project.accent}10, ${project.accent}06, ${project.accent}12)`,
                     }}
                   >
-                    {/* Subtle background glow */}
                     <div
                       className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.08] blur-3xl"
                       style={{ background: project.accent }}
                     />
 
-                    {/* Mock browser window */}
+                    {/* Mock device/window */}
                     <div
-                      className="relative z-10 w-full max-w-[280px] sm:max-w-[340px] overflow-hidden rounded-lg sm:rounded-xl border shadow-lg transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-1"
+                      className={`relative z-10 w-full overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-1 ${
+                        project.mockupType === "mobile"
+                          ? "max-w-[190px] sm:max-w-[200px] h-[330px] sm:h-[370px] rounded-[2.5rem] border-[6px]"
+                          : "max-w-[300px] sm:max-w-[420px] rounded-lg sm:rounded-xl border"
+                      }`}
                       style={{
-                        borderColor: `${project.accent}20`,
+                        borderColor: project.mockupType === "mobile" ? "#1a1a1a" : `${project.accent}20`,
                         background: "#ffffff",
-                        boxShadow: `0 8px 40px ${project.accent}12`,
+                        boxShadow: project.mockupType === "mobile" 
+                          ? `0 20px 50px ${project.accent}15`
+                          : `0 8px 30px ${project.accent}08`,
                       }}
                     >
-                      {/* Browser chrome */}
-                      <div
-                        className="flex items-center gap-2 border-b px-3 py-2"
-                        style={{ borderColor: `${project.accent}15` }}
-                      >
-                        <div className="flex gap-1.5">
-                          <div className="h-2.5 w-2.5 rounded-full bg-red-300/60" />
-                          <div className="h-2.5 w-2.5 rounded-full bg-yellow-300/60" />
-                          <div className="h-2.5 w-2.5 rounded-full bg-green-300/60" />
-                        </div>
-                        <div
-                          className="ml-1 flex-1 rounded-md px-3 py-1 text-[10px] text-gray-400"
-                          style={{ background: `${project.accent}08` }}
-                        >
-                          {project.mockUrl}
-                        </div>
-                      </div>
-
-                      {/* Mock app content */}
-                      <div className="space-y-3 p-4">
-                        {/* Mock header */}
-                        <div className="flex items-center gap-2">
-                          <div
-                            className="flex h-7 w-7 items-center justify-center rounded-lg"
-                            style={{
-                              background: `${project.accent}18`,
-                            }}
-                          >
-                            <Icon
-                              className="h-3.5 w-3.5"
-                              style={{ color: project.accent }}
-                            />
-                          </div>
-                          <div
-                            className="h-2.5 w-16 rounded-full"
-                            style={{ background: `${project.accent}25` }}
-                          />
-                          <div className="ml-auto flex gap-1">
-                            <div
-                              className="h-2 w-8 rounded-full"
-                              style={{ background: `${project.accent}12` }}
-                            />
-                            <div
-                              className="h-2 w-6 rounded-full"
-                              style={{ background: `${project.accent}12` }}
-                            />
-                          </div>
-                        </div>
-
-                        {/* Divider */}
-                        <div
-                          className="h-[1px] w-full"
-                          style={{ background: `${project.accent}12` }}
-                        />
-
-                        {/* Mock feature rows */}
-                        {project.features.map((feature, i) => (
-                          <div
-                            key={feature}
-                            className="flex items-center gap-2.5 rounded-lg p-2 transition-colors duration-300"
-                            style={{
-                              background:
-                                i === 0 ? `${project.accent}08` : "transparent",
-                            }}
-                          >
-                            <div
-                              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-[10px] font-bold"
-                              style={{
-                                background: `${project.accent}15`,
-                                color: project.accent,
-                              }}
-                            >
-                              {i + 1}
+                      {/* Frame extras */}
+                      {project.mockupType === "mobile" ? (
+                        <div className="relative">
+                          <div className="flex items-center justify-between px-6 pt-4 pb-1 relative z-20">
+                            <span className="text-[10px] font-bold text-gray-900">9:41</span>
+                            <div className="flex items-center gap-1">
+                              <Signal className="h-2.5 w-2.5 text-gray-900" />
+                              <Wifi className="h-2.5 w-2.5 text-gray-900" />
+                              <Battery className="h-2.5 w-2.5 text-gray-900" />
                             </div>
-                            <span
-                              className="text-xs font-medium"
-                              style={{ color: `${project.accent}cc` }}
-                            >
-                              {feature}
-                            </span>
-                            <div
-                              className="ml-auto h-1.5 rounded-full"
-                              style={{
-                                width: `${60 - i * 15}px`,
-                                background: `${project.accent}${
-                                  30 - i * 8
-                                }`,
-                              }}
-                            />
                           </div>
-                        ))}
+                          <div className="absolute top-4 left-1/2 -translate-x-1/2 h-4 w-14 rounded-full bg-black z-20" />
+                        </div>
+                      ) : (
+                        <div
+                          className="flex items-center gap-2 border-b px-3 py-2.5 backdrop-blur-sm"
+                          style={{
+                            borderColor: `${project.accent}15`,
+                            background: "rgba(255, 255, 255, 0.4)",
+                          }}
+                        >
+                          <div className="flex gap-1.5">
+                            <div className="h-2 w-2 rounded-full bg-[#ff5f56]" />
+                            <div className="h-2 w-2 rounded-full bg-[#ffbd2e]" />
+                            <div className="h-2 w-2 rounded-full bg-[#27c93f]" />
+                          </div>
+                          <div
+                            className="ml-4 h-2 w-24 rounded-full"
+                            style={{ background: `${project.accent}10` }}
+                          />
+                        </div>
+                      )}
 
-                        {/* Mock stats row */}
-                        <div className="flex gap-2 pt-1">
-                          {[...Array(3)].map((_, i) => (
-                            <div
-                              key={i}
-                              className="flex-1 rounded-lg p-2 text-center"
-                              style={{ background: `${project.accent}08` }}
-                            >
+                      {/* Unified Simple Content */}
+                      <div className="relative space-y-4 p-5 text-left" style={{ direction: 'ltr' }}>
+                        <div className="pointer-events-none absolute inset-0 z-30 bg-gradient-to-tr from-transparent via-white/5 to-white/10" />
+                        
+                        <div className="relative z-10 flex items-center gap-3">
+                          <div
+                            className="flex h-9 w-9 items-center justify-center rounded-xl"
+                            style={{ background: `${project.accent}15` }}
+                          >
+                            <Icon className="h-5 w-5" style={{ color: project.accent }} />
+                          </div>
+                          <div className="space-y-1.5">
+                            <div className="h-2.5 w-20 rounded-full" style={{ background: `${project.accent}30` }} />
+                            <div className="h-1.5 w-12 rounded-full" style={{ background: `${project.accent}15` }} />
+                          </div>
+                        </div>
+
+                        <div className="h-[1px] w-full" style={{ background: `${project.accent}10` }} />
+
+                        <div className="space-y-3">
+                          {[1, 2, 3].map((i) => (
+                            <div key={i} className="flex items-center gap-3">
+                              <div className="h-2 w-2 rounded-full" style={{ background: project.accent }} />
                               <div
-                                className="text-xs font-bold"
-                                style={{ color: project.accent }}
-                              >
-                                {["24+", "1.2k", "99%"][i]}
-                              </div>
-                              <div
-                                className="mt-0.5 h-1.5 w-full rounded-full"
-                                style={{ background: `${project.accent}12` }}
+                                className="h-1.5 rounded-full"
+                                style={{ 
+                                  width: `${100 - (i * 15)}%`,
+                                  background: `${project.accent}12` 
+                                }}
                               />
                             </div>
                           ))}
                         </div>
+
+                        <div 
+                          className="mt-6 h-20 w-full rounded-2xl opacity-40"
+                          style={{ 
+                            background: `linear-gradient(135deg, ${project.accent}20, ${project.accent}05)`,
+                            border: `1px dashed ${project.accent}30`
+                          }}
+                        />
+
+                        {project.mockupType === "mobile" && (
+                          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 h-1 w-16 rounded-full bg-gray-900/10 z-40" />
+                        )}
                       </div>
                     </div>
                   </div>
 
                   {/* Content side */}
-                  <div
-                    className={`flex flex-col justify-center p-5 sm:p-6 md:p-10 lg:p-12 ${
-                      isEven ? "" : "md:[direction:ltr]"
-                    }`}
-                  >
+                  <div className={`flex flex-col justify-center p-5 sm:p-6 md:p-10 lg:p-12 ${isEven ? "" : "md:[direction:ltr]"}`}>
                     <h3 className="text-xl font-bold text-heading sm:text-2xl md:text-3xl">
                       {project.title}
                     </h3>
@@ -305,7 +243,6 @@ export default function Projects() {
                       {project.description}
                     </p>
 
-                    {/* Tags */}
                     <div className="mt-4 sm:mt-6 flex flex-wrap gap-1.5 sm:gap-2">
                       {project.tags.map((tag) => (
                         <span
@@ -317,7 +254,6 @@ export default function Projects() {
                       ))}
                     </div>
 
-                    {/* Action links */}
                     <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-2 sm:gap-3">
                       <a
                         href={project.github}
@@ -334,7 +270,7 @@ export default function Projects() {
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group/btn inline-flex items-center gap-2 rounded-xl px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-white transition-all hover:shadow-lg"
+                          className="group/btn inline-flex items-center gap-2 rounded-xl px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-white transition-all"
                           style={{
                             background: `linear-gradient(135deg, ${project.accent}, ${project.accent}dd)`,
                           }}
