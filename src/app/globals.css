@@ -29,8 +29,22 @@
 }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+/* Scale compensation for high-DPI / OS-scaled displays (e.g. 125%, 150%) */
+@media (-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 120dpi) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+(min-resolution: 144dpi) {
+  html {
+    font-size: 12.8px;
+  }
 }
 
 body {
@@ -38,6 +52,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;
+  height: auto;
 }
 
 /* Prevent horizontal overflow from blobs on small screens */
@@ -45,56 +60,172 @@ section {
   overflow-x: clip;
 }
 
+/* Lenis Recommended CSS */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis body {
+  overflow: clip;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 /* ===== Keyframe Animations ===== */
 
 @keyframes float-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
 }
 
 @keyframes float-2 {
-  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  33% { transform: translate(-40px, 30px) scale(1.05) rotate(120deg); }
-  66% { transform: translate(30px, -40px) scale(0.95) rotate(240deg); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(-40px, 30px) scale(1.05) rotate(120deg);
+  }
+
+  66% {
+    transform: translate(30px, -40px) scale(0.95) rotate(240deg);
+  }
 }
 
 @keyframes float-3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(25px, -35px) scale(1.08); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(25px, -35px) scale(1.08);
+  }
 }
 
-@keyframes blob {
-  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-  50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
-  75% { border-radius: 60% 30% 50% 40% / 60% 40% 60% 30%; }
+@keyframes mesh-drift {
+  0% {
+    background-position: 0% 0%, 100% 100%, 50% 50%;
+  }
+
+  25% {
+    background-position: 30% 70%, 70% 20%, 80% 40%;
+  }
+
+  50% {
+    background-position: 100% 100%, 0% 0%, 20% 80%;
+  }
+
+  75% {
+    background-position: 60% 30%, 40% 80%, 10% 20%;
+  }
+
+  100% {
+    background-position: 0% 0%, 100% 100%, 50% 50%;
+  }
+}
+
+/* ===== Modern Mesh Gradient Background ===== */
+
+.mesh-gradient {
+  background:
+    radial-gradient(ellipse 60% 50% at var(--mesh-x1, 0%) var(--mesh-y1, 0%), var(--color-primary) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at var(--mesh-x2, 100%) var(--mesh-y2, 100%), var(--color-accent-teal) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 55% at var(--mesh-x3, 50%) var(--mesh-y3, 50%), var(--color-accent) 0%, transparent 60%);
+  background-size: 200% 200%, 200% 200%, 200% 200%;
+  animation: mesh-drift 20s ease-in-out infinite;
+  will-change: background-position;
+}
+
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
 @keyframes gradient-x {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(200%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 0.6; }
-  100% { transform: scale(2.5); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* ===== Background Patterns ===== */
@@ -113,14 +244,13 @@ section {
 
 /* ===== Animated Gradient Text ===== */
 
-.text-gradient-animated {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-accent-teal) 30%,
-    var(--color-primary-dark) 60%,
-    var(--color-primary) 100%
-  );
+.text-gradient-animated,
+.text-gradient-animated .char {
+  background: linear-gradient(135deg,
+      var(--color-primary) 0%,
+      var(--color-accent-teal) 30%,
+      var(--color-primary-dark) 60%,
+      var(--color-primary) 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -183,11 +313,28 @@ section {
   animation-play-state: paused;
 }
 
-/* ===== Custom Scrollbar ===== */
+/* ===== Hide native scrollbar (Lenis handles scroll) ===== */
+html {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-accent) transparent;
+html::-webkit-scrollbar {
+  display: none;
+  /* Chrome / Safari */
+}
+
+/* ===== Projects Horizontal Scroll (Desktop) ===== */
+
+.projects-section {
+  overflow-x: visible !important;
+  overflow: visible !important;
+}
+
+.projects-card {
+  scroll-snap-align: start;
 }
 
 /* ===== Selection Color ===== */

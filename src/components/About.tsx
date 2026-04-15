@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import Parallax from "@/components/Parallax";
 import {
   Code2,
   Palette,
@@ -68,6 +69,7 @@ const marqueeRow1 = [
   "Flutter",
   "Dart",
   "Riverpod",
+  "Python",
 ];
 const marqueeRow2 = [
   "FastAPI",
@@ -76,6 +78,7 @@ const marqueeRow2 = [
   "SQLite",
   "Machine Learning",
   "Git",
+  "Github",
   "Docker",
   "Data Visualization",
 ];
@@ -185,7 +188,7 @@ function CodeEditor() {
           </CodeLine>
           <CodeLine num={9}>
             <span className="text-[#c3e88d]">
-              &nbsp;&nbsp;&nbsp;&nbsp;&apos;Coffee &amp; Code&apos;
+              &nbsp;&nbsp;&nbsp;&nbsp;&apos;My Girlfriend&apos;
             </span>
           </CodeLine>
           <CodeLine num={10}>
@@ -232,18 +235,16 @@ function MarqueePill({
 }) {
   return (
     <div
-      className={`mx-1.5 flex shrink-0 items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm font-medium shadow-sm transition-all duration-300 hover:scale-105 ${
-        variant === "default"
-          ? "border-primary/10 bg-white text-heading hover:border-primary/25 hover:shadow-md hover:shadow-primary/8"
-          : "border-accent-teal/10 bg-white text-heading hover:border-accent-teal/25 hover:shadow-md hover:shadow-accent-teal/8"
-      }`}
+      className={`mx-1.5 flex shrink-0 items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm font-medium shadow-sm transition-all duration-300 hover:scale-105 ${variant === "default"
+        ? "border-primary/10 bg-white text-heading hover:border-primary/25 hover:shadow-md hover:shadow-primary/8"
+        : "border-accent-teal/10 bg-white text-heading hover:border-accent-teal/25 hover:shadow-md hover:shadow-accent-teal/8"
+        }`}
     >
       <span
-        className={`inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r ${
-          variant === "default"
-            ? "from-primary to-accent-teal"
-            : "from-accent-teal to-primary"
-        }`}
+        className={`inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r ${variant === "default"
+          ? "from-primary to-accent-teal"
+          : "from-accent-teal to-primary"
+          }`}
       />
       {label}
     </div>
@@ -257,51 +258,15 @@ export default function About() {
 
   return (
     <section id="about" className="relative pt-16 pb-10 sm:pt-24 sm:pb-12 md:pt-32 md:pb-16">
-      {/* Animated background blobs */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="dot-pattern absolute inset-0 opacity-[0.03]" />
-        {/* Large blob top-right — slow diagonal drift */}
-        <div
-          className="absolute -right-24 -top-0 h-[450px] w-[450px] opacity-[0.12]"
-          style={{
-            background:
-              "linear-gradient(160deg, var(--color-primary-light), var(--color-accent))",
-            animation:
-              "blob 12s ease-in-out infinite, float-1 18s ease-in-out infinite",
-            borderRadius: "50% 60% 40% 70% / 40% 70% 50% 60%",
-          }}
-        />
-        {/* Medium blob bottom-left — reverse morph */}
-        <div
-          className="absolute bottom-32 -left-24 h-[380px] w-[380px] opacity-[0.10]"
-          style={{
-            background:
-              "linear-gradient(135deg, var(--color-accent-teal), var(--color-primary-light))",
-            animation:
-              "blob 14s ease-in-out infinite reverse, float-2 20s ease-in-out infinite",
-            borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
-          }}
-        />
-        {/* Small accent blob center — blurred glow */}
-        <div
-          className="absolute left-1/3 top-2/3 h-[220px] w-[220px] opacity-[0.08]"
-          style={{
-            background:
-              "linear-gradient(135deg, var(--color-primary), var(--color-accent-teal))",
-            animation:
-              "blob 10s ease-in-out infinite, float-3 14s ease-in-out infinite",
-            borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
-            filter: "blur(40px)",
-          }}
-        />
-      </div>
+
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6" ref={ref}>
         {/* Section heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, type: "spring", damping: 20 }}
           className="mb-10 sm:mb-16 text-center"
         >
           <span className="mb-3 inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-[#81C784]">
@@ -351,7 +316,8 @@ export default function About() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: 0.4 + i * 0.08 }}
-                  className="group flex items-center gap-1.5 sm:gap-2 rounded-full border border-border-light bg-surface px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-body shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md hover:shadow-primary/5"
+                  whileHover={{ y: -2 }}
+                  className="group flex items-center gap-1.5 sm:gap-2 rounded-full border border-border-light bg-surface px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-body shadow-sm transition-colors transition-shadow duration-300 hover:border-primary/30 hover:shadow-md hover:shadow-primary/5"
                 >
                   <trait.icon
                     size={15}
@@ -364,7 +330,14 @@ export default function About() {
           </motion.div>
 
           {/* Right column – code editor */}
-          <CodeEditor />
+          <div className="hidden lg:block relative">
+            <Parallax speed={0.5}>
+              <CodeEditor />
+            </Parallax>
+          </div>
+          <div className="block lg:hidden relative">
+            <CodeEditor />
+          </div>
         </div>
 
         {/* ── Skills ── */}
@@ -384,10 +357,13 @@ export default function About() {
           </div>
 
           {/* ── Infinite Marquee ── */}
-          <div className="marquee-container relative -mx-4 sm:-mx-6 mb-10 sm:mb-14">
-            {/* Fade masks */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[var(--background)] to-transparent sm:w-20 md:w-32" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[var(--background)] to-transparent sm:w-20 md:w-32" />
+          <div
+            className="marquee-container relative -mx-4 sm:-mx-6 mb-10 sm:mb-14"
+            style={{
+              maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
+            }}
+          >
 
             {/* Row 1 – scrolls left */}
             <div className="mb-3 flex overflow-hidden py-1">
@@ -430,55 +406,57 @@ export default function About() {
                   ? " lg:col-span-2"
                   : "";
               return (
-              <motion.div
-                key={skill.category}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                className={`group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border-light bg-surface p-4 sm:p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/8${wideLg}`}
-              >
-                {/* Watermark number */}
-                <span className="pointer-events-none absolute -bottom-3 -right-1 select-none text-[80px] font-black leading-none text-heading/[0.03] transition-all duration-500 group-hover:text-heading/[0.06]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+                <motion.div
+                  key={skill.category}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: index * 0.05, type: "spring", damping: 20 }}
+                  whileHover={{ y: -4 }}
+                  className={`group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border-light bg-surface p-4 sm:p-6 transition-colors transition-shadow duration-500 hover:shadow-xl hover:shadow-primary/8${wideLg}`}
+                >
+                  {/* Watermark number */}
+                  <span className="pointer-events-none absolute -bottom-3 -right-1 select-none text-[80px] font-black leading-none text-heading/[0.03] transition-all duration-500 group-hover:text-heading/[0.06]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-                {/* Hover gradient blob */}
-                <div
-                  className={`absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br ${skill.accent} opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-[0.12]`}
-                />
+                  {/* Hover gradient blob */}
+                  <div
+                    className={`absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br ${skill.accent} opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-[0.12]`}
+                  />
 
-                <div className="relative">
-                  {/* Icon + Category */}
-                  <div className="mb-4 flex items-center gap-3">
-                    <div
-                      className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${skill.accent} text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}
-                    >
-                      <skill.icon size={20} />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-bold text-heading">
-                        {skill.category}
-                      </h4>
-                      <p className="text-xs text-muted">
-                        {skill.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Skill tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {skill.items.map((item, i) => (
-                      <span
-                        key={item}
-                        className="rounded-lg border border-border-light/60 bg-primary-lighter/50 px-3.5 py-1.5 text-xs font-semibold text-body transition-all duration-300 group-hover:border-primary/20 group-hover:bg-primary-light/60 group-hover:text-primary-dark"
-                        style={{ transitionDelay: `${i * 60}ms` }}
+                  <div className="relative">
+                    {/* Icon + Category */}
+                    <div className="mb-4 flex items-center gap-3">
+                      <div
+                        className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${skill.accent} text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}
                       >
-                        {item}
-                      </span>
-                    ))}
+                        <skill.icon size={20} />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-heading">
+                          {skill.category}
+                        </h4>
+                        <p className="text-xs text-muted">
+                          {skill.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Skill tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {skill.items.map((item, i) => (
+                        <span
+                          key={item}
+                          className="rounded-lg border border-border-light/60 bg-primary-lighter/50 px-3.5 py-1.5 text-xs font-semibold text-body transition-all duration-300 group-hover:border-primary/20 group-hover:bg-primary-light/60 group-hover:text-primary-dark"
+                          style={{ transitionDelay: `${i * 60}ms` }}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
               );
             })}
           </div>

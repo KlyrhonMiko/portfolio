@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import { useLenis } from "lenis/react";
+import { handleSmoothNavigation } from "../utils/navigation";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -16,6 +18,11 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const lenis = useLenis();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    handleSmoothNavigation(e, href, lenis, () => setIsOpen(false));
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -57,16 +64,16 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled || isOpen
-          ? "glass-strong shadow-sm"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || isOpen
+        ? "glass-strong shadow-sm"
+        : "bg-transparent"
+        }`}
     >
       <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
         <a
           href="#home"
+          onClick={(e) => handleNavClick(e, "#home")}
           className="group relative z-50 text-base sm:text-lg font-bold tracking-tight text-heading"
         >
           <span className="transition-opacity duration-300 group-hover:opacity-0">
@@ -85,11 +92,11 @@ export default function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                    isActive
-                      ? "text-primary"
-                      : "text-body hover:text-heading"
-                  }`}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${isActive
+                    ? "text-primary"
+                    : "text-body hover:text-heading"
+                    }`}
                 >
                   {isActive && (
                     <motion.span
@@ -175,21 +182,19 @@ export default function Navbar() {
                     >
                       <a
                         href={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className={`group flex items-center justify-between rounded-2xl px-5 py-4 transition-all duration-200 ${
-                          isActive
-                            ? "bg-primary/8 text-primary"
-                            : "text-heading hover:bg-surface-elevated"
-                        }`}
+                        onClick={(e) => handleNavClick(e, link.href)}
+                        className={`group flex items-center justify-between rounded-2xl px-5 py-4 transition-all duration-200 ${isActive
+                          ? "bg-primary/8 text-primary"
+                          : "text-heading hover:bg-surface-elevated"
+                          }`}
                       >
                         <div className="flex items-center gap-4">
                           {/* Active dot */}
                           <span
-                            className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
-                              isActive
-                                ? "bg-primary scale-100"
-                                : "bg-border scale-75"
-                            }`}
+                            className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${isActive
+                              ? "bg-primary scale-100"
+                              : "bg-border scale-75"
+                              }`}
                           />
                           <span className="text-lg font-semibold tracking-tight">
                             {link.label}
@@ -197,11 +202,10 @@ export default function Navbar() {
                         </div>
                         <ArrowUpRight
                           size={16}
-                          className={`transition-all duration-200 ${
-                            isActive
-                              ? "text-primary opacity-100"
-                              : "text-muted opacity-0 group-hover:opacity-60"
-                          }`}
+                          className={`transition-all duration-200 ${isActive
+                            ? "text-primary opacity-100"
+                            : "text-muted opacity-0 group-hover:opacity-60"
+                            }`}
                         />
                       </a>
                     </motion.div>

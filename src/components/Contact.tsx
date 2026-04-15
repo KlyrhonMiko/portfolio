@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
+import MagneticEffect from "@/components/MagneticEffect";
 import { useRef } from "react";
 import {
   Mail,
@@ -63,63 +64,15 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative pt-10 pb-16 sm:pt-12 sm:pb-24 md:pt-16 md:pb-32">
-      {/* Animated background blobs */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="dot-pattern absolute inset-0 opacity-[0.02]" />
-        {/* Large blob right — warm accent sweep */}
-        <div
-          className="absolute -right-16 top-1/4 h-[440px] w-[440px] opacity-[0.14]"
-          style={{
-            background:
-              "linear-gradient(140deg, var(--color-accent), var(--color-primary-light))",
-            animation:
-              "blob 11s ease-in-out infinite, float-1 16s ease-in-out infinite",
-            borderRadius: "50% 50% 30% 70% / 40% 60% 40% 60%",
-          }}
-        />
-        {/* Medium blob left — slow counter-morph */}
-        <div
-          className="absolute -left-20 bottom-1/4 h-[360px] w-[360px] opacity-[0.10]"
-          style={{
-            background:
-              "linear-gradient(200deg, var(--color-primary), var(--color-accent-teal))",
-            animation:
-              "blob 14s ease-in-out infinite reverse, float-3 20s ease-in-out infinite",
-            borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
-            filter: "blur(25px)",
-          }}
-        />
-        {/* Center glow — blurred focus */}
-        <div
-          className="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 opacity-[0.08]"
-          style={{
-            background:
-              "linear-gradient(135deg, var(--color-accent-teal), var(--color-accent))",
-            animation:
-              "blob 9s ease-in-out infinite, float-2 12s ease-in-out infinite reverse",
-            borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
-            filter: "blur(50px)",
-          }}
-        />
-        {/* Tiny blob top-left — fast accent */}
-        <div
-          className="absolute left-1/4 top-10 h-[150px] w-[150px] opacity-[0.07]"
-          style={{
-            background: "var(--color-accent)",
-            animation:
-              "blob 7s ease-in-out infinite reverse, float-1 10s ease-in-out infinite reverse",
-            borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
-            filter: "blur(30px)",
-          }}
-        />
-      </div>
+
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6" ref={ref}>
         {/* Section heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, type: "spring", damping: 20 }}
           className="mb-10 sm:mb-16 text-center"
         >
           <span className="mb-3 inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-[#81C784]">
@@ -162,18 +115,20 @@ export default function Contact() {
               </p>
 
               {/* Primary CTA button */}
-              <a
-                href="mailto:aurelklyrhonmiko@gmail.com"
-                className="shimmer-btn group mb-8 sm:mb-10 inline-flex items-center gap-2 sm:gap-2.5 rounded-full bg-primary px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-1 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30"
-              >
-                <span className="relative z-10 flex items-center gap-2.5">
-                  <Send
-                    size={16}
-                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  />
-                  Send Me an Email
-                </span>
-              </a>
+              <MagneticEffect>
+                <a
+                  href="mailto:aurelklyrhonmiko@gmail.com"
+                  className="shimmer-btn group mb-8 sm:mb-10 inline-flex items-center gap-2 sm:gap-2.5 rounded-full bg-primary px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-1 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30"
+                >
+                  <span className="relative z-10 flex items-center gap-2.5">
+                    <Send
+                      size={16}
+                      className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                    Send Me an Email
+                  </span>
+                </a>
+              </MagneticEffect>
             </div>
 
             {/* Social links */}

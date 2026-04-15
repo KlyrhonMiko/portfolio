@@ -19,17 +19,19 @@ export const metadata: Metadata = {
     "Personal portfolio showcasing my projects, skills, and experience as a developer.",
 };
 
+import SmoothScroll from "@/components/SmoothScroll";
+import Background from "@/components/Background";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
-      >
-        {children}
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Background />
+        <SmoothScroll>{children}</SmoothScroll>
         <Analytics />
       </body>
     </html>
