@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Github, ArrowUpRight, ExternalLink, Layers, Wallet, Wifi, Battery, Signal, Layout } from "lucide-react";
+import { Github, ArrowUpRight, ExternalLink, Layers, Wallet, Wifi, Battery, Signal, Layout, Shield } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -47,6 +47,25 @@ const projects = [
     mockUrl: "koin.app",
     mockupType: "mobile" as const,
     live: undefined,
+  },
+  {
+    title: "HRMO System",
+    subtitle: "Personnel Digitization & Records Management",
+    description:
+      "A comprehensive human resource management system featuring role-based access for HR Heads, Record Assistants, and Employees. It manages employee 201 files, PDS data entry, certificate scanning, and training records with integrated analytics and reporting.",
+    tags: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "FastAPI",
+      "Recharts",
+      "PostgreSQL",
+    ],
+    github: "https://github.com/KlyrhonMiko/hrmo",
+    accent: "#15803d",
+    icon: Shield,
+    mockUrl: "hrmo.ph",
+    mockupType: "desktop" as const,
   },
   {
     title: "JTCI Carpet Gallery",
