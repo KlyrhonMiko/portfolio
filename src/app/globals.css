@@ -227,7 +227,27 @@ html.lenis body {
   }
 }
 
-/* ===== Background Patterns ===== */
+/* ===== Parallax Background ===== */
+
+@keyframes geo-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(8px, -12px) scale(1.03);
+  }
+}
+
+.parallax-geo-ring {
+  animation: geo-drift 18s ease-in-out infinite;
+}
+
+.parallax-geo-ring:nth-child(even) {
+  animation-delay: -9s;
+  animation-duration: 22s;
+}
+
+/* ===== Background Patterns =====*/
 
 .dot-pattern {
   background-image: radial-gradient(circle at center, var(--color-accent) 1px, transparent 1px);
