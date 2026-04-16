@@ -354,7 +354,7 @@ export default function Projects() {
           start: "top top",
           end: () => `+=${track.scrollWidth - window.innerWidth}`,
           pin: true,
-          scrub: 1,
+          scrub: 0.5,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {

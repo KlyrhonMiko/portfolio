@@ -163,7 +163,6 @@ html.lenis body {
     radial-gradient(ellipse 45% 55% at var(--mesh-x3, 50%) var(--mesh-y3, 50%), var(--color-accent) 0%, transparent 60%);
   background-size: 200% 200%, 200% 200%, 200% 200%;
   animation: mesh-drift 20s ease-in-out infinite;
-  will-change: background-position;
 }
 
 .noise-overlay {

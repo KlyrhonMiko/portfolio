@@ -6,7 +6,6 @@ import { ArrowDown, Github, Linkedin, Mail, Twitter, Sparkles, Facebook } from "
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
-import MagneticEffect from "@/components/MagneticEffect";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/KlyrhonMiko", label: "GitHub" },
@@ -124,29 +123,23 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4"
         >
-          <MagneticEffect>
-            <motion.a
-              whileHover={{ y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              href="#projects"
-              className="shimmer-btn group shrink-0 rounded-full bg-primary px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30"
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <Sparkles size={16} className="transition-transform duration-300 group-hover:rotate-12" />
-                View My Work
-              </span>
-            </motion.a>
-          </MagneticEffect>
-          <MagneticEffect>
-            <motion.a
-              whileHover={{ y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              href="#contact"
-              className="group shrink-0 rounded-full border border-border bg-surface/80 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold text-heading backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
-            >
-              Get in Touch
-            </motion.a>
-          </MagneticEffect>
+          <motion.a
+            whileTap={{ scale: 0.98 }}
+            href="#projects"
+            className="shimmer-btn group shrink-0 rounded-full bg-primary px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30"
+          >
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <Sparkles size={16} className="transition-transform duration-300 group-hover:rotate-12" />
+              View My Work
+            </span>
+          </motion.a>
+          <motion.a
+            whileTap={{ scale: 0.98 }}
+            href="#contact"
+            className="group shrink-0 rounded-full border border-border bg-surface/80 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold text-heading backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
+          >
+            Get in Touch
+          </motion.a>
         </motion.div>
 
         {/* Social links with staggered animation */}
