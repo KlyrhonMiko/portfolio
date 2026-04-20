@@ -64,7 +64,7 @@ const projects = [
     github: "https://github.com/KlyrhonMiko/hrmo",
     accent: "#15803d",
     icon: Shield,
-    mockUrl: "hrmo.ph",
+    mockUrl: "localhost:3000",
     mockupType: "desktop" as const,
   },
   {
@@ -81,7 +81,7 @@ const projects = [
     github: "https://github.com/KlyrhonMiko/jtci",
     accent: "#9c6f4a",
     icon: Layout,
-    mockUrl: "jtci.ph",
+    mockUrl: "localhost:3000",
     mockupType: "desktop" as const,
   },
 ];
