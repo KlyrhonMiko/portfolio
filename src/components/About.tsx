@@ -257,7 +257,7 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="about" className="relative pt-16 pb-10 sm:pt-24 sm:pb-12 md:pt-32 md:pb-16">
+    <section id="about" className="relative pt-16 pb-10 sm:pt-24 sm:pb-12 md:pt-32 md:pb-16 bg-surface">
 
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6" ref={ref}>
