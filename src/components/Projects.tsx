@@ -281,16 +281,18 @@ function ProjectCard({ project, index, isMobile }: { project: typeof projects[nu
 
             {/* Actions */}
             <div className="mt-5 flex flex-wrap items-center gap-2.5">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/btn inline-flex items-center gap-2 rounded-xl border border-border-light bg-surface-elevated px-4 py-2 text-xs sm:text-sm font-medium text-heading transition-all hover:border-primary/30 hover:bg-primary-light hover:text-primary-dark"
-              >
-                <Github className="h-4 w-4" />
-                Source Code
-                <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover/btn:opacity-100 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-              </a>
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/btn inline-flex items-center gap-2 rounded-xl border border-border-light bg-surface-elevated px-4 py-2 text-xs sm:text-sm font-medium text-heading transition-all hover:border-primary/30 hover:bg-primary-light hover:text-primary-dark"
+                >
+                  <Github className="h-4 w-4" />
+                  Source Code
+                  <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover/btn:opacity-100 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                </a>
+              )}
               {project.live && (
                 <a
                   href={project.live}
