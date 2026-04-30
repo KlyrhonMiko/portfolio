@@ -78,7 +78,6 @@ const projects = [
       "Tailwind CSS",
       "Company Website",
     ],
-    github: "https://github.com/KlyrhonMiko/jtci",
     accent: "#9c6f4a",
     icon: Layout,
     mockUrl: "localhost:3000",
