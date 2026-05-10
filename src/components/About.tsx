@@ -22,7 +22,7 @@ const skills = [
     icon: Code2,
     description: "Crafting interactive & responsive interfaces",
     accent: "from-emerald-400 to-teal-500",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
   },
   {
     category: "Mobile",
@@ -32,18 +32,18 @@ const skills = [
     items: ["Flutter", "Dart", "Riverpod"],
   },
   {
-    category: "ML & Analytics",
+    category: "ML/Analytics",
     icon: LineChart,
     description: "Smart features and clear insights",
     accent: "from-fuchsia-400 to-purple-500",
-    items: ["Machine Learning", "Data Visualization"],
+    items: ["Machine Learning", "Data Visualization", "Python"],
   },
   {
     category: "Backend & Data",
     icon: Database,
     description: "APIs, persistence, and managed infrastructure",
     accent: "from-sky-400 to-blue-500",
-    items: ["FastAPI", "PostgreSQL", "Supabase", "SQLite"],
+    items: ["FastAPI", "PostgreSQL", "Supabase", "SQLite", "MySQL"],
   },
   {
     category: "Design",
@@ -57,7 +57,7 @@ const skills = [
     icon: Terminal,
     description: "Streamlining deployment pipelines",
     accent: "from-amber-400 to-orange-500",
-    items: ["Git", "Docker", "CI/CD", "AWS"],
+    items: ["Git", "Docker", "Vercel", "GitHub"],
   },
 ];
 
