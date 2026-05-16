@@ -5,6 +5,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import LazySection from "@/components/LazySection";
 
 export default function Home() {
   return (
@@ -12,12 +13,16 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Projects />
-        <Experience />
-        <Contact />
+        <LazySection delay={800}>
+          <About />
+          <Projects />
+          <Experience />
+          <Contact />
+        </LazySection>
       </main>
-      <Footer />
+      <LazySection delay={800}>
+        <Footer />
+      </LazySection>
     </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,6 +11,14 @@ if (typeof window !== "undefined") {
 
 export default function Background() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [animReady, setAnimReady] = useState(false);
+
+    // Delay the expensive mesh-gradient CSS animation until
+    // after the hero entrance animation has had time to finish.
+    useEffect(() => {
+        const timer = setTimeout(() => setAnimReady(true), 1200);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <div
@@ -18,7 +26,10 @@ export default function Background() {
             className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none"
         >
             {/* Base: mesh gradient */}
-            <div className="mesh-gradient absolute inset-0 opacity-[0.07]" />
+            <div
+                className="mesh-gradient absolute inset-0 opacity-[0.07]"
+                style={animReady ? undefined : { animationPlayState: "paused" }}
+            />
 
             {/* Base: noise overlay */}
             <div className="noise-overlay absolute inset-0 opacity-[0.03] mix-blend-overlay" />

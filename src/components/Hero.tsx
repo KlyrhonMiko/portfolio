@@ -31,6 +31,13 @@ export default function Hero() {
     gsap.set(headerRef.current, { visibility: "visible" });
     const splitText = new SplitType(headerRef.current, { types: "chars" });
 
+    // Promote each char to its own GPU layer to avoid layout thrashing
+    if (splitText.chars) {
+      splitText.chars.forEach((char) => {
+        (char as HTMLElement).style.willChange = "transform, opacity";
+      });
+    }
+
     gsap.from(splitText.chars, {
       opacity: 0,
       y: 30,
@@ -39,7 +46,11 @@ export default function Hero() {
       ease: "back.out(1.7)",
       delay: 0.1,
       onComplete: () => {
-        splitText.revert();
+        // Defer DOM mutation to next frame so it doesn't interrupt
+        // any concurrent Framer Motion animations mid-paint
+        requestAnimationFrame(() => {
+          splitText.revert();
+        });
       }
     });
 
@@ -65,7 +76,10 @@ export default function Hero() {
       {/* Top spacer — smaller than bottom so content sits slightly above center */}
       <div className="flex-[2] min-h-[60px]" />
 
-      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center">
+      <div
+        className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center"
+        style={{ transform: "translateZ(0)", willChange: "transform" }}
+      >
         {/* Main heading with staggered reveal */}
         <div>
           <h1
@@ -84,17 +98,17 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           className="mb-6 h-8 sm:h-10 md:h-12"
         >
           <AnimatePresence mode="wait">
             <motion.h2
               key={roleIndex}
-              initial={{ opacity: 0, y: 15, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -15, filter: "blur(10px)" }}
+              initial={{ opacity: 0, y: 15, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -15, scale: 0.97 }}
               transition={{
-                duration: 0.6,
+                duration: 0.5,
                 ease: [0.23, 1, 0.32, 1]
               }}
               className="text-base font-medium text-primary sm:text-xl md:text-2xl"
@@ -108,7 +122,7 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           className="mx-auto mb-8 sm:mb-10 max-w-xl text-sm leading-relaxed text-muted sm:text-base md:text-lg"
         >
           I build scalable APIs and backend systems with modern
@@ -120,7 +134,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
           className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4"
         >
           <motion.a
@@ -146,7 +160,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
+          transition={{ delay: 1.0, duration: 0.5 }}
           className="mt-10 sm:mt-16 flex items-center justify-center gap-2.5 sm:gap-3"
         >
           {socialLinks.map((social, i) => (
@@ -158,7 +172,7 @@ export default function Hero() {
               aria-label={social.label}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 + i * 0.1, duration: 0.5 }}
+              transition={{ delay: 1.1 + i * 0.08, duration: 0.4 }}
               className="group flex h-11 w-11 items-center justify-center rounded-full border border-border-light bg-surface/80 text-muted backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:text-primary hover:shadow-lg hover:shadow-primary/15"
             >
               <social.icon size={18} className="transition-transform duration-300 group-hover:scale-110" />
@@ -173,7 +187,7 @@ export default function Hero() {
         className="relative z-10 flex-1 flex flex-col items-center justify-end gap-2 pb-12 sm:pb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
+        transition={{ delay: 1.8, duration: 0.6 }}
         aria-label="Scroll to about section"
       >
         <span className="text-xs font-medium uppercase tracking-widest text-muted">Scroll</span>
