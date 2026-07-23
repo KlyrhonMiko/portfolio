@@ -18,6 +18,7 @@
     "next": "^16.2.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-github-calendar": "^5.0.8",
     "split-type": "^0.3.4"
   },
   "devDependencies": {

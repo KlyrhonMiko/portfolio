@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Parallax from "@/components/Parallax";
+import GithubActivity from "@/components/GithubActivity";
 import {
   Code2,
   Palette,
@@ -339,6 +340,9 @@ export default function About() {
             <CodeEditor />
           </div>
         </div>
+
+        {/* ── Github Activity ── */}
+        <GithubActivity />
 
         {/* ── Skills ── */}
         <motion.div

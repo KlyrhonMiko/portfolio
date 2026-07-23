@@ -345,6 +345,45 @@ html::-webkit-scrollbar {
   /* Chrome / Safari */
 }
 
+/* ===== Hide scrollbar for components ===== */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide internal scrollbar rendered by react-github-calendar */
+.react-activity-calendar__scroll-container {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  padding-bottom: 4px !important; /* Prevent bottom row clipping */
+}
+.react-activity-calendar__scroll-container::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* ===== React Activity Calendar Tooltip ===== */
+.react-activity-calendar__tooltip {
+  background-color: var(--color-heading);
+  color: var(--color-surface);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* Make calendar responsive so it never gets cut off */
+.react-activity-calendar__calendar {
+  width: auto !important;
+  max-width: calc(100% - 45px) !important;
+  height: auto !important;
+}
+
 /* ===== Projects Horizontal Scroll (Desktop) ===== */
 
 .projects-section {
