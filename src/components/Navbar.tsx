@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { handleSmoothNavigation } from "../utils/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -12,6 +13,7 @@ const navLinks = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
+  { label: "Resume", href: "/resume" },
 ];
 
 export default function Navbar() {
@@ -112,36 +114,41 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* Mobile menu button */}
-        <button
-          className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full text-heading transition-colors hover:bg-primary-light md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          <AnimatePresence mode="wait">
-            {isOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <X size={22} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="menu"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Menu size={22} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </button>
+        {/* Right side controls */}
+        <div className="flex items-center gap-2 relative z-50">
+          <ThemeToggle />
+          
+          {/* Mobile menu button */}
+          <button
+            className="flex h-10 w-10 items-center justify-center rounded-full text-heading transition-colors hover:bg-primary-light md:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            <AnimatePresence mode="wait">
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X size={22} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu size={22} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
       </nav>
 
       {/* Full-screen mobile menu */}

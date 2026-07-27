@@ -75,13 +75,13 @@ export default function Contact() {
           transition={{ duration: 0.8, type: "spring", damping: 20 }}
           className="mb-10 sm:mb-16 text-center"
         >
-          <span className="mb-3 inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-[#81C784]">
+          <span className="mb-3 inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-primary">
             Contact
           </span>
-          <h2 className="mb-4 text-2xl font-bold text-[#2E3A3C] sm:text-3xl md:text-4xl lg:text-5xl">
+          <h2 className="mb-4 text-2xl font-bold text-heading sm:text-3xl md:text-4xl lg:text-5xl">
             Let&apos;s Work Together
           </h2>
-          <div className="mx-auto h-0.5 w-20 bg-[#81C784]" />
+          <div className="mx-auto h-0.5 w-20 bg-primary" />
           <p className="mx-auto mt-4 max-w-lg text-body">
             Have a project in mind or just want to chat? Feel free to reach out.
             I&apos;m always open to discussing new opportunities.

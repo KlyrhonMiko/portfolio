@@ -237,8 +237,8 @@ function MarqueePill({
   return (
     <div
       className={`mx-1.5 flex shrink-0 items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm font-medium shadow-sm transition-all duration-300 hover:scale-105 ${variant === "default"
-        ? "border-primary/10 bg-white text-heading hover:border-primary/25 hover:shadow-md hover:shadow-primary/8"
-        : "border-accent-teal/10 bg-white text-heading hover:border-accent-teal/25 hover:shadow-md hover:shadow-accent-teal/8"
+        ? "border-primary/10 bg-surface text-heading hover:border-primary/25 hover:shadow-md hover:shadow-primary/8"
+        : "border-accent-teal/10 bg-surface text-heading hover:border-accent-teal/25 hover:shadow-md hover:shadow-accent-teal/8"
         }`}
     >
       <span
@@ -270,13 +270,13 @@ export default function About() {
           transition={{ duration: 0.8, type: "spring", damping: 20 }}
           className="mb-10 sm:mb-16 text-center"
         >
-          <span className="mb-3 inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-[#81C784]">
+          <span className="mb-3 inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-primary">
             About Me
           </span>
-          <h2 className="mb-4 text-2xl font-bold text-[#2E3A3C] sm:text-3xl md:text-4xl lg:text-5xl">
+          <h2 className="mb-4 text-2xl font-bold text-heading sm:text-3xl md:text-4xl lg:text-5xl">
             Get to Know Me
           </h2>
-          <div className="mx-auto h-0.5 w-20 bg-[#81C784]" />
+          <div className="mx-auto h-0.5 w-20 bg-primary" />
           <p className="mx-auto mt-4 max-w-xl text-body">
             A glimpse into who I am, what I do, and the technologies I work with
           </p>

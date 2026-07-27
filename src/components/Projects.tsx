@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Github, ArrowUpRight, ExternalLink, Layers, Wallet, Wifi, Battery, Signal, Layout, Shield } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTheme } from "next-themes";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -87,7 +88,21 @@ const projects = [
   },
 ];
 
-function ProjectCard({ project, index, isMobile }: { project: typeof projects[number]; index: number; isMobile: boolean }) {
+function ProjectCard({ project: initialProject, index, isMobile }: { project: typeof projects[number]; index: number; isMobile: boolean }) {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted && resolvedTheme === "dark";
+  
+  // Use a brighter orange for Koin in dark mode for better contrast
+  const project = initialProject.title === "Koin" && isDark 
+    ? { ...initialProject, accent: "#ff9800" } 
+    : initialProject;
+
   const Icon = project.icon;
 
   return (
@@ -152,8 +167,8 @@ function ProjectCard({ project, index, isMobile }: { project: typeof projects[nu
                 : "max-w-[300px] sm:max-w-[380px] rounded-xl border"
                 }`}
               style={{
-                borderColor: project.mockupType === "mobile" ? "#1a1a1a" : `${project.accent}18`,
-                background: "#ffffff",
+                borderColor: project.mockupType === "mobile" ? "var(--border)" : `${project.accent}18`,
+                background: "var(--surface)",
                 boxShadow: `0 20px 60px -10px ${project.accent}18, 0 8px 20px -8px rgba(0,0,0,0.06)`,
               }}
             >

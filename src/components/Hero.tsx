@@ -6,7 +6,8 @@ import { ArrowDown, Github, Linkedin, Mail, Twitter, Sparkles, Facebook } from "
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
-
+import { useLenis } from "lenis/react";
+import { handleSmoothNavigation } from "../utils/navigation";
 const socialLinks = [
   { icon: Github, href: "https://github.com/KlyrhonMiko", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/klyrhon/", label: "LinkedIn" },
@@ -24,6 +25,11 @@ const roles = [
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const headerRef = useRef<HTMLHeadingElement>(null);
+  const lenis = useLenis();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    handleSmoothNavigation(e, href, lenis);
+  };
 
   useGSAP(() => {
     if (!headerRef.current) return;
@@ -140,6 +146,7 @@ export default function Hero() {
           <motion.a
             whileTap={{ scale: 0.98 }}
             href="#projects"
+            onClick={(e) => handleNavClick(e, "#projects")}
             className="shimmer-btn group shrink-0 rounded-full bg-primary px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30"
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
@@ -150,6 +157,7 @@ export default function Hero() {
           <motion.a
             whileTap={{ scale: 0.98 }}
             href="#contact"
+            onClick={(e) => handleNavClick(e, "#contact")}
             className="group shrink-0 rounded-full border border-border bg-surface/80 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold text-heading backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
           >
             Get in Touch
@@ -184,6 +192,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.a
         href="#about"
+        onClick={(e) => handleNavClick(e, "#about")}
         className="relative z-10 flex-1 flex flex-col items-center justify-end gap-2 pb-12 sm:pb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

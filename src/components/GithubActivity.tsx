@@ -2,11 +2,18 @@
 
 import { GitHubCalendar } from 'react-github-calendar';
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 export default function GithubActivity() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <motion.div
@@ -28,13 +35,14 @@ export default function GithubActivity() {
       <div className="mx-auto w-fit max-w-full overflow-hidden rounded-2xl border border-border-light bg-surface p-6 sm:p-8 shadow-sm transition-shadow duration-500 hover:shadow-md hover:shadow-primary/5">
         <div className="flex justify-center w-full">
           <div className="w-full">
-            <GitHubCalendar
-              username="KlyrhonMiko"
-              colorScheme="light"
-              theme={{
-                light: ['#f0f7f3', '#b8d8c7', '#7ec8b8', '#6db38a', '#5a9c76'],
-                dark: ['#1a2420', '#1e3a2b', '#2d5a40', '#3b7d58', '#4d9c6c'],
-              }}
+            {mounted && (
+              <GitHubCalendar
+                username="KlyrhonMiko"
+                colorScheme={resolvedTheme === "dark" ? "dark" : "light"}
+                theme={{
+                  light: ['#f0f7f3', '#b8d8c7', '#7ec8b8', '#6db38a', '#5a9c76'],
+                  dark: ['#162B1F', '#21402E', '#305C42', '#3E7857', '#5A9C76'],
+                }}
               showWeekdayLabels={true}
               tooltips={{
                 activity: {
@@ -52,6 +60,7 @@ export default function GithubActivity() {
                 totalCount: '{{count}} contributions in the last year',
               }}
             />
+            )}
           </div>
         </div>
       </div>
