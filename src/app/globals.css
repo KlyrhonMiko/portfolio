@@ -94,6 +94,10 @@ body {
   height: auto;
 }
 
+button:not(:disabled) {
+  cursor: pointer;
+}
+
 /* Prevent horizontal overflow from blobs on small screens */
 section {
   overflow-x: clip;

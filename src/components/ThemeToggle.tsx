@@ -16,7 +16,7 @@ export default function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <button className="group relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-surface/50 border border-border/50 backdrop-blur-sm transition-all">
+      <button className="group relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-surface/50 border border-border/50 backdrop-blur-sm transition-all cursor-pointer">
         <span className="sr-only">Toggle theme</span>
       </button>
     );
@@ -60,7 +60,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="group relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-surface/80 border border-border/60 text-heading backdrop-blur-md transition-all duration-300 hover:bg-surface-elevated hover:border-primary/30 hover:shadow-md hover:shadow-primary/5 hover:-translate-y-0.5 focus:outline-none active:scale-95"
+      className="group relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-surface/80 border border-border/60 text-heading backdrop-blur-md transition-all duration-300 hover:bg-surface-elevated hover:border-primary/30 hover:shadow-md hover:shadow-primary/5 hover:-translate-y-0.5 focus:outline-none active:scale-95 cursor-pointer"
       aria-label="Toggle theme"
     >
       <AnimatePresence mode="wait" initial={false}>
