@@ -24,25 +24,25 @@
 }
 
 :root.dark {
-  --background: #0B110D;
-  --foreground: #E5EDE9;
-  --primary: #7ECA9D;
-  --primary-dark: #5A9C76;
-  --primary-light: #162B1F;
-  --primary-lighter: #0F1D15;
-  --accent: #4A7A64;
-  --accent-teal: #519E8B;
-  --heading: #F0F4F2;
-  --body: #A3B8AD;
-  --muted: #6C8578;
-  --border: #1C3326;
-  --border-light: #15261C;
-  --surface: #121A14;
-  --surface-elevated: #18241B;
+  --background: #090a09;
+  --foreground: #f4f5f4;
+  --primary: #7eca9d;
+  --primary-dark: #5a9c76;
+  --primary-light: #132b1d;
+  --primary-lighter: #091710;
+  --accent: #6db38a;
+  --accent-teal: #2dd4bf;
+  --heading: #ffffff;
+  --body: #a0a3a0;
+  --muted: #6e736e;
+  --border: #252825;
+  --border-light: #181a18;
+  --surface: #111311;
+  --surface-elevated: #181a18;
 
-  --glass-bg: rgba(18, 26, 20, 0.65);
+  --glass-bg: rgba(17, 19, 17, 0.65);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-strong-bg: rgba(18, 26, 20, 0.85);
+  --glass-strong-bg: rgba(17, 19, 17, 0.85);
   --glass-strong-border: rgba(255, 255, 255, 0.12);
 }
 
@@ -396,15 +396,11 @@ html::-webkit-scrollbar {
   height: auto !important;
 }
 
-/* ===== Projects Horizontal Scroll (Desktop) ===== */
+/* ===== Projects Section ===== */
 
 .projects-section {
   overflow-x: visible !important;
   overflow: visible !important;
-}
-
-.projects-card {
-  scroll-snap-align: start;
 }
 
 /* ===== Selection Color ===== */
