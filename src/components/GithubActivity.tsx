@@ -26,7 +26,6 @@ export default function GithubActivity() {
 
   const selectLastHalfYear = (contributions: any[]) => {
     if (isMobile) {
-      // Approx 5 months (20 weeks) so it fits beautifully on mobile
       return contributions.slice(-140);
     }
     return contributions;
@@ -35,35 +34,34 @@ export default function GithubActivity() {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="mb-16 sm:mb-20"
+      className="w-full flex flex-col"
     >
-      <div className="mb-10 text-center">
-        <h3 className="text-xl font-bold text-heading sm:text-2xl md:text-3xl">
-          GitHub <span className="text-gradient-animated">Activity</span>
+      <div className="mb-12 flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+        <h3 className="text-2xl md:text-4xl font-bold text-heading tracking-tight">
+          GitHub Activity
         </h3>
-        <p className="mt-2 text-body">
-          My personal projects, open source contributions, and daily coding activity
+        <p className="text-lg text-body lg:text-right max-w-md">
+          My open source contributions, personal projects, and daily coding activity.
         </p>
       </div>
 
-      <div className="mx-auto w-full max-w-full overflow-hidden rounded-2xl border border-border-light bg-surface p-4 sm:p-8 shadow-sm transition-shadow duration-500 hover:shadow-md hover:shadow-primary/5">
-        <div className="flex justify-center w-full">
-          <div className="w-fit">
-            {mounted && (
-              <GitHubCalendar
-                username="KlyrhonMiko"
-                colorScheme={resolvedTheme === "dark" ? "dark" : "light"}
-                blockSize={isMobile ? 11 : 12}
-                blockMargin={isMobile ? 3 : 4}
-                fontSize={isMobile ? 12 : 14}
-                transformData={selectLastHalfYear}
-                theme={{
-                  light: ['#f0f7f3', '#b8d8c7', '#7ec8b8', '#6db38a', '#5a9c76'],
-                  dark: ['#162B1F', '#21402E', '#305C42', '#3E7857', '#5A9C76'],
-                }}
+      <div className="w-full flex lg:justify-start justify-center py-8">
+        <div className="w-fit overflow-x-auto">
+          {mounted && (
+            <GitHubCalendar
+              username="KlyrhonMiko"
+              colorScheme={resolvedTheme === "dark" ? "dark" : "light"}
+              blockSize={isMobile ? 11 : 14}
+              blockMargin={isMobile ? 3 : 5}
+              fontSize={isMobile ? 12 : 14}
+              transformData={selectLastHalfYear}
+              theme={{
+                light: ['#f0f7f3', '#b8d8c7', '#7ec8b8', '#6db38a', '#5a9c76'],
+                dark: ['#162B1F', '#21402E', '#305C42', '#3E7857', '#5A9C76'],
+              }}
               showWeekdayLabels={true}
               tooltips={{
                 activity: {
@@ -81,8 +79,7 @@ export default function GithubActivity() {
                 totalCount: '{{count}} contributions in the last year',
               }}
             />
-            )}
-          </div>
+          )}
         </div>
       </div>
     </motion.div>
