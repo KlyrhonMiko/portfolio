@@ -325,9 +325,10 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
             {project.tags.map((tag, i) => (
               <motion.span
                 key={tag}
-                whileHover={{ y: -2, backgroundColor: "var(--color-surface)", borderColor: project.accent, color: project.accent }}
+                whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
-                className="px-3 py-1.5 rounded-md text-[11px] font-medium bg-surface-elevated border border-border-light text-body/80 cursor-default"
+                style={{ "--project-accent": project.accent } as React.CSSProperties}
+                className="px-3 py-1.5 rounded-md text-[11px] font-medium bg-surface-elevated border border-border-light text-body/80 cursor-default transition-all duration-200 hover:bg-surface hover:border-[var(--project-accent)] hover:text-[var(--project-accent)]"
               >
                 {tag}
               </motion.span>
