@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, Variants } from "framer-motion";
 import {
   Github,
   ArrowUpRight,
@@ -83,7 +83,7 @@ const projects: Project[] = [
    Animation Variants
    ══════════════════════════════════════════════════ */
 
-const contentVariants = {
+const contentVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -91,17 +91,17 @@ const contentVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
-const skeletonLineVariants = {
+const skeletonLineVariants: Variants = {
   hidden: { scaleX: 0, opacity: 0 },
   visible: (custom: number) => ({
     scaleX: 1,

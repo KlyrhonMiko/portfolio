@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, Twitter, Sparkles, Facebook } from "lucide-react";
 import { useLenis } from "lenis/react";
@@ -20,7 +20,7 @@ const roles = [
   "Problem Solver",
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -28,7 +28,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
   visible: {
     opacity: 1,

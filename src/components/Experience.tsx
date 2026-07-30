@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, Variants } from "framer-motion";
 import { MapPin, ArrowUpRight } from "lucide-react";
 
 const experiences = [
@@ -48,7 +48,7 @@ const experiences = [
   }
 ];
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,

@@ -68,8 +68,8 @@ export default function Navbar() {
       <nav
         className={`pointer-events-auto relative flex w-full max-w-5xl items-center justify-between rounded-full transition-all duration-500 ${
           scrolled
-            ? "bg-surface/85 dark:bg-surface/80 backdrop-blur-2xl border border-border/80 dark:border-white/10 shadow-lg shadow-black/[0.04] dark:shadow-black/40 py-2.5 px-4 sm:px-6"
-            : "bg-surface/65 dark:bg-surface/40 backdrop-blur-xl border border-border/40 dark:border-white/[0.06] shadow-sm py-3 px-4 sm:px-6"
+            ? "backdrop-blur-2xl border border-border/80 dark:border-white/10 shadow-lg shadow-black/[0.04] dark:shadow-black/40 py-2.5 px-4 sm:px-6"
+            : "backdrop-blur-xl border border-border/40 dark:border-white/[0.06] shadow-sm py-3 px-4 sm:px-6"
         }`}
       >
         {/* Logo */}
@@ -90,7 +90,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop navigation - Segmented Pill design */}
-        <div className="hidden md:flex items-center rounded-full bg-surface-elevated/60 dark:bg-white/[0.03] p-1 border border-border/40 dark:border-white/[0.05]">
+        <div className="hidden md:flex items-center rounded-full p-1 border border-border/40 dark:border-white/[0.05]">
           <ul className="flex items-center gap-0.5">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.slice(1);
@@ -108,7 +108,7 @@ export default function Navbar() {
                     {isActive && (
                       <motion.span
                         layoutId="activeSectionTab"
-                        className="absolute inset-0 rounded-full bg-surface dark:bg-white/10 border border-border/60 dark:border-white/15 shadow-xs"
+                        className="absolute inset-0 rounded-full"
                         transition={{ type: "spring", stiffness: 400, damping: 32 }}
                       />
                     )}
@@ -123,7 +123,7 @@ export default function Navbar() {
         {/* Right side controls */}
         <div className="flex items-center gap-2 relative z-50">
           {/* Desktop grouped pill */}
-          <div className="hidden md:flex items-center rounded-full bg-surface-elevated/60 dark:bg-white/[0.03] p-1 border border-border/40 dark:border-white/[0.05]">
+          <div className="hidden md:flex items-center rounded-full p-1 border border-border/40 dark:border-white/[0.05]">
             <a
               href="/resume"
               onClick={(e) => handleNavClick(e, "/resume")}
