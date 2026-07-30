@@ -27,7 +27,7 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -35,7 +35,7 @@ export default function Navbar() {
   useEffect(() => {
     const updateActiveSection = () => {
       const sections = document.querySelectorAll("section[id]");
-      const triggerOffset = 150;
+      const triggerOffset = 180;
 
       let current = "home";
       sections.forEach((section) => {
@@ -65,62 +65,69 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || isOpen
-        ? "glass-strong shadow-sm"
-        : "bg-transparent"
+    <header className="fixed top-3 sm:top-5 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none">
+      <nav
+        className={`pointer-events-auto relative flex w-full max-w-5xl items-center justify-between rounded-full transition-all duration-500 ${
+          scrolled
+            ? "bg-surface/85 dark:bg-surface/80 backdrop-blur-2xl border border-border/80 dark:border-white/10 shadow-lg shadow-black/[0.04] dark:shadow-black/40 py-2.5 px-4 sm:px-6"
+            : "bg-surface/65 dark:bg-surface/40 backdrop-blur-xl border border-border/40 dark:border-white/[0.06] shadow-sm py-3 px-4 sm:px-6"
         }`}
-    >
-      <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      >
         {/* Logo */}
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, "#home")}
-          className="group relative z-50 text-base sm:text-lg font-bold tracking-tight text-heading"
+          className="group relative z-50 flex items-center gap-1.5 text-sm sm:text-base font-semibold tracking-tight text-heading transition-opacity hover:opacity-90"
         >
-          <span className="transition-opacity duration-300 group-hover:opacity-0">
-            &lt;Klyrhon /&gt;
+          <span className="font-mono text-primary text-xs sm:text-sm font-normal opacity-80 group-hover:opacity-100 transition-opacity">
+            &lt;
           </span>
-          <span className="text-gradient-animated absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            &lt;Klyrhon /&gt;
+          <span className="text-heading font-semibold tracking-tight">
+            Klyrhon
+          </span>
+          <span className="font-mono text-primary text-xs sm:text-sm font-normal opacity-80 group-hover:opacity-100 transition-opacity">
+            /&gt;
           </span>
         </a>
 
-        {/* Desktop navigation */}
-        <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.href.slice(1);
-            return (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${isActive
-                    ? "text-primary"
-                    : "text-body hover:text-heading"
+        {/* Desktop navigation - Segmented Pill design */}
+        <div className="hidden md:flex items-center rounded-full bg-surface-elevated/60 dark:bg-white/[0.03] p-1 border border-border/40 dark:border-white/[0.05]">
+          <ul className="flex items-center gap-0.5">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.slice(1);
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`relative rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-colors duration-200 block ${
+                      isActive
+                        ? "text-primary dark:text-emerald-400 font-semibold"
+                        : "text-muted hover:text-heading"
                     }`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="activeSection"
-                      className="absolute inset-0 rounded-full bg-primary-light/60"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">{link.label}</span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeSectionTab"
+                        className="absolute inset-0 rounded-full bg-surface dark:bg-white/10 border border-border/60 dark:border-white/15 shadow-xs"
+                        transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                      />
+                    )}
+                    <span className="relative z-10">{link.label}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
         {/* Right side controls */}
         <div className="flex items-center gap-2 relative z-50">
           <ThemeToggle />
-          
+
           {/* Mobile menu button */}
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-full text-heading transition-colors hover:bg-primary-light md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-heading bg-surface-elevated/80 dark:bg-white/[0.05] border border-border/60 dark:border-white/10 transition-colors hover:bg-surface-elevated md:hidden"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -133,7 +140,7 @@ export default function Navbar() {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X size={22} />
+                  <X size={18} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -143,7 +150,7 @@ export default function Navbar() {
                   exit={{ rotate: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Menu size={22} />
+                  <Menu size={18} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -151,100 +158,78 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Full-screen mobile menu */}
+      {/* Mobile Menu Dropdown Modal Card */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed inset-0 top-14 z-40 md:hidden"
+            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="pointer-events-auto absolute top-full left-3 right-3 sm:left-6 sm:right-6 mt-3 max-w-xl mx-auto rounded-3xl bg-surface/95 dark:bg-surface/95 backdrop-blur-2xl border border-border/80 dark:border-white/15 p-5 shadow-2xl shadow-black/20 md:hidden z-40 overflow-hidden"
           >
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-background/95 backdrop-blur-xl"
-            />
-
-            {/* Menu content */}
-            <div className="relative flex h-full flex-col px-6 pt-8 pb-10">
-              {/* Navigation links */}
-              <nav className="flex flex-col gap-1">
-                {navLinks.map((link, i) => {
-                  const isActive = activeSection === link.href.slice(1);
-                  return (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: -24 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -12 }}
-                      transition={{
-                        delay: i * 0.06,
-                        duration: 0.4,
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                      }}
-                    >
-                      <a
-                        href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href)}
-                        className={`group flex items-center justify-between rounded-2xl px-5 py-4 transition-all duration-200 ${isActive
-                          ? "bg-primary/8 text-primary"
+            <nav className="flex flex-col gap-1">
+              {navLinks.map((link, i) => {
+                const isActive = activeSection === link.href.slice(1);
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      delay: i * 0.04,
+                      duration: 0.3,
+                      ease: "easeOut",
+                    }}
+                  >
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className={`group flex items-center justify-between rounded-2xl px-4 py-3 text-sm transition-all duration-200 ${
+                        isActive
+                          ? "bg-primary/10 dark:bg-primary/15 text-primary font-semibold"
                           : "text-heading hover:bg-surface-elevated"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
+                            isActive
+                              ? "bg-primary scale-120"
+                              : "bg-muted/40 scale-75"
                           }`}
-                      >
-                        <div className="flex items-center gap-4">
-                          {/* Active dot */}
-                          <span
-                            className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${isActive
-                              ? "bg-primary scale-100"
-                              : "bg-border scale-75"
-                              }`}
-                          />
-                          <span className="text-lg font-semibold tracking-tight">
-                            {link.label}
-                          </span>
-                        </div>
-                        <ArrowUpRight
-                          size={16}
-                          className={`transition-all duration-200 ${isActive
+                        />
+                        <span className="font-medium tracking-tight">
+                          {link.label}
+                        </span>
+                      </div>
+                      <ArrowUpRight
+                        size={15}
+                        className={`transition-all duration-200 ${
+                          isActive
                             ? "text-primary opacity-100"
                             : "text-muted opacity-0 group-hover:opacity-60"
-                            }`}
-                        />
-                      </a>
-                    </motion.div>
-                  );
-                })}
-              </nav>
+                        }`}
+                      />
+                    </a>
+                  </motion.div>
+                );
+              })}
+            </nav>
 
-              {/* Bottom section */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ delay: 0.35, duration: 0.4 }}
-                className="mt-auto"
+            {/* Bottom section */}
+            <div className="mt-4 pt-4 border-t border-border/50 dark:border-white/10 flex items-center justify-between px-2">
+              <span className="text-xs text-muted font-mono">
+                aurelklyrhonmiko@gmail.com
+              </span>
+              <a
+                href="mailto:aurelklyrhonmiko@gmail.com"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-primary-dark transition-all active:scale-95"
               >
-                {/* Divider */}
-                <div className="mb-6 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-                {/* CTA */}
-                <a
-                  href="mailto:aurelklyrhonmiko@gmail.com"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-200 active:scale-[0.98]"
-                >
-                  Get in Touch
-                  <ArrowUpRight size={15} />
-                </a>
-
-                <p className="mt-5 text-center text-xs text-muted">
-                  aurelklyrhonmiko@gmail.com
-                </p>
-              </motion.div>
+                Contact
+                <ArrowUpRight size={13} />
+              </a>
             </div>
           </motion.div>
         )}
