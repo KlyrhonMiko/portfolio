@@ -2,21 +2,12 @@
 
 import { useLenis } from "lenis/react";
 import { handleSmoothNavigation } from "../utils/navigation";
-import {
-  Github,
-  Linkedin,
-  Facebook,
-  Heart,
-  ArrowUp,
-  Mail,
-  MapPin,
-  Code2,
-} from "lucide-react";
+import { ArrowUp, ArrowUpRight } from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/KlyrhonMiko", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/klyrhon/", label: "LinkedIn" },
-  { icon: Facebook, href: "https://www.facebook.com/aurelklyrhon", label: "Facebook" },
+  { href: "https://github.com/KlyrhonMiko", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/klyrhon/", label: "LinkedIn" },
+  { href: "https://www.facebook.com/aurelklyrhon", label: "Facebook" },
 ];
 
 const footerLinks = [
@@ -35,118 +26,100 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-border-light bg-surface-elevated/50">
-      {/* Animated gradient top line */}
-      <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
-
-
-
-      {/* Main footer content */}
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        {/* Top area — 3 columns */}
-        <div className="grid gap-8 sm:gap-10 border-b border-border-light/60 py-10 sm:py-14 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
-          {/* Brand column */}
-          <div className="sm:col-span-2 md:col-span-1">
+    <footer className="relative border-t border-border-light/30 bg-surface pt-20 pb-10 lg:pt-32 lg:pb-12 w-full">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
+        
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24 mb-20 lg:mb-32">
+          
+          {/* Brand & Bio */}
+          <div className="md:col-span-6 lg:col-span-7 flex flex-col items-start">
             <a
               href="#home"
               onClick={(e) => handleNavClick(e, "#home")}
-              className="mb-4 inline-flex items-center gap-2 text-lg sm:text-xl font-bold tracking-tight text-heading"
+              className="text-4xl md:text-5xl font-bold text-heading tracking-tight mb-6 hover:text-primary transition-colors"
             >
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-white shadow-md shadow-primary/25">
-                <Code2 size={18} />
-              </div>
-              <span className="text-gradient-animated">&lt;Klyrhon /&gt;</span>
+              Klyrhon Miko.
             </a>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
-              Building scalable web applications with modern technologies.
-              Passionate about clean code, great UX, and continuous learning.
+            <p className="text-lg text-body max-w-sm leading-relaxed mb-10 font-light">
+              Building scalable web applications with modern technologies. Passionate about clean code, great UX, and continuous learning.
             </p>
-
-            {/* Social links */}
-            <div className="mt-6 flex items-center gap-2.5">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="group flex h-10 w-10 items-center justify-center rounded-xl border border-border-light bg-surface text-muted transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/20"
-                >
-                  <social.icon
-                    size={16}
-                    className="transition-transform duration-300 group-hover:scale-110"
-                  />
-                </a>
-              ))}
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary/60">
+                Email
+              </span>
+              <a
+                href="mailto:aurelklyrhonmiko@gmail.com"
+                className="text-xl font-bold text-heading hover:text-primary transition-colors inline-block"
+              >
+                aurelklyrhonmiko@gmail.com
+              </a>
             </div>
           </div>
 
-          {/* Quick links column */}
-          <div className="md:col-span-1">
-            <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-heading">
-              Quick Links
-            </h4>
-            <nav>
-              <ul className="space-y-2.5">
+          {/* Links */}
+          <div className="md:col-span-6 lg:col-span-5 grid grid-cols-2 gap-8 lg:gap-12">
+            
+            {/* Quick Links */}
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold tracking-[0.2em] uppercase text-primary/60 mb-8">
+                Explore
+              </span>
+              <nav className="flex flex-col gap-5">
                 {footerLinks.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      className="group inline-flex items-center gap-2 text-sm text-muted transition-colors duration-300 hover:text-primary"
-                    >
-                      <span className="h-px w-3 bg-border-light transition-all duration-300 group-hover:w-5 group-hover:bg-primary" />
-                      {link.label}
-                    </a>
-                  </li>
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="text-lg font-medium text-heading/80 hover:text-primary transition-colors w-fit"
+                  >
+                    {link.label}
+                  </a>
                 ))}
-              </ul>
-            </nav>
-          </div>
+              </nav>
+            </div>
 
-          {/* Contact info column */}
-          <div className="md:col-span-1">
-            <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-heading">
-              Get in Touch
-            </h4>
-            <ul className="space-y-4">
-              <li>
-                <a
-                  href="mailto:aurelklyrhonmiko@gmail.com"
-                  className="group flex items-center gap-3 text-sm text-muted transition-colors duration-300 hover:text-primary"
-                >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-light/60 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/20">
-                    <Mail size={14} />
-                  </div>
-                  <span className="truncate">aurelklyrhonmiko@gmail.com</span>
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-sm text-muted">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-light/60 text-primary">
-                  <MapPin size={14} />
-                </div>
-                <span>Pasig City, Philippines</span>
-              </li>
-            </ul>
+            {/* Socials */}
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold tracking-[0.2em] uppercase text-primary/60 mb-8">
+                Connect
+              </span>
+              <div className="flex flex-col gap-5">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-lg font-medium text-heading/80 hover:text-primary transition-colors flex items-center gap-1 group w-fit"
+                  >
+                    {social.label}
+                    <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-3 py-5 sm:flex-row sm:py-6">
+        {/* Bottom Bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-border-light/30">
+          <p className="text-sm text-body/80 font-medium">
+            © {new Date().getFullYear()} Klyrhon Miko. All rights reserved.
+          </p>
+          
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
-            className="group inline-flex items-center gap-2 rounded-full border border-border-light bg-surface px-4 py-2 text-xs font-medium text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:text-primary hover:shadow-md hover:shadow-primary/10"
-            aria-label="Back to top"
+            className="group flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-heading hover:text-primary transition-colors"
           >
             Back to top
             <ArrowUp
-              size={14}
-              className="transition-transform duration-300 group-hover:-translate-y-0.5"
+              className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-1"
             />
           </a>
         </div>
+
       </div>
     </footer>
   );
