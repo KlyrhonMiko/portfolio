@@ -1,475 +1,214 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import Parallax from "@/components/Parallax";
+import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
 import GithubActivity from "@/components/GithubActivity";
-import {
-  Code2,
-  Palette,
-  Database,
-  Terminal,
-  Smartphone,
-  LineChart,
-  Zap,
-  Heart,
-  Target,
-  Lightbulb,
-} from "lucide-react";
 
 const skills = [
   {
     category: "Web Frontend",
-    icon: Code2,
     description: "Crafting interactive & responsive interfaces",
-    accent: "from-emerald-400 to-teal-500",
     items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
   },
   {
     category: "Mobile",
-    icon: Smartphone,
     description: "Cross-platform apps with native feel",
-    accent: "from-blue-500 to-indigo-600",
     items: ["Flutter", "Dart", "Riverpod"],
   },
   {
     category: "ML/Analytics",
-    icon: LineChart,
     description: "Smart features and clear insights",
-    accent: "from-fuchsia-400 to-purple-500",
     items: ["Machine Learning", "Data Visualization", "Python"],
   },
   {
     category: "Backend & Data",
-    icon: Database,
     description: "APIs, persistence, and managed infrastructure",
-    accent: "from-sky-400 to-blue-500",
     items: ["FastAPI", "PostgreSQL", "Supabase", "SQLite", "MySQL"],
   },
   {
     category: "Design",
-    icon: Palette,
     description: "Creating beautiful user experiences",
-    accent: "from-violet-400 to-purple-500",
     items: ["Figma", "UI/UX", "Responsive Design", "Accessibility"],
   },
   {
     category: "DevOps",
-    icon: Terminal,
     description: "Streamlining deployment pipelines",
-    accent: "from-amber-400 to-orange-500",
     items: ["Git", "Docker", "Vercel", "GitHub"],
   },
 ];
 
-const marqueeRow1 = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Tailwind CSS",
-  "Flutter",
-  "Dart",
-  "Riverpod",
-  "Python",
-];
-const marqueeRow2 = [
-  "FastAPI",
-  "PostgreSQL",
-  "Supabase",
-  "SQLite",
-  "Machine Learning",
-  "Git",
-  "Github",
-  "Docker",
-  "Data Visualization",
-];
-
 const traits = [
-  { label: "Problem Solver", icon: Target },
-  { label: "Team Player", icon: Heart },
-  { label: "Fast Learner", icon: Zap },
-  { label: "Detail Oriented", icon: Lightbulb },
+  { label: "Problem Solver" },
+  { label: "Team Player" },
+  { label: "Fast Learner" },
+  { label: "Detail Oriented" },
 ];
-
-/* ── Code Editor Widget ── */
-function CodeLine({
-  num,
-  children,
-}: {
-  num: number;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="flex">
-      <span className="mr-3 sm:mr-6 inline-block w-4 sm:w-5 shrink-0 select-none text-right text-[#4d6353]">
-        {num}
-      </span>
-      <span>{children}</span>
-    </div>
-  );
-}
-
-function CodeEditor() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 40, rotateY: -5 }}
-      whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.8, delay: 0.3 }}
-      className="relative"
-    >
-      {/* Ambient glow */}
-      <div className="absolute -inset-3 sm:-inset-6 rounded-3xl bg-gradient-to-br from-[#6db38a]/20 via-[#7ec8b8]/10 to-[#5a9c76]/20 blur-3xl" />
-
-      <div className="relative overflow-hidden rounded-2xl border border-[#283830] bg-[#1a2420] shadow-2xl shadow-black/25">
-        {/* Title bar */}
-        <div className="flex items-center gap-2 border-b border-[#283830] bg-[#1e2c26] px-4 py-3">
-          <div className="flex gap-1.5">
-            <div className="h-3 w-3 rounded-full bg-[#ff5f57] shadow-[0_0_6px_rgba(255,95,87,0.4)]" />
-            <div className="h-3 w-3 rounded-full bg-[#febc2e] shadow-[0_0_6px_rgba(254,188,46,0.4)]" />
-            <div className="h-3 w-3 rounded-full bg-[#28c840] shadow-[0_0_6px_rgba(40,200,64,0.4)]" />
-          </div>
-          <div className="ml-3 flex items-center gap-1.5 rounded-md bg-[#1a2420] px-3 py-1">
-            <Code2 size={12} className="text-[#6db38a]" />
-            <span className="text-xs text-[#6a8a72]">whoami.ts</span>
-          </div>
-        </div>
-
-        {/* Code content */}
-        <div className="overflow-x-auto p-3 sm:p-5 font-mono text-[11px] sm:text-[13px] leading-6 sm:leading-7">
-          <CodeLine num={1}>
-            <span className="text-[#546e7a] italic">
-              {"// "}who am I?
-            </span>
-          </CodeLine>
-          <CodeLine num={2}>
-            <span className="text-[#c792ea]">const</span>{" "}
-            <span className="text-[#82aaff]">aurel</span>{" "}
-            <span className="text-[#89ddff]">=</span>{" "}
-            <span className="text-[#89ddff]">{"{"}</span>
-          </CodeLine>
-          <CodeLine num={3}>
-            <span className="text-[#f07178]">&nbsp;&nbsp;name</span>
-            <span className="text-[#89ddff]">:</span>{" "}
-            <span className="text-[#c3e88d]">
-              &apos;Klyrhon Aurel&apos;
-            </span>
-            <span className="text-[#89ddff]">,</span>
-          </CodeLine>
-          <CodeLine num={4}>
-            <span className="text-[#f07178]">&nbsp;&nbsp;role</span>
-            <span className="text-[#89ddff]">:</span>{" "}
-            <span className="text-[#c3e88d]">
-              &apos;Student&apos;
-            </span>
-            <span className="text-[#89ddff]">,</span>
-          </CodeLine>
-          <CodeLine num={5}>
-            <span className="text-[#f07178]">&nbsp;&nbsp;loves</span>
-            <span className="text-[#89ddff]">:</span>{" "}
-            <span className="text-[#89ddff]">[</span>
-          </CodeLine>
-          <CodeLine num={6}>
-            <span className="text-[#c3e88d]">
-              &nbsp;&nbsp;&nbsp;&nbsp;&apos;Clean Code&apos;
-            </span>
-            <span className="text-[#89ddff]">,</span>
-          </CodeLine>
-          <CodeLine num={7}>
-            <span className="text-[#c3e88d]">
-              &nbsp;&nbsp;&nbsp;&nbsp;&apos;Pixel-Perfect UI&apos;
-            </span>
-            <span className="text-[#89ddff]">,</span>
-          </CodeLine>
-          <CodeLine num={8}>
-            <span className="text-[#c3e88d]">
-              &nbsp;&nbsp;&nbsp;&nbsp;&apos;Open Source&apos;
-            </span>
-            <span className="text-[#89ddff]">,</span>
-          </CodeLine>
-          <CodeLine num={9}>
-            <span className="text-[#c3e88d]">
-              &nbsp;&nbsp;&nbsp;&nbsp;&apos;My Girlfriend&apos;
-            </span>
-          </CodeLine>
-          <CodeLine num={10}>
-            <span className="text-[#89ddff]">&nbsp;&nbsp;]</span>
-            <span className="text-[#89ddff]">,</span>
-          </CodeLine>
-          <CodeLine num={11}>
-            <span className="text-[#f07178]">&nbsp;&nbsp;hardWorker</span>
-            <span className="text-[#89ddff]">:</span>{" "}
-            <span className="text-[#ff9cac]">true</span>
-            <span className="text-[#89ddff]">,</span>
-          </CodeLine>
-          <CodeLine num={12}>
-            <span className="text-[#f07178]">&nbsp;&nbsp;quickLearner</span>
-            <span className="text-[#89ddff]">:</span>{" "}
-            <span className="text-[#ff9cac]">true</span>
-            <span className="text-[#89ddff]">,</span>
-          </CodeLine>
-          <CodeLine num={13}>
-            <span className="text-[#f07178]">&nbsp;&nbsp;hireable</span>
-            <span className="text-[#89ddff]">:</span>{" "}
-            <span className="text-[#ff9cac]">true</span>
-            <span className="text-[#89ddff]">,</span>
-          </CodeLine>
-          <CodeLine num={14}>
-            <span className="text-[#89ddff]">{"}"}</span>
-            <span className="text-[#89ddff]">;</span>
-          </CodeLine>
-          {/* Blinking cursor */}
-          <div className="mt-1 h-5 w-2 animate-pulse rounded-sm bg-[#6db38a]" />
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-/* ── Marquee Pill ── */
-function MarqueePill({
-  label,
-  variant = "default",
-}: {
-  label: string;
-  variant?: "default" | "alt";
-}) {
-  return (
-    <div
-      className={`mx-1.5 sm:mx-2 flex shrink-0 items-center gap-2 sm:gap-2.5 rounded-full border px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium shadow-sm transition-all duration-300 hover:scale-105 ${variant === "default"
-        ? "border-primary/15 bg-surface/80 backdrop-blur-sm text-heading hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-0.5"
-        : "border-accent-teal/15 bg-surface/80 backdrop-blur-sm text-heading hover:border-accent-teal/40 hover:shadow-lg hover:shadow-accent-teal/10 hover:-translate-y-0.5"
-        }`}
-    >
-      <span
-        className={`inline-block h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full shadow-sm bg-gradient-to-r ${variant === "default"
-          ? "from-primary to-accent-teal shadow-primary/40"
-          : "from-accent-teal to-primary shadow-accent-teal/40"
-          }`}
-      />
-      {label}
-    </div>
-  );
-}
 
 /* ── Main About Section ── */
 export default function About() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const lineWidth = useSpring(useTransform(scrollYProgress, [0, 0.8], ["0%", "100%"]), {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
-    <section id="about" className="relative pt-16 pb-10 sm:pt-24 sm:pb-12 md:pt-32 md:pb-16 bg-surface">
-
-
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6" ref={ref}>
-        {/* Section heading */}
+    <section id="about" ref={containerRef} className="relative py-24 lg:py-32 w-full bg-surface">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
+        
+        {/* ─── Section Header ─── */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, type: "spring", damping: 20 }}
-          className="mb-10 sm:mb-16 text-center"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 lg:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8"
         >
-          <span className="mb-3 inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-primary">
-            About Me
-          </span>
-          <h2 className="mb-4 text-2xl font-bold text-heading sm:text-3xl md:text-4xl lg:text-5xl">
-            Get to Know Me
-          </h2>
-          <div className="mx-auto h-0.5 w-20 bg-primary" />
-          <p className="mx-auto mt-4 max-w-xl text-body">
-            A glimpse into who I am, what I do, and the technologies I work with
+          <div>
+            <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-primary/80">
+              About Me
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-heading tracking-tight mb-2">
+              Get to Know Me
+            </h2>
+          </div>
+          <p className="text-lg text-body max-w-md md:text-right leading-relaxed">
+            A glimpse into who I am, what I do, and the technologies I work with to build the web.
           </p>
         </motion.div>
 
-        {/* ── Bio + Code Editor ── */}
-        <div className="mb-12 sm:mb-20 grid items-center gap-8 sm:gap-12 lg:grid-cols-2">
-          {/* Left column – bio */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="flex flex-col items-center text-center lg:items-start lg:text-left"
-          >
-            <h3 className="mb-4 sm:mb-5 text-xl font-bold leading-snug text-heading sm:text-2xl md:text-3xl">
-              A passionate developer{" "}
-              <span className="text-gradient-animated">building</span> for the
-              web
-            </h3>
-            <p className="mb-4 text-base leading-relaxed text-body sm:text-lg">
-              I&apos;m an aspiring software engineer with a passion for creating
-              elegant, user-friendly web applications. With a strong foundation
-              in both frontend and backend technologies, I bring ideas to life
-              through clean code and thoughtful design.
-            </p>
-            <p className="mb-6 sm:mb-8 text-base leading-relaxed text-body sm:text-lg">
-              When I&apos;m not coding, you can find me exploring new
-              technologies, contributing to open-source projects, or sharing
-              knowledge through technical writing. I believe in continuous
-              learning and pushing the boundaries of what&apos;s possible on the
-              web.
-            </p>
+        {/* Dynamic separator line */}
+        <div className="w-full h-px bg-border-light/30 mb-24 relative">
+          <motion.div 
+            className="absolute top-0 left-0 h-full bg-primary" 
+            style={{ width: lineWidth, opacity: 0.5 }} 
+          />
+        </div>
 
-            {/* Trait badges */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
-              {traits.map((trait, i) => (
-                <motion.div
-                  key={trait.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 0.4 + i * 0.08 }}
-                  whileHover={{ y: -2 }}
-                  className="group flex items-center gap-1.5 sm:gap-2 rounded-full border border-border-light bg-surface px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-body shadow-sm transition-colors transition-shadow duration-300 hover:border-primary/30 hover:shadow-md hover:shadow-primary/5"
-                >
-                  <trait.icon
-                    size={15}
-                    className="text-primary transition-transform duration-300 group-hover:scale-110"
-                  />
-                  {trait.label}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right column – code editor */}
-          <div className="hidden lg:block relative">
-            <Parallax speed={0.5}>
-              <CodeEditor />
-            </Parallax>
+        {/* ── Bio Section ── */}
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 mb-24 border-b border-border-light/50 pb-24">
+          <div className="lg:col-span-5">
+             <motion.h3 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true, margin: "-50px" }}
+               transition={{ duration: 0.6 }}
+               className="text-3xl md:text-4xl font-bold text-heading leading-[1.3] mb-12"
+             >
+               A passionate developer building for the web.
+             </motion.h3>
+             
+             <div className="flex flex-col gap-6">
+               {traits.map((trait, index) => (
+                 <motion.div 
+                   key={trait.label} 
+                   initial={{ opacity: 0, x: -20 }}
+                   whileInView={{ opacity: 1, x: 0 }}
+                   viewport={{ once: true, margin: "-50px" }}
+                   transition={{ duration: 0.6, delay: index * 0.1 }}
+                   className="flex items-center gap-6 group cursor-default"
+                 >
+                   <span className="text-sm font-semibold tracking-[0.2em] text-primary/60 uppercase group-hover:text-primary transition-colors">
+                     0{index + 1}
+                   </span>
+                   <span className="text-lg tracking-[0.1em] uppercase font-semibold text-heading/80 group-hover:translate-x-2 transition-transform duration-500 ease-out">
+                     {trait.label}
+                   </span>
+                 </motion.div>
+               ))}
+             </div>
           </div>
-          <div className="block lg:hidden relative">
-            <CodeEditor />
+          
+          <div className="lg:col-span-7 flex flex-col gap-8 text-lg md:text-xl text-body leading-relaxed font-light">
+             <motion.p
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true, margin: "-50px" }}
+               transition={{ duration: 0.6, delay: 0.2 }}
+             >
+               I'm an aspiring software engineer with a passion for creating elegant, user-friendly web applications. With a strong foundation in both frontend and backend technologies, I bring ideas to life through clean code and thoughtful design.
+             </motion.p>
+             <motion.p
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true, margin: "-50px" }}
+               transition={{ duration: 0.6, delay: 0.3 }}
+             >
+               When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge through technical writing. I believe in continuous learning and pushing the boundaries of what's possible on the web.
+             </motion.p>
           </div>
         </div>
 
         {/* ── Github Activity ── */}
-        <GithubActivity />
+        <div className="mb-24 border-b border-border-light/50 pb-24">
+          <GithubActivity />
+        </div>
 
-        {/* ── Skills ── */}
+        {/* ── Skills & Technologies ── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="mb-10 text-center">
-            <h3 className="text-xl font-bold text-heading sm:text-2xl md:text-3xl">
-              Skills &amp;{" "}
-              <span className="text-gradient-animated">Technologies</span>
+          <div className="mb-12 flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+            <h3 className="text-2xl md:text-4xl font-bold text-heading tracking-tight">
+              Skills & Technologies
             </h3>
-            <p className="mt-2 text-body">
-              The tools and frameworks I use to bring products to life
+            <p className="text-lg text-body lg:text-right max-w-md">
+              The tools, languages, and frameworks I use to build robust applications.
             </p>
           </div>
 
-          {/* ── Infinite Marquee ── */}
-          <div
-            className="marquee-container relative -mx-4 sm:-mx-6 mb-12 sm:mb-16"
-            style={{
-              maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
-              WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)"
-            }}
-          >
-
-            {/* Row 1 – scrolls left */}
-            <div className="mb-3 flex overflow-hidden py-1">
-              <div
-                className="marquee-track flex w-max"
-                style={{ animation: "marquee-scroll 25s linear infinite" }}
+          {/* ── Minimalist Category List ── */}
+          <div className="mt-12 flex flex-col border-t border-border-light/50">
+            {skills.map((skill, index) => (
+              <motion.div
+                key={skill.category}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-12 py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/30 transition-colors duration-500"
               >
-                {marqueeRow1.map((skill, i) => (
-                  <MarqueePill key={`a-${i}`} label={skill} />
-                ))}
-                {marqueeRow1.map((skill, i) => (
-                  <MarqueePill key={`b-${i}`} label={skill} />
-                ))}
-              </div>
-            </div>
+                {/* Subtle Hover Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
 
-            {/* Row 2 – scrolls right */}
-            <div className="flex overflow-hidden py-1">
-              <div
-                className="marquee-track flex w-max"
-                style={{
-                  animation: "marquee-scroll 30s linear infinite reverse",
-                }}
-              >
-                {marqueeRow2.map((skill, i) => (
-                  <MarqueePill key={`a-${i}`} label={skill} variant="alt" />
-                ))}
-                {marqueeRow2.map((skill, i) => (
-                  <MarqueePill key={`b-${i}`} label={skill} variant="alt" />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* ── Category Bento Grid (lg: 2+1 / 1+2 / 2+1) ── */}
-          <div className="relative grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Ambient background glow for the grid */}
-            <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-primary/5 via-transparent to-accent-teal/5 blur-3xl" />
-
-            {skills.map((skill, index) => {
-              const wideLg =
-                index === 0 || index === 3 || index === 4
-                  ? " lg:col-span-2"
-                  : "";
-              return (
-                <motion.div
-                  key={skill.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: index * 0.05, type: "spring", damping: 20 }}
-                  whileHover={{ y: -4, scale: 1.01 }}
-                  className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-border-light bg-surface/60 p-5 sm:p-7 backdrop-blur-xl transition-all duration-500 hover:border-primary/30 hover:bg-surface/90 hover:shadow-2xl hover:shadow-primary/10${wideLg}`}
-                >
-                  {/* Subtle top border highlight */}
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                  {/* Watermark number - tweaked for mobile */}
-                  <span className="pointer-events-none absolute -bottom-4 -right-2 select-none text-[60px] sm:text-[80px] font-black leading-none text-heading/[0.02] transition-all duration-500 group-hover:text-heading/[0.05] group-hover:-translate-y-2 group-hover:-translate-x-2">
-                    {String(index + 1).padStart(2, "0")}
+                {/* Left Side: Category */}
+                <div className="lg:w-1/3 shrink-0 flex items-center gap-4 lg:gap-6">
+                  <span className="text-sm font-semibold tracking-[0.2em] text-primary/60 uppercase shrink-0">
+                    0{index + 1}
                   </span>
-
-                  {/* Hover gradient blob */}
-                  <div
-                    className={`absolute -right-12 -top-12 h-32 w-32 sm:h-48 sm:w-48 rounded-full bg-gradient-to-br ${skill.accent} opacity-0 blur-[60px] transition-opacity duration-700 group-hover:opacity-[0.12]`}
-                  />
-
-                  <div className="relative z-10 flex h-full flex-col">
-                    {/* Icon + Category */}
-                    <div className="mb-5 flex items-center gap-3 sm:gap-4">
-                      <div
-                        className={`flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br ${skill.accent} text-white shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
-                      >
-                        <skill.icon className="h-5 w-5 sm:h-6 sm:w-6" />
-                      </div>
-                      <div>
-                        <h4 className="text-base font-bold tracking-wide text-heading sm:text-lg">
-                          {skill.category}
-                        </h4>
-                        <p className="mt-0.5 text-xs text-muted sm:text-sm">
-                          {skill.description}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Skill tags */}
-                    <div className="mt-auto flex flex-wrap gap-2 sm:gap-2.5">
-                      {skill.items.map((item, i) => (
-                        <span
-                          key={item}
-                          className="rounded-lg border border-border-light/60 bg-surface/80 px-2.5 py-1 text-[11px] font-medium text-body shadow-sm backdrop-blur-sm transition-all duration-300 group-hover:border-primary/20 group-hover:bg-primary/5 group-hover:text-primary-dark hover:!border-primary/50 hover:!bg-primary/10 sm:px-3 sm:py-1.5 sm:text-xs"
-                          style={{ transitionDelay: `${i * 30}ms` }}
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+                  <div>
+                    <h4 className="text-xl md:text-2xl font-bold text-heading group-hover:translate-x-2 transition-transform duration-500 ease-out">
+                      {skill.category}
+                    </h4>
+                    <p className="mt-1.5 text-sm text-body/80">
+                      {skill.description}
+                    </p>
                   </div>
-                </motion.div>
-              );
-            })}
+                </div>
+
+                {/* Right Side: Skills */}
+                <div className="lg:w-2/3 flex flex-wrap gap-2 lg:gap-3">
+                  {skill.items.map((item) => (
+                    <span
+                      key={item}
+                      className="px-4 py-2 rounded-md text-xs sm:text-sm font-medium bg-surface-elevated border border-border-light text-body/80 group-hover:border-primary/30 group-hover:text-primary transition-colors cursor-default"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>
