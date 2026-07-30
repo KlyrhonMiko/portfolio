@@ -132,7 +132,7 @@ const MinimalDesktopMockup = ({ project }: { project: Project }) => (
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, margin: "-100px" }}
-    className="w-full max-w-[600px] perspective-[1000px] relative group"
+    className="w-full max-w-[600px] perspective-[1000px] relative group mx-auto"
   >
     {/* Ambient Glow behind mockup */}
     <div
@@ -145,42 +145,42 @@ const MinimalDesktopMockup = ({ project }: { project: Project }) => (
       className="rounded-xl border border-border-light bg-surface shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-700 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] group-hover:-translate-y-2 relative z-10"
     >
       {/* Browser Chrome */}
-      <div className="flex items-center gap-2 border-b border-border-light px-4 py-3 bg-surface-elevated/30">
-        <div className="flex gap-1.5">
-          <div className="h-2.5 w-2.5 rounded-full bg-border-light group-hover:bg-[#ff5f56] transition-colors duration-500" />
-          <div className="h-2.5 w-2.5 rounded-full bg-border-light group-hover:bg-[#ffbd2e] transition-colors duration-500 delay-75" />
-          <div className="h-2.5 w-2.5 rounded-full bg-border-light group-hover:bg-[#27c93f] transition-colors duration-500 delay-150" />
+      <div className="flex items-center gap-2 border-b border-border-light px-3 sm:px-4 py-2 sm:py-3 bg-surface-elevated/30">
+        <div className="flex gap-1 sm:gap-1.5">
+          <div className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-border-light group-hover:bg-[#ff5f56] transition-colors duration-500" />
+          <div className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-border-light group-hover:bg-[#ffbd2e] transition-colors duration-500 delay-75" />
+          <div className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-border-light group-hover:bg-[#27c93f] transition-colors duration-500 delay-150" />
         </div>
-        <div className="ml-4 flex items-center justify-center flex-1 max-w-[240px] rounded bg-surface border border-border-light/50 px-2 py-1 transition-colors duration-500 group-hover:border-border-light">
-          <span className="text-[10px] text-muted font-medium truncate transition-colors duration-500 group-hover:text-body">
+        <div className="ml-2 sm:ml-4 flex items-center justify-center flex-1 max-w-[200px] sm:max-w-[240px] rounded bg-surface border border-border-light/50 px-2 py-0.5 sm:py-1 transition-colors duration-500 group-hover:border-border-light">
+          <span className="text-[9px] sm:text-[10px] text-muted font-medium truncate transition-colors duration-500 group-hover:text-body">
             {project.mockUrl}
           </span>
         </div>
       </div>
       
       {/* Wireframe Content */}
-      <div className="p-8 space-y-8 bg-surface">
-        <div className="flex items-center gap-5">
+      <div className="p-5 sm:p-8 space-y-6 sm:space-y-8 bg-surface">
+        <div className="flex items-center gap-4 sm:gap-5">
           <motion.div
             variants={itemVariants}
-            className="flex h-14 w-14 items-center justify-center rounded-xl transition-colors duration-500"
+            className="flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center rounded-lg sm:rounded-xl transition-colors duration-500"
             style={{ backgroundColor: `${project.accent}15` }}
           >
-            <project.icon className="h-7 w-7 transition-colors duration-500" style={{ color: project.accent }} />
+            <project.icon className="h-5 w-5 sm:h-7 sm:w-7 transition-colors duration-500" style={{ color: project.accent }} />
           </motion.div>
-          <div className="space-y-3 flex-1">
-            <motion.div custom={0} variants={skeletonLineVariants} className="h-3 w-1/3 rounded-full bg-border-light/80 origin-left" />
-            <motion.div custom={1} variants={skeletonLineVariants} className="h-2 w-1/4 rounded-full bg-border-light/40 origin-left" />
+          <div className="space-y-2.5 sm:space-y-3 flex-1">
+            <motion.div custom={0} variants={skeletonLineVariants} className="h-2.5 sm:h-3 w-1/3 rounded-full bg-border-light/80 origin-left" />
+            <motion.div custom={1} variants={skeletonLineVariants} className="h-1.5 sm:h-2 w-1/4 rounded-full bg-border-light/40 origin-left" />
           </div>
         </div>
-        <div className="space-y-3">
-          <motion.div custom={2} variants={skeletonLineVariants} className="h-2 w-full rounded-full bg-border-light/40 origin-left" />
-          <motion.div custom={3} variants={skeletonLineVariants} className="h-2 w-[90%] rounded-full bg-border-light/40 origin-left" />
-          <motion.div custom={4} variants={skeletonLineVariants} className="h-2 w-[75%] rounded-full bg-border-light/40 origin-left" />
+        <div className="space-y-2 sm:space-y-3">
+          <motion.div custom={2} variants={skeletonLineVariants} className="h-1.5 sm:h-2 w-full rounded-full bg-border-light/40 origin-left" />
+          <motion.div custom={3} variants={skeletonLineVariants} className="h-1.5 sm:h-2 w-[90%] rounded-full bg-border-light/40 origin-left" />
+          <motion.div custom={4} variants={skeletonLineVariants} className="h-1.5 sm:h-2 w-[75%] rounded-full bg-border-light/40 origin-left" />
         </div>
         <motion.div 
           variants={itemVariants}
-          className="h-36 w-full rounded-xl bg-surface-elevated/50 border border-border-light/50 relative overflow-hidden group/box"
+          className="h-24 sm:h-36 w-full rounded-lg sm:rounded-xl bg-surface-elevated/50 border border-border-light/50 relative overflow-hidden group/box"
         >
           {/* Subtle moving gradient inside wireframe box */}
           <motion.div 
@@ -200,53 +200,53 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, margin: "-100px" }}
-    className="relative w-[280px] perspective-[1000px] group"
+    className="relative w-[220px] sm:w-[280px] perspective-[1000px] group mx-auto"
   >
     {/* Ambient Glow */}
     <div
-      className="absolute inset-0 blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-1000 rounded-[3rem]"
+      className="absolute inset-0 blur-2xl sm:blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-1000 rounded-[2rem] sm:rounded-[3rem]"
       style={{ backgroundColor: project.accent }}
     />
 
     <motion.div 
       animate={{ y: [0, -8, 0], rotateZ: [0, 1, 0] }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" as const }}
-      className="relative rounded-[3rem] border-[10px] border-surface-elevated bg-surface shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-700 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] group-hover:-translate-y-2 z-10"
+      className="relative rounded-[2.5rem] sm:rounded-[3rem] border-[6px] sm:border-[10px] border-surface-elevated bg-surface shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-700 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] group-hover:-translate-y-2 z-10"
     >
       {/* Notch */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-6 w-32 bg-surface-elevated rounded-b-2xl z-20 transition-colors duration-500 group-hover:bg-border-light/80" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-4 sm:h-6 w-24 sm:w-32 bg-surface-elevated rounded-b-xl sm:rounded-b-2xl z-20 transition-colors duration-500 group-hover:bg-border-light/80" />
       
       {/* Wireframe Content */}
-      <div className="p-6 pt-14 space-y-8 h-[560px] relative z-10">
-        <div className="flex flex-col items-center text-center space-y-5">
+      <div className="p-4 sm:p-6 pt-10 sm:pt-14 space-y-6 sm:space-y-8 h-[420px] sm:h-[560px] relative z-10">
+        <div className="flex flex-col items-center text-center space-y-4 sm:space-y-5">
           <motion.div
             variants={itemVariants}
-            className="flex h-16 w-16 items-center justify-center rounded-2xl transition-colors duration-500"
+            className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-xl sm:rounded-2xl transition-colors duration-500"
             style={{ backgroundColor: `${project.accent}15` }}
           >
-            <project.icon className="h-8 w-8 transition-colors duration-500" style={{ color: project.accent }} />
+            <project.icon className="h-6 w-6 sm:h-8 sm:w-8 transition-colors duration-500" style={{ color: project.accent }} />
           </motion.div>
-          <div className="space-y-2.5 w-full flex flex-col items-center">
-            <motion.div custom={0} variants={skeletonLineVariants} className="h-3 w-3/5 rounded-full bg-border-light/80 origin-center" />
-            <motion.div custom={1} variants={skeletonLineVariants} className="h-2 w-2/5 rounded-full bg-border-light/40 origin-center" />
+          <div className="space-y-2 sm:space-y-2.5 w-full flex flex-col items-center">
+            <motion.div custom={0} variants={skeletonLineVariants} className="h-2 sm:h-3 w-3/5 rounded-full bg-border-light/80 origin-center" />
+            <motion.div custom={1} variants={skeletonLineVariants} className="h-1.5 sm:h-2 w-2/5 rounded-full bg-border-light/40 origin-center" />
           </div>
         </div>
         
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {[1, 2, 3].map((i) => (
             <motion.div 
               key={i} 
               variants={itemVariants}
-              className="h-16 w-full rounded-2xl bg-surface-elevated/50 border border-border-light/50 flex items-center px-4 gap-4 overflow-hidden relative group/item"
+              className="h-12 sm:h-16 w-full rounded-xl sm:rounded-2xl bg-surface-elevated/50 border border-border-light/50 flex items-center px-3 sm:px-4 gap-3 sm:gap-4 overflow-hidden relative group/item"
             >
               <div 
                 className="absolute inset-0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-700"
                 style={{ background: `linear-gradient(90deg, transparent, ${project.accent}0a, transparent)` }}
               />
-              <motion.div custom={i} variants={skeletonLineVariants} className="h-8 w-8 shrink-0 rounded-full bg-border-light/50 origin-center" />
-              <div className="space-y-2 flex-1">
-                <motion.div custom={i + 2} variants={skeletonLineVariants} className="h-2 w-3/4 rounded-full bg-border-light/80 origin-left" />
-                <motion.div custom={i + 3} variants={skeletonLineVariants} className="h-1.5 w-1/2 rounded-full bg-border-light/40 origin-left" />
+              <motion.div custom={i} variants={skeletonLineVariants} className="h-6 w-6 sm:h-8 sm:w-8 shrink-0 rounded-full bg-border-light/50 origin-center" />
+              <div className="space-y-1.5 sm:space-y-2 flex-1">
+                <motion.div custom={i + 2} variants={skeletonLineVariants} className="h-1.5 sm:h-2 w-3/4 rounded-full bg-border-light/80 origin-left" />
+                <motion.div custom={i + 3} variants={skeletonLineVariants} className="h-1 sm:h-1.5 w-1/2 rounded-full bg-border-light/40 origin-left" />
               </div>
             </motion.div>
           ))}
@@ -254,7 +254,7 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
       </div>
       
       {/* Home Indicator */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 h-1 w-24 rounded-full bg-border-light/80 z-20" />
+      <div className="absolute bottom-1.5 sm:bottom-2 left-1/2 -translate-x-1/2 h-1 w-20 sm:w-24 rounded-full bg-border-light/80 z-20" />
     </motion.div>
   </motion.div>
 );
@@ -267,7 +267,7 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
   const isReversed = index % 2 !== 0;
 
   return (
-    <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-12 lg:gap-24 py-20 lg:py-32 relative`}>
+    <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 py-16 lg:py-32 relative`}>
       
       {/* Connecting Scroll Line (Desktop only) */}
       <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border-light/30 hidden lg:block -z-10" />

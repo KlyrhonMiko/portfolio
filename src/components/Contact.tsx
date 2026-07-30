@@ -89,15 +89,15 @@ export default function Contact() {
         </motion.div>
 
         {/* Two-column layout */}
-        <div className="grid gap-8 lg:grid-cols-5 lg:gap-12">
+        <div className="grid gap-12 lg:grid-cols-5">
           {/* Left column - CTA & Social */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col justify-between lg:col-span-2"
+            className="flex flex-col justify-between lg:col-span-2 items-center text-center lg:items-start lg:text-left"
           >
-            <div>
+            <div className="flex flex-col items-center lg:items-start w-full">
               {/* Decorative chat icon */}
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
                 <MessageCircle size={28} className="text-primary" />
@@ -105,10 +105,10 @@ export default function Contact() {
 
               <h3 className="mb-3 text-xl font-bold text-heading sm:text-2xl md:text-3xl">
                 Let&apos;s start a
-                <br />
-                <span className="text-gradient-animated">conversation</span>
+                <br className="lg:hidden" />
+                <span className="text-gradient-animated lg:ml-2">conversation</span>
               </h3>
-              <p className="mb-6 sm:mb-8 max-w-sm text-sm sm:text-base leading-relaxed text-body">
+              <p className="mb-6 sm:mb-8 max-w-sm text-sm sm:text-base leading-relaxed text-body mx-auto lg:mx-0">
                 I&apos;m always excited to connect with fellow developers,
                 potential clients, and collaborators. Don&apos;t hesitate to
                 reach out!
@@ -130,13 +130,12 @@ export default function Contact() {
                 </a>
               </MagneticEffect>
             </div>
-
             {/* Social links */}
-            <div>
+            <div className="w-full flex flex-col items-center lg:items-start mt-10 lg:mt-0">
               <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted">
                 Find me on
               </p>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center lg:justify-start gap-3">
                 {socialLinks.map((social, i) => (
                   <motion.a
                     key={social.label}

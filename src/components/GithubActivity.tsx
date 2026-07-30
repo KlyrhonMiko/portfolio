@@ -10,10 +10,27 @@ export default function GithubActivity() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const selectLastHalfYear = (contributions: any[]) => {
+    if (isMobile) {
+      // Approx 5 months (20 weeks) so it fits beautifully on mobile
+      return contributions.slice(-140);
+    }
+    return contributions;
+  };
 
   return (
     <motion.div
@@ -32,13 +49,17 @@ export default function GithubActivity() {
         </p>
       </div>
 
-      <div className="mx-auto w-fit max-w-full overflow-hidden rounded-2xl border border-border-light bg-surface p-6 sm:p-8 shadow-sm transition-shadow duration-500 hover:shadow-md hover:shadow-primary/5">
+      <div className="mx-auto w-full max-w-full overflow-hidden rounded-2xl border border-border-light bg-surface p-4 sm:p-8 shadow-sm transition-shadow duration-500 hover:shadow-md hover:shadow-primary/5">
         <div className="flex justify-center w-full">
-          <div className="w-full">
+          <div className="w-fit">
             {mounted && (
               <GitHubCalendar
                 username="KlyrhonMiko"
                 colorScheme={resolvedTheme === "dark" ? "dark" : "light"}
+                blockSize={isMobile ? 11 : 12}
+                blockMargin={isMobile ? 3 : 4}
+                fontSize={isMobile ? 12 : 14}
+                transformData={selectLastHalfYear}
                 theme={{
                   light: ['#f0f7f3', '#b8d8c7', '#7ec8b8', '#6db38a', '#5a9c76'],
                   dark: ['#162B1F', '#21402E', '#305C42', '#3E7857', '#5A9C76'],

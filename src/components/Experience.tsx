@@ -85,9 +85,9 @@ export default function Experience() {
           className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24"
         >
           {/* Editorial Left Pane (Sticky) */}
-          <div className="lg:col-span-4 relative">
+          <div className="lg:col-span-4 relative mb-12 lg:mb-0">
             <div className="sticky top-32">
-              <motion.div variants={itemVariants}>
+              <motion.div variants={itemVariants} className="flex flex-col items-center text-center lg:items-start lg:text-left">
                 <span className="mb-4 inline-block text-xs font-bold uppercase tracking-[0.2em] text-primary/80">
                   Experience
                 </span>
@@ -95,7 +95,7 @@ export default function Experience() {
                   My Journey.
                 </h2>
                 <div className="h-1 w-16 bg-primary mb-8 rounded-full" />
-                <p className="text-base md:text-lg text-body leading-relaxed max-w-sm">
+                <p className="text-base md:text-lg text-body leading-relaxed max-w-sm mx-auto lg:mx-0">
                   A timeline of my educational background, professional growth, and the technical skills I&apos;ve built along the way.
                 </p>
               </motion.div>
@@ -132,39 +132,50 @@ export default function Experience() {
                   {/* Card with timeline offset */}
                   <div className="sm:ml-20 mb-4">
                     <div className="bg-surface border border-border-light hover:border-primary/30 transition-all duration-500 rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-sm hover:shadow-xl hover:shadow-primary/5">
-                      <div className="flex flex-col sm:flex-row gap-6 mb-8">
-                        {/* Icon Container */}
-                        <div className="shrink-0">
-                          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-surface-elevated border border-border-light text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                            {exp.type === "work" ? (
-                              <Briefcase strokeWidth={1.5} size={28} />
-                            ) : (
-                              <GraduationCap strokeWidth={1.5} size={28} />
-                            )}
+                      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6 sm:mb-8">
+                        {/* Top row for mobile: Icon + Title */}
+                        <div className="flex flex-row items-center sm:items-start gap-4 sm:gap-6">
+                          {/* Icon Container */}
+                          <div className="shrink-0">
+                            <div className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-xl sm:rounded-2xl bg-surface-elevated border border-border-light text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                              {exp.type === "work" ? (
+                                <Briefcase strokeWidth={1.5} className="w-5 h-5 sm:w-7 sm:h-7" />
+                              ) : (
+                                <GraduationCap strokeWidth={1.5} className="w-5 h-5 sm:w-7 sm:h-7" />
+                              )}
+                            </div>
+                          </div>
+                          
+                          {/* Title for mobile */}
+                          <div className="sm:hidden flex-grow">
+                            <h3 className="text-xl font-bold text-heading tracking-tight leading-tight mb-1">
+                              {exp.title}
+                            </h3>
+                            <div className="text-sm font-medium text-primary">
+                              {exp.organization}
+                            </div>
                           </div>
                         </div>
 
                         {/* Header Info */}
-                        <div className="flex-grow">
-                          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-2">
-                            <div>
-                              <h3 className="text-2xl md:text-3xl font-bold text-heading tracking-tight mb-2">
-                                {exp.title}
-                              </h3>
-                              <div className="text-lg font-medium text-primary mb-3">
-                                {exp.organization}
-                              </div>
+                        <div className="flex-grow flex flex-col justify-center">
+                          <div className="hidden sm:block mb-2">
+                            <h3 className="text-2xl md:text-3xl font-bold text-heading tracking-tight mb-2">
+                              {exp.title}
+                            </h3>
+                            <div className="text-lg font-medium text-primary mb-3">
+                              {exp.organization}
                             </div>
                           </div>
 
-                          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium text-muted">
-                            <span className="flex items-center gap-2">
-                              <Calendar size={16} className="text-primary/60" />
+                          <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-3 text-xs sm:text-sm font-medium text-muted">
+                            <span className="flex items-center gap-1.5 sm:gap-2">
+                              <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary/60" />
                               {exp.period}
                             </span>
                             {exp.location && (
-                              <span className="flex items-center gap-2">
-                                <MapPin size={16} className="text-primary/60" />
+                              <span className="flex items-center gap-1.5 sm:gap-2">
+                                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary/60" />
                                 {exp.location}
                               </span>
                             )}

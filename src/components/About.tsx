@@ -101,7 +101,7 @@ function CodeLine({
 }) {
   return (
     <div className="flex">
-      <span className="mr-6 inline-block w-5 select-none text-right text-[#4d6353]">
+      <span className="mr-3 sm:mr-6 inline-block w-4 sm:w-5 shrink-0 select-none text-right text-[#4d6353]">
         {num}
       </span>
       <span>{children}</span>
@@ -236,15 +236,15 @@ function MarqueePill({
 }) {
   return (
     <div
-      className={`mx-1.5 flex shrink-0 items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm font-medium shadow-sm transition-all duration-300 hover:scale-105 ${variant === "default"
-        ? "border-primary/10 bg-surface text-heading hover:border-primary/25 hover:shadow-md hover:shadow-primary/8"
-        : "border-accent-teal/10 bg-surface text-heading hover:border-accent-teal/25 hover:shadow-md hover:shadow-accent-teal/8"
+      className={`mx-1.5 sm:mx-2 flex shrink-0 items-center gap-2 sm:gap-2.5 rounded-full border px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium shadow-sm transition-all duration-300 hover:scale-105 ${variant === "default"
+        ? "border-primary/15 bg-surface/80 backdrop-blur-sm text-heading hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-0.5"
+        : "border-accent-teal/15 bg-surface/80 backdrop-blur-sm text-heading hover:border-accent-teal/40 hover:shadow-lg hover:shadow-accent-teal/10 hover:-translate-y-0.5"
         }`}
     >
       <span
-        className={`inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r ${variant === "default"
-          ? "from-primary to-accent-teal"
-          : "from-accent-teal to-primary"
+        className={`inline-block h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full shadow-sm bg-gradient-to-r ${variant === "default"
+          ? "from-primary to-accent-teal shadow-primary/40"
+          : "from-accent-teal to-primary shadow-accent-teal/40"
           }`}
       />
       {label}
@@ -289,6 +289,7 @@ export default function About() {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
+            className="flex flex-col items-center text-center lg:items-start lg:text-left"
           >
             <h3 className="mb-4 sm:mb-5 text-xl font-bold leading-snug text-heading sm:text-2xl md:text-3xl">
               A passionate developer{" "}
@@ -310,7 +311,7 @@ export default function About() {
             </p>
 
             {/* Trait badges */}
-            <div className="flex flex-wrap gap-2 sm:gap-3">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
               {traits.map((trait, i) => (
                 <motion.div
                   key={trait.label}
@@ -362,10 +363,10 @@ export default function About() {
 
           {/* ── Infinite Marquee ── */}
           <div
-            className="marquee-container relative -mx-4 sm:-mx-6 mb-10 sm:mb-14"
+            className="marquee-container relative -mx-4 sm:-mx-6 mb-12 sm:mb-16"
             style={{
-              maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-              WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
+              maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)"
             }}
           >
 
@@ -403,7 +404,10 @@ export default function About() {
           </div>
 
           {/* ── Category Bento Grid (lg: 2+1 / 1+2 / 2+1) ── */}
-          <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="relative grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Ambient background glow for the grid */}
+            <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-primary/5 via-transparent to-accent-teal/5 blur-3xl" />
+
             {skills.map((skill, index) => {
               const wideLg =
                 index === 0 || index === 3 || index === 4
@@ -416,44 +420,47 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: index * 0.05, type: "spring", damping: 20 }}
-                  whileHover={{ y: -4 }}
-                  className={`group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border-light bg-surface p-4 sm:p-6 transition-colors transition-shadow duration-500 hover:shadow-xl hover:shadow-primary/8${wideLg}`}
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-border-light bg-surface/60 p-5 sm:p-7 backdrop-blur-xl transition-all duration-500 hover:border-primary/30 hover:bg-surface/90 hover:shadow-2xl hover:shadow-primary/10${wideLg}`}
                 >
-                  {/* Watermark number */}
-                  <span className="pointer-events-none absolute -bottom-3 -right-1 select-none text-[80px] font-black leading-none text-heading/[0.03] transition-all duration-500 group-hover:text-heading/[0.06]">
+                  {/* Subtle top border highlight */}
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                  {/* Watermark number - tweaked for mobile */}
+                  <span className="pointer-events-none absolute -bottom-4 -right-2 select-none text-[60px] sm:text-[80px] font-black leading-none text-heading/[0.02] transition-all duration-500 group-hover:text-heading/[0.05] group-hover:-translate-y-2 group-hover:-translate-x-2">
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
                   {/* Hover gradient blob */}
                   <div
-                    className={`absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br ${skill.accent} opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-[0.12]`}
+                    className={`absolute -right-12 -top-12 h-32 w-32 sm:h-48 sm:w-48 rounded-full bg-gradient-to-br ${skill.accent} opacity-0 blur-[60px] transition-opacity duration-700 group-hover:opacity-[0.12]`}
                   />
 
-                  <div className="relative">
+                  <div className="relative z-10 flex h-full flex-col">
                     {/* Icon + Category */}
-                    <div className="mb-4 flex items-center gap-3">
+                    <div className="mb-5 flex items-center gap-3 sm:gap-4">
                       <div
-                        className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${skill.accent} text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                        className={`flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br ${skill.accent} text-white shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
                       >
-                        <skill.icon size={20} />
+                        <skill.icon className="h-5 w-5 sm:h-6 sm:w-6" />
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-heading">
+                        <h4 className="text-base font-bold tracking-wide text-heading sm:text-lg">
                           {skill.category}
                         </h4>
-                        <p className="text-xs text-muted">
+                        <p className="mt-0.5 text-xs text-muted sm:text-sm">
                           {skill.description}
                         </p>
                       </div>
                     </div>
 
                     {/* Skill tags */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="mt-auto flex flex-wrap gap-2 sm:gap-2.5">
                       {skill.items.map((item, i) => (
                         <span
                           key={item}
-                          className="rounded-lg border border-border-light/60 bg-primary-lighter/50 px-3.5 py-1.5 text-xs font-semibold text-body transition-all duration-300 group-hover:border-primary/20 group-hover:bg-primary-light/60 group-hover:text-primary-dark"
-                          style={{ transitionDelay: `${i * 60}ms` }}
+                          className="rounded-lg border border-border-light/60 bg-surface/80 px-2.5 py-1 text-[11px] font-medium text-body shadow-sm backdrop-blur-sm transition-all duration-300 group-hover:border-primary/20 group-hover:bg-primary/5 group-hover:text-primary-dark hover:!border-primary/50 hover:!bg-primary/10 sm:px-3 sm:py-1.5 sm:text-xs"
+                          style={{ transitionDelay: `${i * 30}ms` }}
                         >
                           {item}
                         </span>
