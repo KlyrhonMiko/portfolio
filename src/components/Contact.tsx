@@ -1,252 +1,204 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import MagneticEffect from "@/components/MagneticEffect";
+import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
-import {
-  Mail,
-  MapPin,
-  Phone,
-  ArrowRight,
-  Github,
-  Linkedin,
-  Facebook,
-  Send,
-  ExternalLink,
-  MessageCircle,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const contactInfo = [
   {
-    icon: Mail,
     label: "Email",
     value: "aurelklyrhonmiko@gmail.com",
     href: "mailto:aurelklyrhonmiko@gmail.com",
     description: "Drop me a line anytime",
   },
   {
-    icon: MapPin,
-    label: "Location",
-    value: "Pasig City, Philippines",
-    href: null,
-    description: "Open to remote work",
-  },
-  {
-    icon: Phone,
     label: "Phone",
     value: "+63 936 109 0745",
     href: "tel:+639361090745",
     description: "Mon - Fri, 9am - 6pm",
   },
+  {
+    label: "Location",
+    value: "Pasig City, Philippines",
+    href: null,
+    description: "Open to remote work",
+  },
 ];
 
 const socialLinks = [
-  {
-    icon: Github,
-    href: "https://github.com/KlyrhonMiko",
-    label: "GitHub",
-  },
-  {
-    icon: Linkedin,
-    href: "https://www.linkedin.com/in/klyrhon/",
-    label: "LinkedIn",
-  },
-  {
-    icon: Facebook,
-    href: "https://www.facebook.com/aurelklyrhon",
-    label: "Facebook",
-  },
+  { href: "https://github.com/KlyrhonMiko", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/klyrhon/", label: "LinkedIn" },
+  { href: "https://www.facebook.com/aurelklyrhon", label: "Facebook" },
 ];
 
 export default function Contact() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const lineWidth = useSpring(useTransform(scrollYProgress, [0, 0.8], ["0%", "100%"]), {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
-    <section id="contact" className="relative pt-10 pb-16 sm:pt-12 sm:pb-24 md:pt-16 md:pb-32">
-
-
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6" ref={ref}>
-        {/* Section heading */}
+    <section id="contact" ref={containerRef} className="relative py-24 lg:py-32 w-full bg-surface">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
+        
+        {/* ─── Section Header ─── */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, type: "spring", damping: 20 }}
-          className="mb-10 sm:mb-16 text-center"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 lg:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8"
         >
-          <span className="mb-3 inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-primary">
-            Contact
-          </span>
-          <h2 className="mb-4 text-2xl font-bold text-heading sm:text-3xl md:text-4xl lg:text-5xl">
-            Let&apos;s Work Together
-          </h2>
-          <div className="mx-auto h-0.5 w-20 bg-primary" />
-          <p className="mx-auto mt-4 max-w-lg text-body">
-            Have a project in mind or just want to chat? Feel free to reach out.
-            I&apos;m always open to discussing new opportunities.
+          <div>
+            <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-primary/80">
+              Contact
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-heading tracking-tight mb-2">
+              Let's Work Together
+            </h2>
+          </div>
+          <p className="text-lg text-body max-w-md md:text-right leading-relaxed">
+            Have a project in mind or just want to chat? Feel free to reach out. I'm always open to discussing new opportunities.
           </p>
         </motion.div>
 
-        {/* Two-column layout */}
-        <div className="grid gap-12 lg:grid-cols-5">
-          {/* Left column - CTA & Social */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col justify-between lg:col-span-2 items-center text-center lg:items-start lg:text-left"
-          >
-            <div className="flex flex-col items-center lg:items-start w-full">
-              {/* Decorative chat icon */}
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
-                <MessageCircle size={28} className="text-primary" />
-              </div>
+        {/* Dynamic separator line */}
+        <div className="w-full h-px bg-border-light/30 mb-24 relative">
+          <motion.div 
+            className="absolute top-0 left-0 h-full bg-primary" 
+            style={{ width: lineWidth, opacity: 0.5 }} 
+          />
+        </div>
 
-              <h3 className="mb-3 text-xl font-bold text-heading sm:text-2xl md:text-3xl">
-                Let&apos;s start a
-                <br className="lg:hidden" />
-                <span className="text-gradient-animated lg:ml-2">conversation</span>
-              </h3>
-              <p className="mb-6 sm:mb-8 max-w-sm text-sm sm:text-base leading-relaxed text-body mx-auto lg:mx-0">
-                I&apos;m always excited to connect with fellow developers,
-                potential clients, and collaborators. Don&apos;t hesitate to
-                reach out!
-              </p>
-
-              {/* Primary CTA button */}
-              <MagneticEffect>
-                <a
-                  href="mailto:aurelklyrhonmiko@gmail.com"
-                  className="shimmer-btn group mb-8 sm:mb-10 inline-flex items-center gap-2 sm:gap-2.5 rounded-full bg-primary px-5 sm:px-7 py-3 sm:py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-1 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30"
-                >
-                  <span className="relative z-10 flex items-center gap-2.5">
-                    <Send
-                      size={16}
-                      className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    />
-                    Send Me an Email
-                  </span>
-                </a>
-              </MagneticEffect>
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
+          
+          {/* Left Column: CTA & Availability */}
+          <div className="lg:col-span-5 flex flex-col justify-between">
+            <div>
+              <motion.h3 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl md:text-6xl font-bold text-heading leading-[1.1] mb-8"
+              >
+                Let's start a <br />
+                <span className="text-primary italic font-light">conversation.</span>
+              </motion.h3>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-lg text-body leading-relaxed mb-12 max-w-sm"
+              >
+                I'm always excited to connect with fellow developers, potential clients, and collaborators. Don't hesitate to reach out!
+              </motion.p>
             </div>
-            {/* Social links */}
-            <div className="w-full flex flex-col items-center lg:items-start mt-10 lg:mt-0">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted">
-                Find me on
-              </p>
-              <div className="flex items-center justify-center lg:justify-start gap-3">
-                {socialLinks.map((social, i) => (
-                  <motion.a
+            
+            {/* Availability */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-8 lg:mt-0"
+            >
+              <div>
+                <p className="text-sm font-semibold tracking-[0.1em] uppercase text-heading">
+                  Available for freelance
+                </p>
+                <p className="text-sm text-body mt-1">
+                  Typically responds within 24 hours
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Contact List */}
+          <div className="lg:col-span-7 flex flex-col border-t border-border-light/50">
+            {contactInfo.map((info, index) => (
+              <motion.div
+                key={info.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12 py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/30 transition-colors duration-500"
+              >
+                {/* Subtle Hover Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+
+                <div className="sm:w-1/3 shrink-0">
+                  <span className="text-sm font-semibold tracking-[0.2em] uppercase text-primary/60">
+                    {info.label}
+                  </span>
+                </div>
+                
+                <div className="sm:w-2/3 flex items-center justify-between">
+                  <div>
+                    {info.href ? (
+                      <a href={info.href} className="text-xl md:text-2xl font-bold text-heading group-hover:translate-x-2 transition-transform duration-500 ease-out inline-block">
+                        {info.value}
+                      </a>
+                    ) : (
+                      <span className="text-xl md:text-2xl font-bold text-heading group-hover:translate-x-2 transition-transform duration-500 ease-out inline-block">
+                        {info.value}
+                      </span>
+                    )}
+                    <p className="mt-2 text-sm text-body/80">
+                      {info.description}
+                    </p>
+                  </div>
+                  {info.href && (
+                    <ArrowUpRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 shrink-0" />
+                  )}
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Socials Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12 py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/30 transition-colors duration-500"
+            >
+              {/* Subtle Hover Glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+
+              <div className="sm:w-1/3 shrink-0">
+                <span className="text-sm font-semibold tracking-[0.2em] uppercase text-primary/60">
+                  Socials
+                </span>
+              </div>
+              
+              <div className="sm:w-2/3 flex items-center gap-6 flex-wrap">
+                {socialLinks.map((social) => (
+                  <a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={social.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
-                    className="group flex h-11 w-11 items-center justify-center rounded-full border border-border-light bg-surface/80 text-muted backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/20"
+                    className="text-lg font-bold text-heading hover:text-primary transition-colors flex items-center gap-2 group/link"
                   >
-                    <social.icon
-                      size={18}
-                      className="transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </motion.a>
+                    {social.label}
+                    <ArrowUpRight className="w-4 h-4 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300" />
+                  </a>
                 ))}
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Right column - Contact cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="lg:col-span-3"
-          >
-            <div className="glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
-              <div className="space-y-4">
-                {contactInfo.map((info, i) => (
-                  <motion.div
-                    key={info.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.4 + i * 0.12 }}
-                  >
-                    {info.href ? (
-                      <a
-                        href={info.href}
-                        className="group flex items-center gap-3 sm:gap-5 rounded-xl sm:rounded-2xl border border-border-light/50 bg-surface/60 p-3.5 sm:p-5 transition-all duration-300 hover:border-primary/20 hover:bg-surface/90 hover:shadow-lg hover:shadow-primary/5"
-                      >
-                        <div className="flex h-11 w-11 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-primary-light text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/25">
-                          <info.icon className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="mb-0.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-muted">
-                            {info.label}
-                          </p>
-                          <p className="text-sm sm:text-[15px] font-semibold text-heading truncate">
-                            {info.value}
-                          </p>
-                          <p className="mt-0.5 text-[10px] sm:text-xs text-muted">
-                            {info.description}
-                          </p>
-                        </div>
-                        <div className="hidden sm:flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-light/50 text-muted opacity-0 transition-all duration-300 group-hover:bg-primary/10 group-hover:text-primary group-hover:opacity-100">
-                          <ExternalLink size={14} />
-                        </div>
-                      </a>
-                    ) : (
-                      <div className="flex items-center gap-3 sm:gap-5 rounded-xl sm:rounded-2xl border border-border-light/50 bg-surface/60 p-3.5 sm:p-5">
-                        <div className="flex h-11 w-11 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-primary-light text-primary">
-                          <info.icon className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="mb-0.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-muted">
-                            {info.label}
-                          </p>
-                          <p className="text-sm sm:text-[15px] font-semibold text-heading truncate">
-                            {info.value}
-                          </p>
-                          <p className="mt-0.5 text-[10px] sm:text-xs text-muted">
-                            {info.description}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Availability status bar */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="mt-5 sm:mt-6 flex items-center gap-3 rounded-xl sm:rounded-2xl border border-primary/10 bg-primary-light/40 px-4 sm:px-5 py-3 sm:py-4"
-              >
-                <span className="relative flex h-2.5 w-2.5 shrink-0">
-                  <span
-                    className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
-                    style={{
-                      animation:
-                        "pulse-ring 1.5s cubic-bezier(0, 0, 0.2, 1) infinite",
-                    }}
-                  />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
-                </span>
-                <div className="min-w-0">
-                  <p className="text-xs sm:text-sm font-semibold text-heading">
-                    Available for freelance projects
-                  </p>
-                  <p className="text-[10px] sm:text-xs text-muted">
-                    Typically responds within 24 hours
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
