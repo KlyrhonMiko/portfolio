@@ -1,13 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
-import { ArrowDown, Github, Linkedin, Mail, Twitter, Sparkles, Facebook } from "lucide-react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import SplitType from "split-type";
+import { useState, useEffect } from "react";
+import { Github, Linkedin, Mail, Twitter, Sparkles, Facebook } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { handleSmoothNavigation } from "../utils/navigation";
+
 const socialLinks = [
   { icon: Github, href: "https://github.com/KlyrhonMiko", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/klyrhon/", label: "LinkedIn" },
@@ -16,196 +14,168 @@ const socialLinks = [
 ];
 
 const roles = [
-  "Full Stack Developer",
   "Backend Engineer",
+  "Full Stack Developer",
   "UI/UX Enthusiast",
   "Problem Solver",
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
-  const headerRef = useRef<HTMLHeadingElement>(null);
   const lenis = useLenis();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     handleSmoothNavigation(e, href, lenis);
   };
 
-  useGSAP(() => {
-    if (!headerRef.current) return;
-
-    gsap.set(headerRef.current, { visibility: "visible" });
-    const splitText = new SplitType(headerRef.current, { types: "chars" });
-
-    // Promote each char to its own GPU layer to avoid layout thrashing
-    if (splitText.chars) {
-      splitText.chars.forEach((char) => {
-        (char as HTMLElement).style.willChange = "transform, opacity";
-      });
-    }
-
-    gsap.from(splitText.chars, {
-      opacity: 0,
-      y: 30,
-      duration: 0.5,
-      stagger: 0.03,
-      ease: "back.out(1.7)",
-      delay: 0.1,
-      onComplete: () => {
-        // Defer DOM mutation to next frame so it doesn't interrupt
-        // any concurrent Framer Motion animations mid-paint
-        requestAnimationFrame(() => {
-          splitText.revert();
-        });
-      }
-    });
-
-    return () => {
-      splitText.revert();
-    };
-  }, { scope: headerRef });
-
   useEffect(() => {
     const interval = setInterval(() => {
       setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 3000);
+    }, 3500);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section
       id="home"
-      className="relative flex min-h-[100dvh] flex-col items-center pt-20"
+      className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden"
     >
+      {/* Optional minimal background glow */}
+      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
-
-      {/* Top spacer — smaller than bottom so content sits slightly above center */}
-      <div className="flex-[2] min-h-[60px]" />
-
-      <div
-        className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center"
-        style={{ transform: "translateZ(0)", willChange: "transform" }}
-      >
-        {/* Main heading with staggered reveal */}
-        <div>
-          <h1
-            ref={headerRef}
-            className="mb-4 text-3xl font-bold leading-tight tracking-tight text-heading sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl"
-            style={{ clipPath: "polygon(0 0, 100% 0, 100% 150%, 0% 150%)", visibility: "hidden" }}
-          >
-            Hi, I&apos;m{" "}
-            <span className="text-primary">
-              Klyrhon
+      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-12 relative z-10">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="max-w-3xl flex flex-col items-start"
+        >
+          {/* Subheader */}
+          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-8">
+            <div className="h-px w-8 bg-primary/50" />
+            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary/80">
+              Hello, World
             </span>
-          </h1>
-        </div>
+          </motion.div>
 
-        {/* Rotating role text with blur transition */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mb-6 h-8 sm:h-10 md:h-12"
-        >
-          <AnimatePresence mode="wait">
-            <motion.h2
-              key={roleIndex}
-              initial={{ opacity: 0, y: 15, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -15, scale: 0.97 }}
-              transition={{
-                duration: 0.5,
-                ease: [0.23, 1, 0.32, 1]
-              }}
-              className="text-base font-medium text-primary sm:text-xl md:text-2xl"
-            >
-              {roles[roleIndex]}
-            </motion.h2>
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mx-auto mb-8 sm:mb-10 max-w-xl text-sm leading-relaxed text-muted sm:text-base md:text-lg"
-        >
-          I build scalable APIs and backend systems with modern
-          technologies. Passionate about clean architecture, database design,
-          and creating reliable infrastructure that powers great products.
-        </motion.p>
-
-        {/* CTA buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4"
-        >
-          <motion.a
-            whileTap={{ scale: 0.98 }}
-            href="#projects"
-            onClick={(e) => handleNavClick(e, "#projects")}
-            className="shimmer-btn group shrink-0 rounded-full bg-primary px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30"
+          {/* Main Title */}
+          <motion.h1 
+            variants={itemVariants} 
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-heading tracking-tight leading-[1.1] mb-6"
           >
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              <Sparkles size={16} className="transition-transform duration-300 group-hover:rotate-12" />
-              View My Work
+            I'm Klyrhon, a{" "}
+            <br className="hidden sm:block" />
+            <span className="inline-flex flex-col h-[1.35em] overflow-hidden align-top text-primary">
+              <AnimatePresence mode="popLayout">
+                <motion.span
+                  key={roleIndex}
+                  initial={{ opacity: 0, y: 40, rotateX: -90 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  exit={{ opacity: 0, y: -40, rotateX: 90 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="origin-center pb-2"
+                >
+                  {roles[roleIndex]}
+                </motion.span>
+              </AnimatePresence>
             </span>
-          </motion.a>
-          <motion.a
-            whileTap={{ scale: 0.98 }}
-            href="#contact"
-            onClick={(e) => handleNavClick(e, "#contact")}
-            className="group shrink-0 rounded-full border border-border bg-surface/80 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold text-heading backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
-          >
-            Get in Touch
-          </motion.a>
-        </motion.div>
+          </motion.h1>
 
-        {/* Social links with staggered animation */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.0, duration: 0.5 }}
-          className="mt-10 sm:mt-16 flex items-center justify-center gap-2.5 sm:gap-3"
-        >
-          {socialLinks.map((social, i) => (
-            <motion.a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1 + i * 0.08, duration: 0.4 }}
-              className="group flex h-11 w-11 items-center justify-center rounded-full border border-border-light bg-surface/80 text-muted backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:text-primary hover:shadow-lg hover:shadow-primary/15"
+          {/* Description */}
+          <motion.p 
+            variants={itemVariants} 
+            className="text-lg md:text-xl text-body max-w-2xl leading-relaxed mb-10"
+          >
+            I build scalable APIs and backend systems with modern technologies. 
+            Passionate about clean architecture, database design, and creating 
+            reliable infrastructure that powers great products.
+          </motion.p>
+
+          {/* Actions */}
+          <motion.div 
+            variants={itemVariants} 
+            className="flex flex-wrap items-center gap-4 mb-16"
+          >
+            <a
+              href="#projects"
+              onClick={(e) => handleNavClick(e, "#projects")}
+              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-heading px-8 py-3.5 text-sm font-semibold text-surface transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-heading/20"
             >
-              <social.icon size={18} className="transition-transform duration-300 group-hover:scale-110" />
-            </motion.a>
-          ))}
+              <div className="absolute inset-0 bg-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
+              <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+                <Sparkles size={16} className="transition-transform duration-500 group-hover:rotate-12" />
+                View My Work
+              </span>
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, "#contact")}
+              className="group inline-flex items-center justify-center rounded-full border border-border bg-surface/80 px-8 py-3.5 text-sm font-semibold text-heading backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-surface-elevated hover:shadow-lg"
+            >
+              Get in Touch
+            </a>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div 
+            variants={itemVariants} 
+            className="flex items-center gap-4"
+          >
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-surface/80 text-muted backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:text-primary hover:shadow-lg hover:shadow-primary/15"
+              >
+                <social.icon size={18} className="transition-transform duration-300 group-hover:scale-110" />
+              </a>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll Indicator */}
       <motion.a
         href="#about"
         onClick={(e) => handleNavClick(e, "#about")}
-        className="relative z-10 flex-1 flex flex-col items-center justify-end gap-2 pb-12 sm:pb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.6 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer"
         aria-label="Scroll to about section"
       >
-        <span className="text-xs font-medium uppercase tracking-widest text-muted">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-        >
-          <ArrowDown className="text-primary" size={20} />
-        </motion.div>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted group-hover:text-primary transition-colors duration-300">
+          Scroll
+        </span>
+        <div className="h-12 w-[1px] bg-border-light relative overflow-hidden">
+          <motion.div 
+            className="absolute top-0 left-0 w-full h-1/3 bg-primary"
+            animate={{ top: ['-50%', '150%'] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
       </motion.a>
     </section>
   );
