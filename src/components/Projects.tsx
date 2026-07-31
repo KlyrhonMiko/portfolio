@@ -265,7 +265,7 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
    ══════════════════════════════════════════════════ */
 
 const ProjectRow = ({ project, index }: { project: Project; index: number }) => {
-  const isReversed = index % 2 !== 0;
+  const isReversed = index % 2 === 0;
 
   return (
     <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 py-16 lg:py-32 relative`}>
