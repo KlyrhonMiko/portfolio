@@ -96,8 +96,8 @@ export default function Navbar() {
           </span>
         </a>
 
-        {/* Desktop navigation - Segmented Pill design */}
-        <div className="hidden md:flex items-center rounded-full p-1 border border-border/40 dark:border-white/[0.05]">
+        {/* Desktop navigation */}
+        <div className="hidden md:flex items-center">
           <ul className="flex items-center gap-0.5">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.slice(1);
