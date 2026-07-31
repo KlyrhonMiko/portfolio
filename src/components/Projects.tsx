@@ -11,6 +11,7 @@ import {
   Layout,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { handleSmoothNavigation } from "../utils/navigation";
 
 /* ══════════════════════════════════════════════════
    Project Data
@@ -342,8 +343,7 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
             {project.live && (
               <a
                 href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={(e) => handleSmoothNavigation(e, project.live!, null)}
                 className="group relative inline-flex items-center gap-2 text-sm font-semibold overflow-hidden px-4 py-2 rounded-full transition-all"
                 style={{ color: project.accent }}
               >
