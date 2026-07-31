@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 import SmoothScroll from "@/components/SmoothScroll";
 import Background from "@/components/Background";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import RouteTransitionHandler from "@/components/RouteTransitionHandler";
 
 export default function RootLayout({
   children,
@@ -40,6 +41,7 @@ export default function RootLayout({
           <Background />
           <SmoothScroll>{children}</SmoothScroll>
         </ThemeProvider>
+        <RouteTransitionHandler />
         <Analytics />
       </body>
     </html>

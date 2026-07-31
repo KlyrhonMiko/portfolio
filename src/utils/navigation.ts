@@ -16,6 +16,7 @@ export const handleSmoothNavigation = async (
         if (onNavStart) onNavStart();
 
         const container = document.createElement("div");
+        container.id = "exit-transition-container";
         container.className = "fixed inset-0 z-[100] pointer-events-none overflow-hidden";
 
         const layer1 = document.createElement("div");
@@ -38,7 +39,11 @@ export const handleSmoothNavigation = async (
           .to(layer2, { y: 0, duration: 0.6, ease: "power4.inOut" }, "-=0.4")
           .to(logo, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" }, "-=0.2")
           .add(() => {
-              window.location.href = href;
+              if (router) {
+                  router.push(href);
+              } else {
+                  window.location.href = href;
+              }
           }, "+=0.2");
 
         return;
