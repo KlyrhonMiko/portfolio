@@ -420,9 +420,26 @@ html::-webkit-scrollbar {
 /* Ensure the revealing layer is on top */
 ::view-transition-new(root) {
   z-index: 100;
+  backface-visibility: hidden;
 }
 
 ::view-transition-old(root) {
   z-index: -1;
+}
+
+html[data-theme-transition="true"]::view-transition-new(root) {
+  animation: theme-reveal 350ms cubic-bezier(0.25, 1, 0.5, 1) !important;
+  will-change: clip-path;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0% at var(--theme-x, 100%) var(--theme-y, 0%));
+    -webkit-clip-path: circle(0% at var(--theme-x, 100%) var(--theme-y, 0%));
+  }
+  to {
+    clip-path: circle(120% at var(--theme-x, 100%) var(--theme-y, 0%));
+    -webkit-clip-path: circle(120% at var(--theme-x, 100%) var(--theme-y, 0%));
+  }
 }
 
