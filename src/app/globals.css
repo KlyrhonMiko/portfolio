@@ -21,6 +21,13 @@
   --glass-border: rgba(255, 255, 255, 0.5);
   --glass-strong-bg: rgba(255, 255, 255, 0.8);
   --glass-strong-border: rgba(255, 255, 255, 0.6);
+
+  /* GitHub Calendar Colors */
+  --cal-0: #f0f7f3;
+  --cal-1: #b8d8c7;
+  --cal-2: #7ec8b8;
+  --cal-3: #6db38a;
+  --cal-4: #5a9c76;
 }
 
 :root.dark {
@@ -44,6 +51,13 @@
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-strong-bg: rgba(17, 19, 17, 0.85);
   --glass-strong-border: rgba(255, 255, 255, 0.12);
+
+  /* GitHub Calendar Colors */
+  --cal-0: #162B1F;
+  --cal-1: #21402E;
+  --cal-2: #305C42;
+  --cal-3: #3E7857;
+  --cal-4: #5A9C76;
 }
 
 @theme inline {
@@ -181,6 +195,18 @@ html.lenis body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
+}
+
+/* Hide expensive filters during view transitions to avoid snapshot lag */
+html[data-theme-transition="true"] .noise-overlay {
+  opacity: 0 !important;
+}
+
+/* Disable backdrop-filter during view transitions. 
+   Chromium has a massive performance hit when snapshotting elements with backdrop-filter */
+html[data-theme-transition="true"] * {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 @keyframes gradient-x {
@@ -376,7 +402,7 @@ html::-webkit-scrollbar {
   display: none !important;
 }
 
-/* ===== React Activity Calendar Tooltip ===== */
+/* ===== React Activity Calendar Tooltip & Text ===== */
 .react-activity-calendar__tooltip {
   background-color: var(--color-heading);
   color: var(--color-surface);
@@ -387,6 +413,10 @@ html::-webkit-scrollbar {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
   z-index: 50;
   pointer-events: none;
+}
+
+.react-activity-calendar text {
+  fill: var(--color-heading) !important;
 }
 
 /* Make calendar responsive so it never gets cut off */

@@ -3,12 +3,10 @@
 import { GitHubCalendar } from 'react-github-calendar';
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 
 export default function GithubActivity() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -53,14 +51,14 @@ export default function GithubActivity() {
           {mounted && (
             <GitHubCalendar
               username="KlyrhonMiko"
-              colorScheme={resolvedTheme === "dark" ? "dark" : "light"}
+              colorScheme="light"
               blockSize={isMobile ? 11 : 14}
               blockMargin={isMobile ? 3 : 5}
               fontSize={isMobile ? 12 : 14}
               transformData={selectLastHalfYear}
               theme={{
-                light: ['#f0f7f3', '#b8d8c7', '#7ec8b8', '#6db38a', '#5a9c76'],
-                dark: ['#162B1F', '#21402E', '#305C42', '#3E7857', '#5A9C76'],
+                light: ['var(--cal-0)', 'var(--cal-1)', 'var(--cal-2)', 'var(--cal-3)', 'var(--cal-4)'],
+                dark: ['var(--cal-0)', 'var(--cal-1)', 'var(--cal-2)', 'var(--cal-3)', 'var(--cal-4)'],
               }}
               showWeekdayLabels={true}
               tooltips={{
