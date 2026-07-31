@@ -66,7 +66,12 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <header className="fixed top-3 sm:top-5 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none">
+    <motion.header 
+      initial={{ y: -80, opacity: 0, filter: "blur(8px)" }}
+      animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+      className="fixed top-3 sm:top-5 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none"
+    >
       <nav
         className={`pointer-events-auto relative flex w-full max-w-5xl items-center justify-between rounded-full transition-all duration-500 ${
           scrolled
@@ -252,6 +257,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
