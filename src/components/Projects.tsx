@@ -49,6 +49,7 @@ const projects: Project[] = [
       "A sophisticated personal finance tracker built with Flutter. Designed to offer a premium and effortless experience for managing money, featuring automated categorization and rich, interactive analytics.",
     tags: ["Flutter", "Dart", "Riverpod", "SQLite", "Data Visualization"],
     github: "https://github.com/KlyrhonMiko/koin",
+    live: "http://localhost:3000/?ref=portfolio",
     accent: "#f59e0b",
     icon: Wallet,
     mockUrl: "localhost:3000",
