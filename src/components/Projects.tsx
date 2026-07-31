@@ -266,9 +266,10 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
 
 const ProjectRow = ({ project, index }: { project: Project; index: number }) => {
   const isReversed = index % 2 === 0;
+  const paddingClass = index === 0 ? "pb-16 lg:pb-32" : "py-16 lg:py-32";
 
   return (
-    <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 py-16 lg:py-32 relative`}>
+    <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}>
       
       {/* Connecting Scroll Line (Desktop only) */}
       <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border-light/30 hidden lg:block -z-10" />
