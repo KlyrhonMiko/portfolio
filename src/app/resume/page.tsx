@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageTransition, ResumeBackButton } from '@/components/ResumeClientLogic';
+import { ResumeBackButton } from '@/components/ResumeClientLogic';
 
 export const metadata = {
   title: 'Resume | Klyrhon Miko R. Aurel',
@@ -9,7 +9,6 @@ export const metadata = {
 export default function ResumePage() {
   return (
     <>
-      <PageTransition />
       <div className="min-h-screen bg-gray-200 py-8 px-4 sm:px-8 font-sans text-black">
       {/* Top Actions Area */}
       <div className="max-w-[21cm] mx-auto mb-6 flex justify-between items-center">

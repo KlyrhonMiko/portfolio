@@ -1,10 +1,13 @@
 import React from "react";
 import gsap from "gsap";
 
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
 export const handleSmoothNavigation = async (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
     lenis: any,
+    router?: AppRouterInstance,
     onNavStart?: () => void
 ) => {
     if (!href.startsWith("#")) {
@@ -28,14 +31,28 @@ export const handleSmoothNavigation = async (
         document.body.appendChild(container);
 
         const logo = container.querySelector("#transition-logo");
-        const tl = gsap.timeline();
+        
+        const tl = gsap.timeline({
+            onComplete: () => {
+                if (document.body.contains(container)) {
+                    document.body.removeChild(container);
+                }
+            }
+        });
 
         tl.to(layer1, { y: 0, duration: 0.6, ease: "power4.inOut" })
           .to(layer2, { y: 0, duration: 0.6, ease: "power4.inOut" }, "-=0.4")
           .to(logo, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" }, "-=0.2")
           .add(() => {
-              window.location.href = href;
-          }, "+=0.2");
+              if (router) {
+                  router.push(href);
+              } else {
+                  window.location.href = href;
+              }
+          }, "+=0.2")
+          .to(logo, { opacity: 0, y: -15, duration: 0.3, ease: "power2.in" }, "+=0.3")
+          .to(layer1, { y: "-100%", duration: 0.6, ease: "power4.inOut" }, "-=0.1")
+          .to(layer2, { y: "-100%", duration: 0.6, ease: "power4.inOut" }, "-=0.5");
 
         return;
     }

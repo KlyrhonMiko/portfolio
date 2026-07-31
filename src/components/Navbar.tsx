@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { useLenis } from "lenis/react";
+import { useRouter } from "next/navigation";
 import { handleSmoothNavigation } from "../utils/navigation";
 import ThemeToggle from "./ThemeToggle";
 
@@ -20,9 +21,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const lenis = useLenis();
+  const router = useRouter();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    handleSmoothNavigation(e, href, lenis, () => setIsOpen(false));
+    handleSmoothNavigation(e, href, lenis, router, () => setIsOpen(false));
   };
 
   useEffect(() => {
