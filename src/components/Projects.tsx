@@ -31,6 +31,19 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Koin",
+    subtitle: "Personal Finance Tracker",
+    description:
+      "A sophisticated personal finance tracker built with Flutter. Designed to offer a premium and effortless experience for managing money, featuring automated categorization and rich, interactive analytics.",
+    tags: ["Flutter", "Dart", "Riverpod", "SQLite", "Data Visualization"],
+    github: "https://github.com/KlyrhonMiko/koin",
+    live: "https://klyrhon.tech/koin?ref=portfolio",
+    accent: "#f59e0b",
+    icon: Wallet,
+    mockUrl: "klyrhon.tech/koin",
+    mockupType: "mobile",
+  },
+  {
     title: "P.A.C.E",
     subtitle: "Pasig Alumni Career & Employability System",
     description:
@@ -41,19 +54,6 @@ const projects: Project[] = [
     icon: Layers,
     mockUrl: "localhost:3000",
     mockupType: "desktop",
-  },
-  {
-    title: "Koin",
-    subtitle: "Personal Finance Tracker",
-    description:
-      "A sophisticated personal finance tracker built with Flutter. Designed to offer a premium and effortless experience for managing money, featuring automated categorization and rich, interactive analytics.",
-    tags: ["Flutter", "Dart", "Riverpod", "SQLite", "Data Visualization"],
-    github: "https://github.com/KlyrhonMiko/koin",
-    live: "http://localhost:3000/?ref=portfolio",
-    accent: "#f59e0b",
-    icon: Wallet,
-    mockUrl: "localhost:3000",
-    mockupType: "mobile",
   },
   {
     title: "HRMO System",
