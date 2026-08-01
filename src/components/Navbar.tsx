@@ -83,17 +83,10 @@ export default function Navbar() {
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, "#home")}
-          className="group relative z-50 flex items-center gap-1.5 text-sm sm:text-base font-semibold tracking-tight text-heading transition-opacity hover:opacity-90"
+          className="group relative z-50 flex items-center gap-1.5 text-lg sm:text-xl font-bold tracking-tight text-heading transition-opacity hover:opacity-80"
         >
-          <span className="font-mono text-primary text-xs sm:text-sm font-normal opacity-80 group-hover:opacity-100 transition-opacity">
-            &lt;
-          </span>
-          <span className="text-heading font-semibold tracking-tight">
-            Klyrhon
-          </span>
-          <span className="font-mono text-primary text-xs sm:text-sm font-normal opacity-80 group-hover:opacity-100 transition-opacity">
-            /&gt;
-          </span>
+          <span className="text-primary font-light">/</span>
+          <span>Klyrhon</span>
         </a>
 
         {/* Desktop navigation */}
