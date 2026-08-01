@@ -25,7 +25,7 @@ export const handleSmoothNavigation = async (
         const layer2 = document.createElement("div");
         layer2.className = "absolute inset-0 bg-surface translate-y-full flex items-center justify-center";
 
-        layer2.innerHTML = `<span class="text-2xl sm:text-3xl font-bold tracking-tight text-heading opacity-0 translate-y-4" id="transition-logo">&lt;Klyrhon /&gt;</span>`;
+        layer2.innerHTML = `<span class="text-2xl sm:text-3xl font-bold tracking-tight text-heading opacity-0 translate-y-4" style="font-family: system-ui, sans-serif;" id="transition-logo">&lt;Klyrhon /&gt;</span>`;
 
         container.appendChild(layer1);
         container.appendChild(layer2);
@@ -78,7 +78,7 @@ export const handleSmoothNavigation = async (
     layer2.className = "absolute inset-0 bg-surface translate-y-full flex items-center justify-center";
 
     // Minimalist logo embedded in layer 2
-    layer2.innerHTML = `<span class="text-2xl sm:text-3xl font-bold tracking-tight text-heading opacity-0 translate-y-4" id="transition-logo">&lt;Klyrhon /&gt;</span>`;
+    layer2.innerHTML = `<span class="text-2xl sm:text-3xl font-bold tracking-tight text-heading opacity-0 translate-y-4" style="font-family: system-ui, sans-serif;" id="transition-logo">&lt;Klyrhon /&gt;</span>`;
 
     container.appendChild(layer1);
     container.appendChild(layer2);
