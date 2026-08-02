@@ -99,7 +99,7 @@ export default function ResumePage() {
           <div className="mb-4">
             <h3 className="font-bold text-[16px]">Koin</h3>
             <div className="text-[15px] mb-2">
-              Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://github.com/KlyrhonMiko/koin</a>
+              Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://github.com/KlyrhonMiko/koin</a> Live URL: <a href="https://klyrhon.tech/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://klyrhon.tech/koin</a>
             </div>
             <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
               <li>Developed an offline-first personal finance mobile application using Flutter, enabling seamless multi-account management and reliable local data storage.</li>
@@ -107,20 +107,21 @@ export default function ResumePage() {
               <li>Designed a modern, responsive UI featuring interactive data visualizations to give users clear, actionable insights into their financial habits.</li>
             </ul>
           </div>
-        </section>
 
-        {/* Education */}
-        <section>
-          <h2 className="text-[20px] font-bold">Education</h2>
-          <hr className="border-t-[1.5px] border-black my-1" />
-          
-          <div className="mt-2">
-            <h3 className="font-bold text-[16px]">Pamantasan ng Lungsod ng Pasig</h3>
-            <p>Bachelor of Science in Information Technology</p>
-            <p className="text-[14px]">2023 - Present • Pasig City, Philippines</p>
+          <div className="mb-4">
+            <h3 className="font-bold text-[16px]">Null</h3>
+            <div className="text-[15px] mb-2">
+              Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://github.com/KlyrhonMiko/nulll</a> Live URL: <a href="https://klyrhon.tech/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://klyrhon.tech/nulll</a>
+            </div>
+            <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
+              <li>Developed an interactive algorithm visualization platform and code execution sandbox using Next.js and TypeScript to make complex data structures intuitive.</li>
+              <li>Engineered a client-side execution engine leveraging WebAssembly (Pyodide) in a background Web Worker to capture real-time stack frames and variable states without blocking the UI.</li>
+              <li>Implemented step-by-step visual debugging and dynamic data structure rendering using D3.js and Framer Motion with granular execution controls.</li>
+            </ul>
           </div>
         </section>
-        
+
+
       </div>
     </div>
     </>
