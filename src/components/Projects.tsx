@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, Variants } from "framer-motion";
 import {
   Github,
@@ -9,6 +9,7 @@ import {
   Wallet,
   Shield,
   Layout,
+  Code2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { handleSmoothNavigation } from "../utils/navigation";
@@ -27,7 +28,7 @@ interface Project {
   accent: string;
   icon: LucideIcon;
   mockUrl: string;
-  mockupType: "desktop" | "mobile";
+  mockupType: "desktop" | "mobile" | "algorithm";
 }
 
 const projects: Project[] = [
@@ -43,6 +44,19 @@ const projects: Project[] = [
     icon: Wallet,
     mockUrl: "klyrhon.tech/koin",
     mockupType: "mobile",
+  },
+  {
+    title: "nulll",
+    subtitle: "Interactive Python Code Visualizer",
+    description:
+      "An in-browser Python execution environment and visualizer. It allows users to write Python code and interactively step through its execution, visualizing algorithms and data structures in real-time.",
+    tags: ["Next.js", "React", "Pyodide", "Framer Motion", "Monaco Editor"],
+    github: "https://github.com/KlyrhonMiko/nulll",
+    live: "https://klyrhon.tech/null?ref=portfolio",
+    accent: "#3b82f6",
+    icon: Code2,
+    mockUrl: "klyrhon.tech/null",
+    mockupType: "algorithm",
   },
   {
     title: "P.A.C.E",
@@ -129,6 +143,165 @@ const floatAnimation = {
    Minimalist Mockup Components
    ══════════════════════════════════════════════════ */
 
+const generateBubbleSortFrames = (initialArray: number[]) => {
+  const frames: { array: number[], active: number[], verified: number[] }[] = [];
+  const arr = [...initialArray];
+  
+  frames.push({ array: [...arr], active: [], verified: [] });
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    let swapped = false;
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      frames.push({ array: [...arr], active: [j, j + 1], verified: [] });
+      if (arr[j] > arr[j + 1]) {
+        const temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+        swapped = true;
+        frames.push({ array: [...arr], active: [j, j + 1], verified: [] });
+      }
+    }
+    if (!swapped) break;
+  }
+  
+  const verified: number[] = [];
+  for (let k = 0; k < arr.length; k++) {
+    verified.push(k);
+    frames.push({ array: [...arr], active: [], verified: [...verified] });
+  }
+  
+  for (let k = 0; k < 12; k++) {
+    frames.push({ array: [...arr], active: [], verified: [...verified] });
+  }
+  return frames;
+};
+
+const AlgorithmVisualizerMockup = ({ project }: { project: Project }) => {
+  // Use a deterministic array for the initial render to prevent SSR hydration mismatches
+  const [frames, setFrames] = useState(() => generateBubbleSortFrames([80, 20, 60, 40, 90, 30, 70, 50]));
+  const [frameIndex, setFrameIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFrameIndex((prev) => prev + 1);
+    }, 300);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (frameIndex >= frames.length) {
+      // Shuffle the array elements for the next run
+      const elements = [20, 30, 40, 50, 60, 70, 80, 90];
+      const newArr = elements.sort(() => Math.random() - 0.5);
+      setFrames(generateBubbleSortFrames(newArr));
+      setFrameIndex(0);
+    }
+  }, [frameIndex, frames.length]);
+
+  const currentFrame = frames[frameIndex] || frames[frames.length - 1];
+
+  return (
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      className="w-full max-w-[600px] perspective-[1000px] relative group mx-auto"
+    >
+      {/* Ambient Glow */}
+      <div
+        className="absolute inset-0 blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-1000"
+        style={{ backgroundColor: project.accent }}
+      />
+
+      <motion.div
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="rounded-xl border border-border-light bg-surface shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] overflow-hidden transition-shadow duration-700 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] relative z-10"
+      >
+        {/* Browser Chrome */}
+        <div className="flex items-center gap-2 border-b border-border-light px-3 sm:px-4 py-2 sm:py-3 bg-surface-elevated/30">
+          <div className="flex gap-1 sm:gap-1.5">
+            <div className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-border-light group-hover:bg-[#ff5f56] transition-colors duration-500" />
+            <div className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-border-light group-hover:bg-[#ffbd2e] transition-colors duration-500 delay-75" />
+            <div className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-border-light group-hover:bg-[#27c93f] transition-colors duration-500 delay-150" />
+          </div>
+          <div className="ml-2 sm:ml-4 flex items-center justify-center flex-1 max-w-[200px] sm:max-w-[240px] rounded bg-surface border border-border-light/50 px-2 py-0.5 sm:py-1 transition-colors duration-500 group-hover:border-border-light">
+            <span className="text-[9px] sm:text-[10px] text-muted font-medium truncate transition-colors duration-500 group-hover:text-body">
+              {project.mockUrl}
+            </span>
+          </div>
+        </div>
+
+        {/* IDE & Visualizer Content */}
+        <div className="flex flex-col sm:flex-row h-[280px] sm:h-[320px] bg-surface">
+          {/* Editor Side */}
+          <div className="w-full sm:w-5/12 border-b sm:border-b-0 sm:border-r border-border-light/50 p-4 space-y-3">
+            <div className="flex items-center gap-2 mb-4">
+              <Code2 className="w-4 h-4 text-muted" />
+              <span className="text-xs font-mono text-muted">main.py</span>
+            </div>
+            {/* Code Lines */}
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                variants={skeletonLineVariants}
+                className="h-2 rounded-full bg-border-light/40 origin-left"
+                style={{
+                  width: `${(i * 17) % 40 + 40}%`,
+                  marginLeft: i > 1 && i < 5 ? '16px' : '0px'
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Visualizer Side */}
+          <div className="flex-1 p-4 flex flex-col">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="h-2 w-2 rounded-full" style={{ backgroundColor: project.accent }} />
+              <span className="text-xs font-mono text-muted">Visualization</span>
+            </div>
+            
+            {/* Sorting Animation */}
+            <div className="flex-1 flex justify-center items-end gap-1.5 sm:gap-2 px-4 pb-4">
+              {currentFrame.array.map((height, index) => {
+                const isActive = currentFrame.active.includes(index);
+                const isVerified = currentFrame.verified.includes(index);
+                
+                let bgColor = isActive ? project.accent : "var(--border-light)";
+                let opacity = isActive ? 1 : 0.3;
+                
+                if (isVerified) {
+                  bgColor = "#10b981"; // Emerald-500
+                  opacity = 1;
+                }
+
+                return (
+                  <motion.div
+                    key={height}
+                    layout="position"
+                    className="w-4 sm:w-6 rounded-t-sm origin-bottom"
+                    style={{ height: `${height}%` }}
+                    animate={{ 
+                      backgroundColor: bgColor,
+                      opacity: opacity
+                    }}
+                    transition={{
+                      layout: { type: "tween", duration: 0.2, ease: "circOut" },
+                      backgroundColor: { duration: 0.15 },
+                      opacity: { duration: 0.15 }
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const MinimalDesktopMockup = ({ project }: { project: Project }) => (
   <motion.div
     initial="hidden"
@@ -159,7 +332,7 @@ const MinimalDesktopMockup = ({ project }: { project: Project }) => (
           </span>
         </div>
       </div>
-      
+
       {/* Wireframe Content */}
       <div className="p-5 sm:p-8 space-y-6 sm:space-y-8 bg-surface">
         <div className="flex items-center gap-4 sm:gap-5">
@@ -180,12 +353,12 @@ const MinimalDesktopMockup = ({ project }: { project: Project }) => (
           <motion.div custom={3} variants={skeletonLineVariants} className="h-1.5 sm:h-2 w-[90%] rounded-full bg-border-light/40 origin-left" />
           <motion.div custom={4} variants={skeletonLineVariants} className="h-1.5 sm:h-2 w-[75%] rounded-full bg-border-light/40 origin-left" />
         </div>
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="h-24 sm:h-36 w-full rounded-lg sm:rounded-xl bg-surface-elevated/50 border border-border-light/50 relative overflow-hidden group/box"
         >
           {/* Subtle moving gradient inside wireframe box */}
-          <motion.div 
+          <motion.div
             className="absolute inset-0 opacity-0 group-hover/box:opacity-100 transition-opacity duration-1000"
             style={{ background: `linear-gradient(45deg, transparent, ${project.accent}10, transparent)` }}
             animate={{ x: ['-100%', '100%'] }}
@@ -210,14 +383,14 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
       style={{ backgroundColor: project.accent }}
     />
 
-    <motion.div 
+    <motion.div
       animate={{ y: [0, -8, 0], rotateZ: [0, 1, 0] }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" as const }}
       className="relative rounded-[2.5rem] sm:rounded-[3rem] border-[6px] sm:border-[10px] border-surface-elevated bg-surface shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-700 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] group-hover:-translate-y-2 z-10"
     >
       {/* Notch */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-4 sm:h-6 w-24 sm:w-32 bg-surface-elevated rounded-b-xl sm:rounded-b-2xl z-20 transition-colors duration-500 group-hover:bg-border-light/80" />
-      
+
       {/* Wireframe Content */}
       <div className="p-4 sm:p-6 pt-10 sm:pt-14 space-y-6 sm:space-y-8 h-[420px] sm:h-[560px] relative z-10">
         <div className="flex flex-col items-center text-center space-y-4 sm:space-y-5">
@@ -233,15 +406,15 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
             <motion.div custom={1} variants={skeletonLineVariants} className="h-1.5 sm:h-2 w-2/5 rounded-full bg-border-light/40 origin-center" />
           </div>
         </div>
-        
+
         <div className="space-y-3 sm:space-y-4">
           {[1, 2, 3].map((i) => (
-            <motion.div 
-              key={i} 
+            <motion.div
+              key={i}
               variants={itemVariants}
               className="h-12 sm:h-16 w-full rounded-xl sm:rounded-2xl bg-surface-elevated/50 border border-border-light/50 flex items-center px-3 sm:px-4 gap-3 sm:gap-4 overflow-hidden relative group/item"
             >
-              <div 
+              <div
                 className="absolute inset-0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-700"
                 style={{ background: `linear-gradient(90deg, transparent, ${project.accent}0a, transparent)` }}
               />
@@ -254,7 +427,7 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
           ))}
         </div>
       </div>
-      
+
       {/* Home Indicator */}
       <div className="absolute bottom-1.5 sm:bottom-2 left-1/2 -translate-x-1/2 h-1 w-20 sm:w-24 rounded-full bg-border-light/80 z-20" />
     </motion.div>
@@ -271,7 +444,7 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
 
   return (
     <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}>
-      
+
       {/* Connecting Scroll Line (Desktop only) */}
       <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border-light/30 hidden lg:block -z-10" />
 
@@ -279,6 +452,8 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
       <div className="w-full lg:w-1/2 flex justify-center relative z-10">
         {project.mockupType === "mobile" ? (
           <MinimalMobileMockup project={project} />
+        ) : project.mockupType === "algorithm" ? (
+          <AlgorithmVisualizerMockup project={project} />
         ) : (
           <MinimalDesktopMockup project={project} />
         )}
@@ -376,13 +551,13 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
 
 export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Parallax line
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
-  
+
   const lineHeight = useSpring(useTransform(scrollYProgress, [0, 0.8], ["0%", "100%"]), {
     stiffness: 100,
     damping: 30,
@@ -392,7 +567,7 @@ export default function Projects() {
   return (
     <section id="projects" ref={containerRef} className="py-24 lg:py-32 w-full relative">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
-        
+
         {/* ─── Section Header ─── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -406,12 +581,12 @@ export default function Projects() {
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-heading tracking-tight mb-6 flex items-center gap-4">
             Selected Works
-            <motion.div 
-              initial={{ width: 0 }} 
-              whileInView={{ width: "3rem" }} 
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "3rem" }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-              className="h-1 bg-primary/30 rounded-full hidden md:block" 
+              className="h-1 bg-primary/30 rounded-full hidden md:block"
             />
           </h2>
           <p className="text-lg text-body max-w-2xl leading-relaxed">
@@ -421,14 +596,14 @@ export default function Projects() {
 
         {/* ─── Project Rows Container ─── */}
         <div className="flex flex-col relative">
-           
-           {/* Dynamic Progress Line (Desktop only) */}
-           <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px hidden lg:block z-0">
-             <motion.div 
-               className="w-full bg-primary origin-top"
-               style={{ height: lineHeight, opacity: 0.3 }}
-             />
-           </div>
+
+          {/* Dynamic Progress Line (Desktop only) */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px hidden lg:block z-0">
+            <motion.div
+              className="w-full bg-primary origin-top"
+              style={{ height: lineHeight, opacity: 0.3 }}
+            />
+          </div>
 
           {projects.map((project, index) => (
             <ProjectRow key={project.title} project={project} index={index} />
