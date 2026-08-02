@@ -75,8 +75,8 @@ export default function Navbar() {
       <nav
         className={`pointer-events-auto relative flex w-full max-w-5xl items-center justify-between rounded-full transition-all duration-500 ${
           scrolled
-            ? "backdrop-blur-2xl border border-border/80 dark:border-white/10 shadow-lg shadow-black/[0.04] dark:shadow-black/40 py-2.5 px-4 sm:px-6"
-            : "backdrop-blur-xl border border-border/40 dark:border-white/[0.06] shadow-sm py-3 px-4 sm:px-6"
+            ? "backdrop-blur-2xl border border-border/80 dark:border-white/10 shadow-lg shadow-black/[0.04] dark:shadow-black/40 py-2.5 px-4 sm:px-6 bg-surface/40 dark:bg-surface/20"
+            : "bg-transparent border-transparent shadow-none py-4 px-4 sm:px-6"
         }`}
       >
         {/* Logo */}
