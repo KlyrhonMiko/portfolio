@@ -52,10 +52,10 @@ const projects: Project[] = [
       "An in-browser Python execution environment and visualizer. It allows users to write Python code and interactively step through its execution, visualizing algorithms and data structures in real-time.",
     tags: ["Next.js", "React", "Pyodide", "Framer Motion", "Monaco Editor"],
     github: "https://github.com/KlyrhonMiko/nulll",
-    live: "https://klyrhon.tech/null?ref=portfolio",
+    live: "https://klyrhon.tech/nulll?ref=portfolio",
     accent: "#3b82f6",
     icon: Code2,
-    mockUrl: "klyrhon.tech/null",
+    mockUrl: "klyrhon.tech/nulll",
     mockupType: "algorithm",
   },
   {
