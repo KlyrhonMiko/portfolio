@@ -138,12 +138,12 @@ export default function Navbar() {
 
           {/* Mobile standalone toggle */}
           <div className="md:hidden flex">
-            <ThemeToggle />
+            <ThemeToggle className="group relative flex h-9 w-9 items-center justify-center rounded-full text-muted hover:text-heading transition-colors hover:bg-surface dark:hover:bg-white/10 focus:outline-none active:scale-95 cursor-pointer" />
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="flex h-9 w-9 items-center justify-center rounded-full text-heading bg-surface-elevated/80 dark:bg-white/[0.05] border border-border/60 dark:border-white/10 transition-colors hover:bg-surface-elevated md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-heading transition-colors hover:bg-surface dark:hover:bg-white/10 md:hidden focus:outline-none active:scale-95"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
