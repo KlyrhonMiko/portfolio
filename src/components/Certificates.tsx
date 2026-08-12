@@ -7,10 +7,16 @@ import MagneticEffect from "./MagneticEffect";
 
 const certificates = [
   {
-    title: "Claud 101",
+    title: "Claude 101",
     issuer: "Anthropic",
     date: "Aug 2026",
     link: "https://verify.skilljar.com/c/wgk9ewiuyn66"
+  },
+  {
+    title: "Claude Code 101",
+    issuer: "Anthropic",
+    date: "Aug 2026",
+    link: "https://verify.skilljar.com/c/i6x6r67puy7o"
   },
   {
     title: "Claude Code in Action",
