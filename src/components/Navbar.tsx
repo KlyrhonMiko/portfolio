@@ -9,7 +9,6 @@ import { handleSmoothNavigation } from "../utils/navigation";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
@@ -100,7 +99,7 @@ export default function Navbar() {
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className={`relative rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-colors duration-200 block ${
+                    className={`relative rounded-full px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors duration-200 block ${
                       isActive
                         ? "text-primary dark:text-emerald-400 font-semibold"
                         : "text-muted hover:text-heading"
