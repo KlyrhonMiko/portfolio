@@ -39,10 +39,10 @@ const projects: Project[] = [
       "A sophisticated personal finance tracker built with Flutter. Designed to offer a premium and effortless experience for managing money, featuring automated categorization and rich, interactive analytics.",
     tags: ["Flutter", "Dart", "Riverpod", "SQLite", "Data Visualization"],
     github: "https://github.com/KlyrhonMiko/koin",
-    live: "https://klyrhon.tech/koin?ref=portfolio",
+    live: "https://klyrhon.me/koin?ref=portfolio",
     accent: "#f59e0b",
     icon: Wallet,
-    mockUrl: "klyrhon.tech/koin",
+    mockUrl: "klyrhon.me/koin",
     mockupType: "mobile",
   },
   {
@@ -52,10 +52,10 @@ const projects: Project[] = [
       "An in-browser Python execution environment and visualizer. It allows users to write Python code and interactively step through its execution, visualizing algorithms and data structures in real-time.",
     tags: ["Next.js", "React", "Pyodide", "Framer Motion", "Monaco Editor"],
     github: "https://github.com/KlyrhonMiko/nulll",
-    live: "https://klyrhon.tech/nulll?ref=portfolio",
+    live: "https://klyrhon.me/nulll?ref=portfolio",
     accent: "#3b82f6",
     icon: Code2,
-    mockUrl: "klyrhon.tech/nulll",
+    mockUrl: "klyrhon.me/nulll",
     mockupType: "algorithm",
   },
   {
@@ -438,9 +438,15 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
    Alternating Project Row
    ══════════════════════════════════════════════════ */
 
-const ProjectRow = ({ project, index }: { project: Project; index: number }) => {
+const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { project: Project; currentDomain: string; protocol: string; index: number }) => {
   const isReversed = index % 2 === 0;
   const paddingClass = index === 0 ? "pb-16 lg:pb-32" : "py-16 lg:py-32";
+
+  const project = {
+    ...projectData,
+    live: projectData.live?.replace("https://klyrhon.me", `${protocol}//${currentDomain}`),
+    mockUrl: projectData.mockUrl.replace("klyrhon.me", currentDomain),
+  };
 
   return (
     <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}>
@@ -551,6 +557,15 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
 
 export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [currentDomain, setCurrentDomain] = useState("klyrhon.me");
+  const [protocol, setProtocol] = useState("https:");
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentDomain(window.location.host);
+      setProtocol(window.location.protocol);
+    }
+  }, []);
 
   // Parallax line
   const { scrollYProgress } = useScroll({
@@ -606,7 +621,7 @@ export default function Projects() {
           </div>
 
           {projects.map((project, index) => (
-            <ProjectRow key={project.title} project={project} index={index} />
+            <ProjectRow key={project.title} project={project} currentDomain={currentDomain} protocol={protocol} index={index} />
           ))}
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { ResumeBackButton } from '@/components/ResumeClientLogic';
+import { ResumeBackButton, DynamicDomainLink } from '@/components/ResumeClientLogic';
+import { Download } from 'lucide-react';
 
 export const metadata = {
   title: 'Resume | Klyrhon Miko R. Aurel',
@@ -18,11 +19,7 @@ export default function ResumePage() {
           download="Klyrhon_Miko_Aurel_Resume.pdf"
           className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded shadow-md transition-colors font-semibold"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
+          <Download className="w-5 h-5" />
           Download PDF
         </a>
       </div>
@@ -35,7 +32,7 @@ export default function ResumePage() {
           <h1 className="text-[28px] font-bold mb-1 tracking-tight">Klyrhon Miko R. Aurel</h1>
           <p className="text-[14px]">
             aurelklyrhonmiko@gmail.com | +63936 109 0745 |{' '}
-            <a href="https://klyrhon.tech" target="_blank" rel="noopener noreferrer" className="hover:underline">klyrhon.tech</a>{' '}
+            <DynamicDomainLink path="" className="hover:underline" />{' '}
             |{' '}
             <a href="https://github.com/KlyrhonMiko" target="_blank" rel="noopener noreferrer" className="hover:underline">github.com/KlyrhonMiko</a>
           </p>
@@ -99,7 +96,7 @@ export default function ResumePage() {
           <div className="mb-4">
             <h3 className="font-bold text-[16px]">Koin</h3>
             <div className="text-[15px] mb-2">
-              Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://github.com/KlyrhonMiko/koin</a> Live URL: <a href="https://klyrhon.tech/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://klyrhon.tech/koin</a>
+              Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://github.com/KlyrhonMiko/koin</a> Live URL: <DynamicDomainLink path="/koin" className="text-blue-700 hover:underline" />
             </div>
             <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
               <li>Developed an offline-first personal finance mobile application using Flutter, enabling seamless multi-account management and reliable local data storage.</li>
@@ -111,7 +108,7 @@ export default function ResumePage() {
           <div className="mb-4">
             <h3 className="font-bold text-[16px]">Null</h3>
             <div className="text-[15px] mb-2">
-              Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://github.com/KlyrhonMiko/nulll</a> Live URL: <a href="https://klyrhon.tech/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://klyrhon.tech/nulll</a>
+              Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://github.com/KlyrhonMiko/nulll</a> Live URL: <DynamicDomainLink path="/nulll" className="text-blue-700 hover:underline" />
             </div>
             <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
               <li>Developed an interactive algorithm visualization platform and code execution sandbox using Next.js and TypeScript to make complex data structures intuitive.</li>
