@@ -1,7 +1,7 @@
 "use client";
 
 import { useLenis } from "lenis/react";
-import { handleSmoothNavigation } from "../utils/navigation";
+import { handleSmoothNavigation } from "@/utils/navigation";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 
 const socialLinks = [

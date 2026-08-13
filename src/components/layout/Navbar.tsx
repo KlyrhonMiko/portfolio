@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { useRouter } from "next/navigation";
-import { handleSmoothNavigation } from "../utils/navigation";
-import ThemeToggle from "./ThemeToggle";
+import { handleSmoothNavigation } from "@/utils/navigation";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "#about" },

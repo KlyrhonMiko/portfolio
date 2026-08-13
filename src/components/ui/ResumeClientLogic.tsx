@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
-import { handleSmoothNavigation } from "../utils/navigation";
+import { handleSmoothNavigation } from "@/utils/navigation";
 
 export function ResumeBackButton() {
   const router = useRouter();

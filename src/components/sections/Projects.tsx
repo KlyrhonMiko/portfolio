@@ -12,7 +12,7 @@ import {
   Code2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { handleSmoothNavigation } from "../utils/navigation";
+import { handleSmoothNavigation } from "@/utils/navigation";
 
 /* ══════════════════════════════════════════════════
    Project Data

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResumeBackButton, DynamicDomainLink } from '@/components/ResumeClientLogic';
+import { ResumeBackButton, DynamicDomainLink } from '@/components/ui/ResumeClientLogic';
 import { Download } from 'lucide-react';
 
 export const metadata = {

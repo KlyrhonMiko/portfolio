@@ -4,7 +4,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, Twitter, Sparkles, Facebook } from "lucide-react";
 import { useLenis } from "lenis/react";
-import { handleSmoothNavigation } from "../utils/navigation";
+import { handleSmoothNavigation } from "@/utils/navigation";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/KlyrhonMiko", label: "GitHub" },

@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     "Personal portfolio showcasing my projects, skills, and experience as a developer.",
 };
 
-import SmoothScroll from "@/components/SmoothScroll";
-import Background from "@/components/Background";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import RouteTransitionHandler from "@/components/RouteTransitionHandler";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import Background from "@/components/ui/Background";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
+import RouteTransitionHandler from "@/components/ui/RouteTransitionHandler";
 
 export default function RootLayout({
   children,

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import MagneticEffect from "./MagneticEffect";
+import MagneticEffect from "@/components/ui/MagneticEffect";
 
 const certificates = [
   {
