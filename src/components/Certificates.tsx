@@ -99,7 +99,7 @@ export default function Certificates() {
               target="_blank"
               rel="noopener noreferrer"
               variants={itemVariants}
-              className="group relative flex items-center justify-between py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/40 transition-colors duration-500 overflow-hidden"
+              className="group relative flex items-center justify-between py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/40 transition-colors duration-500"
             >
               {/* Hover glow background */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10 pointer-events-none" />
