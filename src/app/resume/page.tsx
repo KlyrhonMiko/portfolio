@@ -36,14 +36,7 @@ export default function ResumePage() {
             |{' '}
             <a href="https://github.com/KlyrhonMiko" target="_blank" rel="noopener noreferrer" className="hover:underline">github.com/KlyrhonMiko</a>
           </p>
-        </div>
-
-        <div className="mb-6">
-          <p>
-            I'm an aspiring software engineer with a passion for creating elegant, user-friendly web applications. 
-            With a strong foundation in both frontend and backend technologies, I bring ideas to life through clean code 
-            and thoughtful design.
-          </p>
+          <p className="text-[15px] mt-1 text-gray-700 font-medium">Software Engineer & AI Programmer</p>
         </div>
 
         {/* Skills */}
@@ -51,9 +44,11 @@ export default function ResumePage() {
           <h2 className="text-[20px] font-bold">Skills</h2>
           <hr className="border-t-[1.5px] border-black my-1" />
           <div className="space-y-1">
-            <p><span className="font-bold">Frontend:</span> React, Next.js, TypeScript, HTML, CSS, Tailwind CSS</p>
-            <p><span className="font-bold">Backend:</span> Node.js, Express, FastAPI</p>
+            <p><span className="font-bold">Frontend:</span> React, Next.js, TypeScript, HTML, CSS, Tailwind CSS, GSAP, Framer Motion, Lenis, Three.js</p>
+            <p><span className="font-bold">Backend:</span> Node.js, Express, FastAPI, Python</p>
             <p><span className="font-bold">DevOps & Tools:</span> Docker, Git</p>
+            <p><span className="font-bold">Mobile:</span> Flutter, Dart, Riverpod</p>
+            <p><span className="font-bold">Databases:</span> Supabase, PostgreSQL, SQLite</p>
           </div>
         </section>
 
@@ -69,9 +64,8 @@ export default function ResumePage() {
               <span>2025 - Present</span>
             </div>
             <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
-              <li>Built modular UI components using React and Tailwind CSS</li>
-              <li>Optimized page load times through code-splitting and lazy loading</li>
-              <li>Built enterprise grade systems for companie</li>
+              <li>Built modular, responsive web apps for clients using <strong>React</strong>, <strong>Next.js</strong>, and <strong>Tailwind CSS</strong>.</li>
+              <li>Architected robust backends (<strong>Node.js</strong>, <strong>FastAPI</strong>) and optimized load times via <strong>code-splitting</strong>.</li>
             </ul>
           </div>
         </section>
@@ -84,37 +78,48 @@ export default function ResumePage() {
           <div className="mt-2 mb-4">
             <h3 className="font-bold text-[16px]">P.A.C.E (Pasig Alumni Career & Employability)</h3>
             <div className="text-[15px] mb-2">
-              Github: <a href="https://github.com/KlyrhonMiko/pace" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://github.com/KlyrhonMiko/pace</a>
+              Github: <a href="https://github.com/KlyrhonMiko/pace" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/pace</a>
             </div>
             <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
-              <li>Developed a comprehensive career platform to connect alumni with highly curated employment opportunities.</li>
-              <li>Engineered a dashboard providing institutions with actionable insights and real-time analytics on alumni employability.</li>
-              <li>Implemented robust data tracking and visualization to monitor graduate career trajectories and optimize institutional reporting.</li>
+              <li>Spearheaded a comprehensive career platform using <strong>Next.js</strong> and <strong>Supabase</strong>, integrating external <strong>job market APIs</strong> to connect alumni with highly curated, localized employment opportunities.</li>
+              <li>Programmed a real-time analytics dashboard using <strong>Python</strong> and <strong>FastAPI</strong>, leveraging <strong>machine learning algorithms</strong> to predict graduate career outcomes and give actionable insights.</li>
+              <li>Established robust <strong>relational data tracking</strong> and <strong>dynamic visualization</strong>, enabling the monitoring of graduate career trajectories and optimizing institutional reporting.</li>
             </ul>
           </div>
 
           <div className="mb-4">
             <h3 className="font-bold text-[16px]">Koin</h3>
             <div className="text-[15px] mb-2">
-              Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://github.com/KlyrhonMiko/koin</a> Live URL: <DynamicDomainLink path="/koin" className="text-blue-700 hover:underline" />
+              Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/koin</a> Live URL: <DynamicDomainLink path="/koin" className="text-blue-700 hover:underline" />
             </div>
             <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
-              <li>Developed an offline-first personal finance mobile application using Flutter, enabling seamless multi-account management and reliable local data storage.</li>
-              <li>Integrated Natural Language Processing (NLP) and voice recognition to allow users to quickly and intuitively log expenses hands-free.</li>
-              <li>Designed a modern, responsive UI featuring interactive data visualizations to give users clear, actionable insights into their financial habits.</li>
+              <li>Constructed an offline-first personal finance mobile application using <strong>Flutter</strong> and <strong>Dart</strong>, managing complex app state with <strong>Riverpod</strong> and ensuring reliable local data storage via <strong>SQLite</strong>.</li>
+              <li>Integrated <strong>Natural Language Processing (NLP)</strong> and <strong>voice recognition</strong> to allow users to quickly and intuitively log expenses hands-free.</li>
+              <li>Designed a modern, responsive UI utilizing <strong>Flutter Material</strong> for interactive data visualizations to give users clear, actionable insights into their financial habits.</li>
             </ul>
           </div>
 
           <div className="mb-4">
-            <h3 className="font-bold text-[16px]">Null</h3>
+            <h3 className="font-bold text-[16px]">Nulll</h3>
             <div className="text-[15px] mb-2">
-              Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">https://github.com/KlyrhonMiko/nulll</a> Live URL: <DynamicDomainLink path="/nulll" className="text-blue-700 hover:underline" />
+              Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/nulll</a> Live URL: <DynamicDomainLink path="/nulll" className="text-blue-700 hover:underline" />
             </div>
             <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
-              <li>Developed an interactive algorithm visualization platform and code execution sandbox using Next.js and TypeScript to make complex data structures intuitive.</li>
-              <li>Engineered a client-side execution engine leveraging WebAssembly (Pyodide) in a background Web Worker to capture real-time stack frames and variable states without blocking the UI.</li>
-              <li>Implemented step-by-step visual debugging and dynamic data structure rendering using D3.js and Framer Motion with granular execution controls.</li>
+              <li>Formulated an interactive algorithm visualization platform and code execution sandbox using <strong>Next.js</strong> and <strong>TypeScript</strong> to make complex data structures intuitive.</li>
+              <li>Structured a client-side execution engine leveraging <strong>WebAssembly (Pyodide)</strong> in a background <strong>Web Worker</strong> to capture real-time stack frames and variable states without blocking the UI.</li>
+              <li>Integrated step-by-step visual debugging and <strong>dynamic data structure rendering</strong> using <strong>D3.js</strong> and <strong>Framer Motion</strong> with granular execution controls.</li>
             </ul>
+          </div>
+        </section>
+
+        {/* Education & Certifications */}
+        <section className="mb-6">
+          <h2 className="text-[20px] font-bold">Education & Certifications</h2>
+          <hr className="border-t-[1.5px] border-black my-1" />
+          
+          <div className="mt-2 space-y-1 text-[15px]">
+            <p><span className="font-bold">BS in Information Technology</span> | Pamantasan ng Lungsod ng Pasig | <em>Expected 2027</em></p>
+            <p><span className="font-bold">Anthropic Academy:</span> Claude 101, Claude Code 101, Claude Code in Action | <em>2026</em></p>
           </div>
         </section>
 
