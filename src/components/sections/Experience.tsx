@@ -34,11 +34,11 @@ const experiences = [
     description:
       "Developing and maintaining responsive web applications for various clients. Focusing on delivering high-quality, scalable solutions using modern web technologies to meet client requirements.",
     skills: [
-      "Full Stack Development",
       "React",
-      "TypeScript",
-      "Node.js",
+      "Next.js",
       "Tailwind CSS",
+      "Node.js",
+      "FastAPI",
     ],
     highlights: [
       "Designed and implemented intuitive user interfaces",

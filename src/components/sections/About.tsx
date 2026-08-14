@@ -6,9 +6,14 @@ import GithubActivity from "./GithubActivity";
 
 const skills = [
   {
-    category: "Web Frontend",
+    category: "Frontend",
     description: "Crafting interactive & responsive interfaces",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+    items: ["React", "Next.js", "TypeScript", "HTML", "CSS", "Tailwind CSS", "GSAP", "Framer Motion", "Lenis", "Three.js"],
+  },
+  {
+    category: "Backend",
+    description: "Robust APIs and server-side logic",
+    items: ["Node.js", "Express", "FastAPI", "Python"],
   },
   {
     category: "Mobile",
@@ -16,24 +21,14 @@ const skills = [
     items: ["Flutter", "Dart", "Riverpod"],
   },
   {
-    category: "ML/Analytics",
-    description: "Smart features and clear insights",
-    items: ["Machine Learning", "Data Visualization", "Python"],
+    category: "Databases",
+    description: "Data persistence and management",
+    items: ["Supabase", "PostgreSQL", "SQLite"],
   },
   {
-    category: "Backend & Data",
-    description: "APIs, persistence, and managed infrastructure",
-    items: ["FastAPI", "PostgreSQL", "Supabase", "SQLite", "MySQL"],
-  },
-  {
-    category: "Design",
-    description: "Creating beautiful user experiences",
-    items: ["Figma", "UI/UX", "Responsive Design", "Accessibility"],
-  },
-  {
-    category: "DevOps",
+    category: "DevOps & Tools",
     description: "Streamlining deployment pipelines",
-    items: ["Git", "Docker", "Vercel", "GitHub"],
+    items: ["Docker", "Git"],
   },
 ];
 

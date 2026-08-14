@@ -37,7 +37,7 @@ const projects: Project[] = [
     subtitle: "Personal Finance Tracker",
     description:
       "A sophisticated personal finance tracker built with Flutter. Designed to offer a premium and effortless experience for managing money, featuring automated categorization and rich, interactive analytics.",
-    tags: ["Flutter", "Dart", "Riverpod", "SQLite", "Data Visualization"],
+    tags: ["Flutter", "Dart", "Riverpod", "SQLite", "NLP", "Voice Recognition"],
     github: "https://github.com/KlyrhonMiko/koin",
     live: "https://klyrhon.me/koin?ref=portfolio",
     accent: "#f59e0b",
@@ -50,7 +50,7 @@ const projects: Project[] = [
     subtitle: "Interactive Python Code Visualizer",
     description:
       "An in-browser Python execution environment and visualizer. It allows users to write Python code and interactively step through its execution, visualizing algorithms and data structures in real-time.",
-    tags: ["Next.js", "React", "Pyodide", "Framer Motion", "Monaco Editor"],
+    tags: ["Next.js", "TypeScript", "Pyodide", "Web Workers", "D3.js", "Framer Motion"],
     github: "https://github.com/KlyrhonMiko/nulll",
     live: "https://klyrhon.me/nulll?ref=portfolio",
     accent: "#3b82f6",
@@ -63,7 +63,7 @@ const projects: Project[] = [
     subtitle: "Pasig Alumni Career & Employability System",
     description:
       "A platform for Pasig City Alumni to find jobs, internships, and career opportunities. It leverages machine learning for smart job matching, seamlessly connecting graduates with relevant career paths.",
-    tags: ["Next.js", "React", "FastAPI", "PostgreSQL", "Supabase", "Machine Learning"],
+    tags: ["Next.js", "Supabase", "Python", "FastAPI", "Machine Learning"],
     github: "https://github.com/KlyrhonMiko/pace",
     accent: "#10b981",
     icon: Layers,
