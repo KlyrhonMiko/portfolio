@@ -47,7 +47,7 @@ export default function GithubActivity() {
       </div>
 
       <div className="w-full flex lg:justify-start justify-center py-8">
-        <div className="w-fit overflow-x-auto">
+        <div className="w-fit overflow-x-auto min-h-[160px] sm:min-h-[180px] flex items-center">
           {mounted && (
             <GitHubCalendar
               username="KlyrhonMiko"
