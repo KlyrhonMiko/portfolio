@@ -2,7 +2,7 @@
 
 import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
-import GithubActivity from "@/components/GithubActivity";
+import GithubActivity from "./GithubActivity";
 
 const skills = [
   {
