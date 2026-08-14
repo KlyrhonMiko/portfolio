@@ -14,7 +14,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <LazySection delay={800}>
+        <LazySection delay={800} minHeight="700vh">
           <About />
           <Projects />
           <Experience />
