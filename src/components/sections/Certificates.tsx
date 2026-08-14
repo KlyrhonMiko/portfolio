@@ -82,8 +82,8 @@ export default function Certificates() {
     <section id="certificates" ref={containerRef} className="py-24 lg:py-32 w-full relative overflow-hidden">
 
       {/* Subtle Background Decor */}
-      <motion.div style={{ y: y1 }} className="absolute -left-32 top-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
-      <motion.div style={{ y: y2 }} className="absolute -right-32 bottom-10 w-[400px] h-[400px] bg-accent-teal/5 rounded-full blur-[80px] -z-10 pointer-events-none" />
+      <motion.div style={{ y: y1 }} className="absolute -left-32 top-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none will-change-transform transform-gpu" />
+      <motion.div style={{ y: y2 }} className="absolute -right-32 bottom-10 w-[400px] h-[400px] bg-accent-teal/5 rounded-full blur-[80px] -z-10 pointer-events-none will-change-transform transform-gpu" />
 
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
 
@@ -126,7 +126,7 @@ export default function Certificates() {
               className="group relative flex items-center justify-between py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/40 transition-colors duration-500"
             >
               {/* Hover glow background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10 pointer-events-none will-change-opacity transform-gpu" />
 
               <div className="flex items-center gap-8 lg:gap-16 w-full">
 
@@ -142,11 +142,11 @@ export default function Certificates() {
 
                 {/* Title & Issuer */}
                 <div className="flex-1">
-                  <h3 className="text-2xl md:text-4xl font-light text-heading group-hover:text-primary transition-colors duration-500 group-hover:translate-x-2 ease-out">
+                  <h3 className="text-2xl md:text-4xl font-light text-heading group-hover:text-primary transition-all duration-500 group-hover:translate-x-2 ease-out transform-gpu">
                     {cert.title}
                   </h3>
                   <div className="mt-3 flex items-center gap-4">
-                    <span className="text-xs md:text-sm uppercase tracking-[0.15em] font-medium text-muted/80 group-hover:translate-x-2 transition-transform duration-500 delay-75 ease-out">
+                    <span className="text-xs md:text-sm uppercase tracking-[0.15em] font-medium text-muted/80 group-hover:translate-x-2 transition-all duration-500 delay-75 ease-out transform-gpu">
                       {cert.issuer}
                     </span>
                     {/* Date on mobile */}
@@ -158,8 +158,8 @@ export default function Certificates() {
 
                 {/* Arrow Icon */}
                 <MagneticEffect strength={0.2}>
-                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-border-light/60 flex items-center justify-center text-muted group-hover:bg-primary group-hover:border-primary group-hover:text-surface transition-all duration-500 shrink-0">
-                    <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-45 transition-transform duration-500" />
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-border-light/60 flex items-center justify-center text-muted group-hover:bg-primary group-hover:border-primary group-hover:text-surface transition-colors duration-500 shrink-0">
+                    <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-45 transition-transform duration-500 transform-gpu" />
                   </div>
                 </MagneticEffect>
 
