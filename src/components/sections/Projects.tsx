@@ -573,7 +573,7 @@ export default function Projects() {
     offset: ["start end", "end start"]
   });
 
-  const lineHeight = useSpring(useTransform(scrollYProgress, [0, 0.8], ["0%", "100%"]), {
+  const lineHeight = useSpring(useTransform(scrollYProgress, [0, 0.8], [0, 1]), {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
@@ -615,8 +615,8 @@ export default function Projects() {
           {/* Dynamic Progress Line (Desktop only) */}
           <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px hidden lg:block z-0">
             <motion.div
-              className="w-full bg-primary origin-top"
-              style={{ height: lineHeight, opacity: 0.3 }}
+              className="w-full h-full bg-primary origin-top"
+              style={{ scaleY: lineHeight, opacity: 0.3 }}
             />
           </div>
 

@@ -39,7 +39,7 @@ export default function Contact() {
     offset: ["start end", "end start"]
   });
   
-  const lineWidth = useSpring(useTransform(scrollYProgress, [0, 0.8], ["0%", "100%"]), {
+  const lineWidth = useSpring(useTransform(scrollYProgress, [0, 0.8], [0, 1]), {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
@@ -73,8 +73,8 @@ export default function Contact() {
         {/* Dynamic separator line */}
         <div className="w-full h-px bg-border-light/30 mb-24 relative">
           <motion.div 
-            className="absolute top-0 left-0 h-full bg-primary" 
-            style={{ width: lineWidth, opacity: 0.5 }} 
+            className="absolute top-0 left-0 h-full w-full bg-primary origin-left" 
+            style={{ scaleX: lineWidth, opacity: 0.5 }} 
           />
         </div>
 
