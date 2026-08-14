@@ -37,7 +37,7 @@ const certificates = [
     link: "https://verify.skilljar.com/c/2vzhg7kjzxxg"
   },
   {
-    title: "Introducion to subagents",
+    title: "Introduction to subagents",
     issuer: "Anthropic",
     date: "Aug 2026",
     link: "https://verify.skilljar.com/c/nsbroi9399oc"
