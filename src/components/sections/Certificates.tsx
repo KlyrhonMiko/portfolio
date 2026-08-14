@@ -24,6 +24,18 @@ const certificates = [
     date: "Aug 2026",
     link: "https://verify.skilljar.com/c/zzv6mqrbqzj2",
   },
+  {
+    title: "AI Fluency: Framework & Foundations",
+    issuer: "Anthropic",
+    date: "Aug 2026",
+    link: "https://verify.skilljar.com/c/b95cnb4w5bda"
+  },
+  {
+    title: "Introduction to agent skills",
+    issuer: "Anthropic",
+    date: "Aug 2026",
+    link: "https://verify.skilljar.com/c/2vzhg7kjzxxg"
+  },
 ];
 
 const containerVariants: Variants = {
