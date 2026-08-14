@@ -36,6 +36,18 @@ const certificates = [
     date: "Aug 2026",
     link: "https://verify.skilljar.com/c/2vzhg7kjzxxg"
   },
+  {
+    title: "Introducion to subagents",
+    issuer: "Anthropic",
+    date: "Aug 2026",
+    link: "https://verify.skilljar.com/c/nsbroi9399oc"
+  },
+  {
+    title: "AI Fluency: Ai Capabilities & Limitations",
+    issuer: "Anthropic",
+    date: "Aug 2026",
+    link: "https://verify.skilljar.com/c/c45jzpz2c3y9"
+  }
 ];
 
 const containerVariants: Variants = {
