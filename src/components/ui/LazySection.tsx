@@ -19,32 +19,47 @@ interface LazySectionProps {
  */
 export default function LazySection({ children, delay = 0, minHeight = "100vh" }: LazySectionProps) {
   const [ready, setReady] = useState(false);
-  const [computedMinHeight, setComputedMinHeight] = useState(minHeight);
-
-  useEffect(() => {
-    // Attempt to read the saved scroll position to ensure the container is tall enough
-    // for native browser scroll restoration to work without clamping.
+  const [computedMinHeight, setComputedMinHeight] = useState(() => {
     if (typeof window !== "undefined") {
       const savedScroll = sessionStorage.getItem("savedScrollY");
       if (savedScroll) {
         const parsed = parseInt(savedScroll, 10);
-        // Ensure the min height is at least the scroll position + a viewport height buffer
         if (!isNaN(parsed) && parsed > 0) {
-          setComputedMinHeight(`${parsed + window.innerHeight}px`);
+          return `${parsed + window.innerHeight * 1.5}px`;
         }
       }
+    }
+    return minHeight;
+  });
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
       const handleBeforeUnload = () => {
         sessionStorage.setItem("savedScrollY", window.scrollY.toString());
       };
       window.addEventListener("beforeunload", handleBeforeUnload);
 
-      // Clean up event listener when ready
       return () => {
         window.removeEventListener("beforeunload", handleBeforeUnload);
       };
     }
   }, []);
+
+  useEffect(() => {
+    if (ready && typeof window !== "undefined") {
+      const savedScroll = sessionStorage.getItem("savedScrollY");
+      if (savedScroll) {
+        const parsed = parseInt(savedScroll, 10);
+        if (!isNaN(parsed) && parsed > 0) {
+          // Force Lenis / Browser to respect the restored scroll position
+          requestAnimationFrame(() => {
+            window.scrollTo({ top: parsed, behavior: "instant" });
+            // Optionally, we could clear it here, but keeping it is fine for next reloads.
+          });
+        }
+      }
+    }
+  }, [ready]);
 
   useEffect(() => {
     // Use requestIdleCallback where available, else rAF + setTimeout
@@ -74,7 +89,7 @@ export default function LazySection({ children, delay = 0, minHeight = "100vh" }
   }, [delay]);
 
   if (!ready) {
-    return <div style={{ minHeight: computedMinHeight }} />;
+    return <div suppressHydrationWarning style={{ minHeight: computedMinHeight }} />;
   }
 
   return <>{children}</>;
