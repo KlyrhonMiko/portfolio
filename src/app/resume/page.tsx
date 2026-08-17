@@ -3,8 +3,8 @@ import { ResumeBackButton, DynamicDomainLink } from '@/components/ui/ResumeClien
 import { Download } from 'lucide-react';
 
 export const metadata = {
-  title: 'Resume | Klyrhon Miko R. Aurel',
-  description: 'View and download the resume of Klyrhon Miko R. Aurel.',
+  title: 'Resume | Klyrhon Mggiko R. Aurel',
+  description: 'View and download the resume of Klyrhon Mggiko R. Aurel.',
 };
 
 export default function ResumePage() {
@@ -29,7 +29,7 @@ export default function ResumePage() {
         
         {/* Header */}
         <div className="text-center mb-6">
-          <h1 className="text-[28px] font-bold mb-1 tracking-tight">Klyrhon Miko R. Aurel</h1>
+          <h1 className="text-[28px] font-bold mb-1 tracking-tight">Klyrhon Mggiko R. Aurel</h1>
           <p className="text-[14px]">
             aurelklyrhonmiko@gmail.com | +63936 109 0745 |{' '}
             <DynamicDomainLink path="" className="hover:underline" />{' '}
@@ -76,9 +76,9 @@ export default function ResumePage() {
           <hr className="border-t-[1.5px] border-black my-1" />
           
           <div className="mt-2 mb-4">
-            <h3 className="font-bold text-[16px]">P.A.C.E (Pasig Alumni Career & Employability)</h3>
-            <div className="text-[15px] mb-2">
-              Github: <a href="https://github.com/KlyrhonMiko/pace" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/pace</a>
+            <div className="mb-2">
+              <h3 className="font-bold text-[16px] inline">P.A.C.E (Pasig Alumni Career & Employability)</h3>
+              <span className="text-[15px]"> | Github: <a href="https://github.com/KlyrhonMiko/pace" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/pace</a></span>
             </div>
             <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
               <li>Spearheaded a comprehensive career platform using <strong>Next.js</strong> and <strong>Supabase</strong>, integrating external <strong>job market APIs</strong> to connect alumni with highly curated, localized employment opportunities.</li>
@@ -88,9 +88,9 @@ export default function ResumePage() {
           </div>
 
           <div className="mb-4">
-            <h3 className="font-bold text-[16px]">Koin</h3>
-            <div className="text-[15px] mb-2">
-              Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/koin</a> Live URL: <DynamicDomainLink path="/koin" className="text-blue-700 hover:underline" />
+            <div className="mb-2">
+              <h3 className="font-bold text-[16px] inline">Koin</h3>
+              <span className="text-[15px]"> | Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/koin</a> | Live URL: <DynamicDomainLink path="/koin" className="text-blue-700 hover:underline" /></span>
             </div>
             <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
               <li>Constructed an offline-first personal finance mobile application using <strong>Flutter</strong> and <strong>Dart</strong>, managing complex app state with <strong>Riverpod</strong> and ensuring reliable local data storage via <strong>SQLite</strong>.</li>
@@ -100,9 +100,9 @@ export default function ResumePage() {
           </div>
 
           <div className="mb-4">
-            <h3 className="font-bold text-[16px]">Nulll</h3>
-            <div className="text-[15px] mb-2">
-              Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/nulll</a> Live URL: <DynamicDomainLink path="/nulll" className="text-blue-700 hover:underline" />
+            <div className="mb-2">
+              <h3 className="font-bold text-[16px] inline">Nulll</h3>
+              <span className="text-[15px]"> | Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/nulll</a> | Live URL: <DynamicDomainLink path="/nulll" className="text-blue-700 hover:underline" /></span>
             </div>
             <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
               <li>Formulated an interactive algorithm visualization platform and code execution sandbox using <strong>Next.js</strong> and <strong>TypeScript</strong> to make complex data structures intuitive.</li>
@@ -119,7 +119,8 @@ export default function ResumePage() {
           
           <div className="mt-2 space-y-1 text-[15px]">
             <p><span className="font-bold">BS in Information Technology</span> | Pamantasan ng Lungsod ng Pasig | <em>Expected 2027</em></p>
-            <p><span className="font-bold">Anthropic Academy:</span> Claude 101, Claude Code 101, Claude Code in Action | <em>2026</em></p>
+            <p><span className="font-bold">Harvard CS50x:</span> Intro to Computer Science | <em>2026</em></p>
+            <p><span className="font-bold">Anthropic Academy:</span> Claude & AI Fluency Suite (Agent Skills, Frameworks, Capabilities & Limitations) | <em>2026</em></p>
           </div>
         </section>
 

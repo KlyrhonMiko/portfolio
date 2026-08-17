@@ -14,6 +14,8 @@ const socialLinks = [
 ];
 
 const roles = [
+  "Software Engineer",
+  "Frontend Engineer",
   "Backend Engineer",
   "Full Stack Developer",
   "UI/UX Enthusiast",
@@ -78,8 +80,8 @@ export default function Hero() {
           </motion.div>
 
           {/* Main Title */}
-          <motion.h1 
-            variants={itemVariants} 
+          <motion.h1
+            variants={itemVariants}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-heading tracking-tight leading-[1.1] mb-6"
           >
             I'm Klyrhon, a{" "}
@@ -101,18 +103,18 @@ export default function Hero() {
           </motion.h1>
 
           {/* Description */}
-          <motion.p 
-            variants={itemVariants} 
+          <motion.p
+            variants={itemVariants}
             className="text-lg md:text-xl text-body max-w-2xl leading-relaxed mb-10"
           >
-            I build scalable APIs and backend systems with modern technologies. 
-            Passionate about clean architecture, database design, and creating 
+            I build scalable APIs and backend systems with modern technologies.
+            Passionate about clean architecture, database design, and creating
             reliable infrastructure that powers great products.
           </motion.p>
 
           {/* Actions */}
-          <motion.div 
-            variants={itemVariants} 
+          <motion.div
+            variants={itemVariants}
             className="flex flex-wrap items-center gap-4 mb-16"
           >
             <a
@@ -136,8 +138,8 @@ export default function Hero() {
           </motion.div>
 
           {/* Social Links */}
-          <motion.div 
-            variants={itemVariants} 
+          <motion.div
+            variants={itemVariants}
             className="flex items-center gap-4"
           >
             {socialLinks.map((social) => (
@@ -170,7 +172,7 @@ export default function Hero() {
           Scroll
         </span>
         <div className="h-12 w-[1px] bg-border-light relative overflow-hidden">
-          <motion.div 
+          <motion.div
             className="absolute top-0 left-0 w-full h-1/3 bg-primary"
             animate={{ top: ['-50%', '150%'] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
