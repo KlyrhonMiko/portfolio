@@ -4,7 +4,7 @@ import { Download } from 'lucide-react';
 
 export const metadata = {
   title: 'Resume | Klyrhon Miko R. Aurel',
-  description: 'View and download the resume of Klyrhon Mggiko R. Aurel.',
+  description: 'View and download the resume of Klyrhon Miko R. Aurel.',
 };
 
 export default function ResumePage() {
