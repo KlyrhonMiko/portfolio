@@ -116,6 +116,15 @@ const itemVariants: Variants = {
   },
 };
 
+const mockupVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.1, delayChildren: 0.1 },
+  },
+};
+
 const skeletonLineVariants: Variants = {
   hidden: { scaleX: 0, opacity: 0 },
   visible: (custom: number) => ({
@@ -179,13 +188,17 @@ const AlgorithmVisualizerMockup = ({ project }: { project: Project }) => {
   // Use a deterministic array for the initial render to prevent SSR hydration mismatches
   const [frames, setFrames] = useState(() => generateBubbleSortFrames([80, 20, 60, 40, 90, 30, 70, 50]));
   const [frameIndex, setFrameIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { useInView } = require("framer-motion");
+  const isInView = useInView(containerRef, { once: false, margin: "0px 0px -100px 0px" });
 
   useEffect(() => {
+    if (!isInView) return;
     const interval = setInterval(() => {
       setFrameIndex((prev) => prev + 1);
     }, 300);
     return () => clearInterval(interval);
-  }, []);
+  }, [isInView]);
 
   useEffect(() => {
     if (frameIndex >= frames.length) {
@@ -201,6 +214,8 @@ const AlgorithmVisualizerMockup = ({ project }: { project: Project }) => {
 
   return (
     <motion.div
+      ref={containerRef}
+      variants={mockupVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
@@ -303,6 +318,7 @@ const AlgorithmVisualizerMockup = ({ project }: { project: Project }) => {
 
 const MinimalDesktopMockup = ({ project }: { project: Project }) => (
   <motion.div
+    variants={mockupVariants}
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, margin: "-100px" }}
@@ -371,6 +387,7 @@ const MinimalDesktopMockup = ({ project }: { project: Project }) => (
 
 const MinimalMobileMockup = ({ project }: { project: Project }) => (
   <motion.div
+    variants={mockupVariants}
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, margin: "-100px" }}
@@ -447,20 +464,28 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
     mockUrl: projectData.mockUrl.replace("klyrhon.me", currentDomain),
   };
 
+  const rowRef = useRef<HTMLDivElement>(null);
+  const { useInView } = require("framer-motion");
+  const isMockupInView = useInView(rowRef, { once: true, margin: "0px 0px 400px 0px" });
+
   return (
-    <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}>
+    <div ref={rowRef} className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}>
 
       {/* Connecting Scroll Line (Desktop only) */}
       <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border-light/30 hidden lg:block -z-10" />
 
       {/* Mockup Side */}
-      <div className="w-full lg:w-1/2 flex justify-center relative z-10">
-        {project.mockupType === "mobile" ? (
-          <MinimalMobileMockup project={project} />
-        ) : project.mockupType === "algorithm" ? (
-          <AlgorithmVisualizerMockup project={project} />
+      <div className="w-full lg:w-1/2 flex justify-center relative z-10 min-h-[400px] lg:min-h-[500px]">
+        {isMockupInView ? (
+          project.mockupType === "mobile" ? (
+            <MinimalMobileMockup project={project} />
+          ) : project.mockupType === "algorithm" ? (
+            <AlgorithmVisualizerMockup project={project} />
+          ) : (
+            <MinimalDesktopMockup project={project} />
+          )
         ) : (
-          <MinimalDesktopMockup project={project} />
+          <div className="w-full max-w-[600px] opacity-0" />
         )}
       </div>
 

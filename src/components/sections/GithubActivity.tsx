@@ -2,17 +2,17 @@
 
 import { GitHubCalendar } from 'react-github-calendar';
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, cloneElement } from "react";
 
 export default function GithubActivity() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isAnimInView = useInView(ref, { once: true, margin: "-80px" });
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    
+
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
     };
@@ -33,7 +33,7 @@ export default function GithubActivity() {
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      animate={isAnimInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: 0.3 }}
       className="w-full flex flex-col"
     >
@@ -61,18 +61,6 @@ export default function GithubActivity() {
                 dark: ['var(--cal-0)', 'var(--cal-1)', 'var(--cal-2)', 'var(--cal-3)', 'var(--cal-4)'],
               }}
               showWeekdayLabels={true}
-              tooltips={{
-                activity: {
-                  text: (activity) => {
-                    const date = new Date(activity.date).toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric',
-                    });
-                    return `${activity.count === 0 ? 'No' : activity.count} contribution${activity.count === 1 ? '' : 's'} on ${date}`;
-                  },
-                },
-              }}
               labels={{
                 totalCount: '{{count}} contributions in the last year',
               }}

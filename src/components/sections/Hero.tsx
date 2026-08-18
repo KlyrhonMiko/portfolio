@@ -31,12 +31,11 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -94,7 +93,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0, rotateX: 0 }}
                   exit={{ opacity: 0, y: -40, rotateX: 90 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="origin-center pb-2"
+                  className="origin-center pb-2 inline-block will-change-transform"
                 >
                   {roles[roleIndex]}
                 </motion.span>
@@ -131,7 +130,7 @@ export default function Hero() {
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, "#contact")}
-              className="group inline-flex items-center justify-center rounded-full border border-border bg-surface/80 px-8 py-3.5 text-sm font-semibold text-heading backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-surface-elevated hover:shadow-lg"
+              className="group inline-flex items-center justify-center rounded-full border border-border bg-surface/80 px-8 py-3.5 text-sm font-semibold text-heading transition-all duration-300 hover:border-primary/40 hover:bg-surface-elevated hover:shadow-lg"
             >
               Get in Touch
             </a>
@@ -149,7 +148,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-surface/80 text-muted backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:text-primary hover:shadow-lg hover:shadow-primary/15"
+                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-surface/80 text-muted transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:text-primary hover:shadow-lg hover:shadow-primary/15"
               >
                 <social.icon size={18} className="transition-transform duration-300 group-hover:scale-110" />
               </a>
