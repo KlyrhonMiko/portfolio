@@ -29,7 +29,7 @@ export default function ResumePage() {
 
           {/* Header */}
           <div className="text-center mb-6">
-            <h1 className="text-[28px] font-bold mb-1 tracking-tight">Klyrhon Mggiko R. Aurel</h1>
+            <h1 className="text-[28px] font-bold mb-1 tracking-tight">Klyrhon Miko R. Aurel</h1>
             <p className="text-[14px]">
               aurelklyrhonmiko@gmail.com | +63936 109 0745 |{' '}
               <DynamicDomainLink path="" className="hover:underline" />{' '}
