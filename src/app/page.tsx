@@ -14,15 +14,23 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <LazySection delay={800} minHeight="700vh">
+        <LazySection minHeight="100vh">
           <About />
+        </LazySection>
+        <LazySection minHeight="100vh">
           <Projects />
+        </LazySection>
+        <LazySection minHeight="100vh">
           <Experience />
+        </LazySection>
+        <LazySection minHeight="100vh">
           <Certificates />
+        </LazySection>
+        <LazySection minHeight="100vh">
           <Contact />
         </LazySection>
       </main>
-      <LazySection delay={800}>
+      <LazySection minHeight="20vh">
         <Footer />
       </LazySection>
     </>
