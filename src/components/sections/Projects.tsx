@@ -14,7 +14,6 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { handleSmoothNavigation } from "@/utils/navigation";
 import Image from "next/image";
-import { useTheme } from "@ecosy/next-themes";
 import { useSmartInView } from "@/hooks/useSmartInView";
 
 /* ══════════════════════════════════════════════════
@@ -454,7 +453,6 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
 
 const KoinAppMockup = ({ project }: { project: Project }) => {
   const [mounted, setMounted] = useState(false);
-  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -486,11 +484,20 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
             className="absolute z-0 top-[5%] -right-[40%] sm:-right-[45%] w-[130px] sm:w-[160px] lg:w-[180px] rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl border-[3px] border-surface/50 bg-surface"
           >
             <Image
-              src={resolvedTheme === "dark" ? "/koin/budgets-dark.png" : "/koin/budgets-light.png"}
+              src="/koin/budgets-light.png"
               alt="Budgets"
               width={1080}
               height={2400}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover dark:hidden"
+              priority
+              unoptimized
+            />
+            <Image
+              src="/koin/budgets-dark.png"
+              alt="Budgets"
+              width={1080}
+              height={2400}
+              className="w-full h-auto object-cover hidden dark:block"
               priority
               unoptimized
             />
@@ -506,11 +513,20 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
             className="absolute z-20 bottom-[5%] -left-[40%] sm:-left-[45%] w-[130px] sm:w-[160px] lg:w-[180px] rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border-[3px] border-surface/50 bg-surface"
           >
             <Image
-              src={resolvedTheme === "dark" ? "/koin/activity-dark.png" : "/koin/activity-light.png"}
+              src="/koin/activity-light.png"
               alt="Activity"
               width={1080}
               height={2400}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover dark:hidden"
+              priority
+              unoptimized
+            />
+            <Image
+              src="/koin/activity-dark.png"
+              alt="Activity"
+              width={1080}
+              height={2400}
+              className="w-full h-auto object-cover hidden dark:block"
               priority
               unoptimized
             />
@@ -525,11 +541,20 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
             className="relative z-10 w-full rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border-[4px] border-surface/80 bg-surface"
           >
             <Image
-              src={resolvedTheme === "dark" ? "/koin/home-dark.png" : "/koin/home-light.png"}
+              src="/koin/home-light.png"
               alt="Home"
               width={1080}
               height={2400}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover dark:hidden"
+              priority
+              unoptimized
+            />
+            <Image
+              src="/koin/home-dark.png"
+              alt="Home"
+              width={1080}
+              height={2400}
+              className="w-full h-auto object-cover hidden dark:block"
               priority
               unoptimized
             />
