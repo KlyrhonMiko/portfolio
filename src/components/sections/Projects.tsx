@@ -43,7 +43,7 @@ const projects: Project[] = [
     tags: ["Flutter", "Dart", "Riverpod", "SQLite", "NLP", "Voice Recognition"],
     github: "https://github.com/KlyrhonMiko/koin",
     live: "https://klyrhon.me/koin?ref=portfolio",
-    accent: "#f59e0b",
+    accent: "#14d2a5",
     icon: Wallet,
     mockUrl: "klyrhon.me/koin",
     mockupType: "koin-app",
