@@ -20,6 +20,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [copiedEmail, setCopiedEmail] = useState(false);
   const lenis = useLenis();
   const router = useRouter();
 
@@ -239,11 +240,21 @@ export default function Navbar() {
                 </span>
                 <a
                   href="mailto:aurelklyrhonmiko@gmail.com"
-                  onClick={() => setIsOpen(false)}
-                  className="text-sm sm:text-base text-heading hover:text-primary transition-colors flex items-center gap-1.5 group"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigator.clipboard.writeText("aurelklyrhonmiko@gmail.com");
+                    setCopiedEmail(true);
+                    setTimeout(() => {
+                      setCopiedEmail(false);
+                      setIsOpen(false);
+                    }, 2000);
+                  }}
+                  className={`text-sm sm:text-base transition-colors flex items-center gap-1.5 group ${copiedEmail ? "text-primary" : "text-heading hover:text-primary"}`}
                 >
-                  aurelklyrhonmiko@gmail.com
-                  <ArrowUpRight size={14} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                  <span className="transition-all duration-300">
+                    {copiedEmail ? "Copied to clipboard!" : "aurelklyrhonmiko@gmail.com"}
+                  </span>
+                  {!copiedEmail && <ArrowUpRight size={14} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />}
                 </a>
               </div>
             </div>
