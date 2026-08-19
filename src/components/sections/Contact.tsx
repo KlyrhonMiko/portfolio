@@ -3,6 +3,7 @@
 import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { isMobileDevice } from "@/utils/device";
 
 const contactInfo = [
   {
@@ -35,7 +36,11 @@ export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [copiedLabel, setCopiedLabel] = useState<string | null>(null);
 
-  const handleCopy = async (info: typeof contactInfo[0]) => {
+  const handleCopy = async (e: React.MouseEvent<HTMLAnchorElement>, info: typeof contactInfo[0]) => {
+    if (!isMobileDevice() && info.href?.startsWith("mailto:")) {
+      e.preventDefault();
+    }
+    
     if (!info.href) return;
     try {
       await navigator.clipboard.writeText(info.value);
@@ -150,7 +155,7 @@ export default function Contact() {
                   {info.href ? (
                     <a
                       href={info.href}
-                      onClick={() => handleCopy(info)}
+                      onClick={(e) => handleCopy(e, info)}
                       className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12 py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/30 transition-colors duration-500 cursor-pointer block w-full"
                     >
                       {/* Subtle Hover Glow */}

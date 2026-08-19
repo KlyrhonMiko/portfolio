@@ -6,6 +6,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { useRouter } from "next/navigation";
 import { handleSmoothNavigation } from "@/utils/navigation";
+import { isMobileDevice } from "@/utils/device";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const navLinks = [
@@ -241,7 +242,9 @@ export default function Navbar() {
                 <a
                   href="mailto:aurelklyrhonmiko@gmail.com"
                   onClick={(e) => {
-                    e.preventDefault();
+                    if (!isMobileDevice()) {
+                      e.preventDefault();
+                    }
                     navigator.clipboard.writeText("aurelklyrhonmiko@gmail.com");
                     setCopiedEmail(true);
                     setTimeout(() => {

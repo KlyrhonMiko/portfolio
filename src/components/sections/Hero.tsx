@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, Twitter, Sparkles, Facebook } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { handleSmoothNavigation } from "@/utils/navigation";
+import { isMobileDevice } from "@/utils/device";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/KlyrhonMiko", label: "GitHub" },
@@ -41,10 +42,28 @@ const itemVariants: Variants = {
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
+  const [copiedEmail, setCopiedEmail] = useState(false);
   const lenis = useLenis();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     handleSmoothNavigation(e, href, lenis);
+  };
+
+  const handleEmailClick = async (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!isMobileDevice()) {
+      e.preventDefault();
+    }
+    
+    if (href.startsWith('mailto:')) {
+      const email = href.replace('mailto:', '');
+      try {
+        await navigator.clipboard.writeText(email);
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2000);
+      } catch (err) {
+        console.error("Failed to copy", err);
+      }
+    }
   };
 
   useEffect(() => {
@@ -145,12 +164,26 @@ export default function Hero() {
               <a
                 key={social.label}
                 href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={(e) => {
+                  if (social.label === "Email") {
+                    handleEmailClick(e, social.href);
+                  }
+                }}
+                target={social.label === "Email" ? undefined : "_blank"}
+                rel={social.label === "Email" ? undefined : "noopener noreferrer"}
                 aria-label={social.label}
-                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-surface/80 text-muted transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:text-primary hover:shadow-lg hover:shadow-primary/15"
+                className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-surface/80 text-muted transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:text-primary hover:shadow-lg hover:shadow-primary/15"
               >
                 <social.icon size={18} className="transition-transform duration-300 group-hover:scale-110" />
+                {social.label === "Email" && (
+                  <span
+                    className={`absolute -bottom-8 left-1/2 -translate-x-1/2 rounded bg-surface-elevated px-2 py-1 text-[10px] font-medium text-primary shadow-md transition-all duration-300 ${
+                      copiedEmail ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
+                    }`}
+                  >
+                    Copied!
+                  </span>
+                )}
               </a>
             ))}
           </motion.div>

@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { useLenis } from "lenis/react";
 import { handleSmoothNavigation } from "@/utils/navigation";
+import { isMobileDevice } from "@/utils/device";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 
 const socialLinks = [
@@ -20,9 +22,23 @@ const footerLinks = [
 
 export default function Footer() {
   const lenis = useLenis();
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     handleSmoothNavigation(e, href, lenis);
+  };
+
+  const handleEmailClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!isMobileDevice()) {
+      e.preventDefault();
+    }
+    try {
+      await navigator.clipboard.writeText("aurelklyrhonmiko@gmail.com");
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy", err);
+    }
   };
 
   return (
@@ -49,9 +65,10 @@ export default function Footer() {
               </span>
               <a
                 href="mailto:aurelklyrhonmiko@gmail.com"
+                onClick={handleEmailClick}
                 className="text-xl font-bold text-heading hover:text-primary transition-colors inline-block"
               >
-                aurelklyrhonmiko@gmail.com
+                {copiedEmail ? "Copied to clipboard!" : "aurelklyrhonmiko@gmail.com"}
               </a>
             </div>
           </div>
