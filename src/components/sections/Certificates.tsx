@@ -156,7 +156,7 @@ export default function Certificates() {
                       {cert.issuer}
                     </span>
                     {/* Date on mobile */}
-                    <span className="md:hidden text-xs uppercase tracking-widest text-border-light">
+                    <span className="md:hidden text-xs uppercase tracking-widest text-muted/60">
                       {cert.date}
                     </span>
                   </div>
