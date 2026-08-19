@@ -52,6 +52,18 @@ export default function ResumePage() {
               </div>
             </section>
 
+            {/* Education & Certifications */}
+            <section className="mb-6">
+              <h2 className="text-[20px] font-bold">Education & Certifications</h2>
+              <hr className="border-t-[1.5px] border-black my-1" />
+
+              <div className="mt-2 space-y-1 text-[15px]">
+                <p><span className="font-bold">BS in Information Technology</span> | Pamantasan ng Lungsod ng Pasig | <em>Expected 2027</em></p>
+                <p><span className="font-bold">Harvard CS50x:</span> Intro to Computer Science | <em>2026</em></p>
+                <p><span className="font-bold">Anthropic Academy:</span> Claude & AI Fluency Suite (Agent Skills, Frameworks, Capabilities & Limitations) | <em>2026</em></p>
+              </div>
+            </section>
+
             {/* Experience */}
             <section className="mb-6">
               <h2 className="text-[20px] font-bold">Experience</h2>
@@ -79,7 +91,7 @@ export default function ResumePage() {
                   <h3 className="font-bold text-[16px] inline">P.A.C.E (Pasig Alumni Career & Employability)</h3>
                   <span className="text-[15px]"> | Github: <a href="https://github.com/KlyrhonMiko/pace" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/pace</a></span>
                 </div>
-                <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
+                <ul className="pl-6 space-y-1 list-disc">
                   <li>Spearheaded a comprehensive career platform using <strong>Next.js</strong> and <strong>Supabase</strong>, integrating external <strong>job market APIs</strong> to connect alumni with highly curated, localized employment opportunities.</li>
                   <li>Programmed a real-time analytics dashboard using <strong>Python</strong> and <strong>FastAPI</strong>, leveraging <strong>machine learning algorithms</strong> to predict graduate career outcomes and give actionable insights.</li>
                   <li>Established robust <strong>relational data tracking</strong> and <strong>dynamic visualization</strong>, enabling the monitoring of graduate career trajectories and optimizing institutional reporting.</li>
@@ -91,7 +103,7 @@ export default function ResumePage() {
                   <h3 className="font-bold text-[16px] inline">Koin</h3>
                   <span className="text-[15px]"> | Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/koin</a> | Live URL: <DynamicDomainLink path="/koin" className="text-blue-700 hover:underline" /></span>
                 </div>
-                <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
+                <ul className="pl-6 space-y-1 list-disc">
                   <li>Constructed an offline-first personal finance mobile application using <strong>Flutter</strong> and <strong>Dart</strong>, managing complex app state with <strong>Riverpod</strong> and ensuring reliable local data storage via <strong>SQLite</strong>.</li>
                   <li>Integrated <strong>Natural Language Processing (NLP)</strong> and <strong>voice recognition</strong> to allow users to quickly and intuitively log expenses hands-free.</li>
                   <li>Designed a modern, responsive UI utilizing <strong>Flutter Material</strong> for interactive data visualizations to give users clear, actionable insights into their financial habits.</li>
@@ -103,7 +115,7 @@ export default function ResumePage() {
                   <h3 className="font-bold text-[16px] inline">Nulll</h3>
                   <span className="text-[15px]"> | Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/nulll</a> | Live URL: <DynamicDomainLink path="/nulll" className="text-blue-700 hover:underline" /></span>
                 </div>
-                <ul className="pl-6 space-y-1" style={{ listStyleType: 'circle' }}>
+                <ul className="pl-6 space-y-1 list-disc">
                   <li>Formulated an interactive algorithm visualization platform and code execution sandbox using <strong>Next.js</strong> and <strong>TypeScript</strong> to make complex data structures intuitive.</li>
                   <li>Structured a client-side execution engine leveraging <strong>WebAssembly (Pyodide)</strong> in a background <strong>Web Worker</strong> to capture real-time stack frames and variable states without blocking the UI.</li>
                   <li>Integrated step-by-step visual debugging and <strong>dynamic data structure rendering</strong> using <strong>D3.js</strong> and <strong>Framer Motion</strong> with granular execution controls.</li>
@@ -111,17 +123,6 @@ export default function ResumePage() {
               </div>
             </section>
 
-            {/* Education & Certifications */}
-            <section className="mb-6">
-              <h2 className="text-[20px] font-bold">Education & Certifications</h2>
-              <hr className="border-t-[1.5px] border-black my-1" />
-
-              <div className="mt-2 space-y-1 text-[15px]">
-                <p><span className="font-bold">BS in Information Technology</span> | Pamantasan ng Lungsod ng Pasig | <em>Expected 2027</em></p>
-                <p><span className="font-bold">Harvard CS50x:</span> Intro to Computer Science | <em>2026</em></p>
-                <p><span className="font-bold">Anthropic Academy:</span> Claude & AI Fluency Suite (Agent Skills, Frameworks, Capabilities & Limitations) | <em>2026</em></p>
-              </div>
-            </section>
           </div>
         </ResumeScaler>
       </div>
