@@ -11,7 +11,7 @@ const Certificates = dynamic(() => import("@/components/sections/Certificates"),
 const Contact = dynamic(() => import("@/components/sections/Contact"), { ssr: false });
 const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: false });
 
-function LazySection({ children, minHeight }: { children: React.ReactNode; minHeight: string }) {
+function LazySection({ children, minHeight, id }: { children: React.ReactNode; minHeight: string; id?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   // Trigger loading when the section is 800px below the viewport
   const isInView = useInView(ref, { once: true, margin: "0px 0px 800px 0px" });
@@ -26,7 +26,7 @@ function LazySection({ children, minHeight }: { children: React.ReactNode; minHe
   }, []);
 
   return (
-    <div ref={ref} style={{ minHeight }} className="w-full">
+    <div ref={ref} id={id} style={{ minHeight }} className="w-full">
       {canMount && isInView ? children : null}
     </div>
   );
@@ -35,11 +35,11 @@ function LazySection({ children, minHeight }: { children: React.ReactNode; minHe
 export default function BelowTheFold() {
   return (
     <>
-      <LazySection minHeight="100vh"><About /></LazySection>
-      <LazySection minHeight="3000px"><Projects /></LazySection>
-      <LazySection minHeight="1200px"><Experience /></LazySection>
-      <LazySection minHeight="1500px"><Certificates /></LazySection>
-      <LazySection minHeight="800px"><Contact /></LazySection>
+      <LazySection id="about" minHeight="100vh"><About /></LazySection>
+      <LazySection id="projects" minHeight="3000px"><Projects /></LazySection>
+      <LazySection id="experience" minHeight="1200px"><Experience /></LazySection>
+      <LazySection id="certificates" minHeight="1500px"><Certificates /></LazySection>
+      <LazySection id="contact" minHeight="800px"><Contact /></LazySection>
       <LazySection minHeight="400px"><Footer /></LazySection>
     </>
   );

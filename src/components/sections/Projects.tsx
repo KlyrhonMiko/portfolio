@@ -696,7 +696,7 @@ export default function Projects() {
   });
 
   return (
-    <section id="projects" ref={containerRef} className="py-24 lg:py-32 w-full relative">
+    <section ref={containerRef} className="py-24 lg:py-32 w-full relative">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
 
         {/* ─── Section Header ─── */}

@@ -85,7 +85,7 @@ export default function Certificates() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   return (
-    <section id="certificates" ref={containerRef} className="py-24 lg:py-32 w-full relative overflow-hidden">
+    <section ref={containerRef} className="py-24 lg:py-32 w-full relative overflow-hidden">
 
       {/* Subtle Background Decor */}
       <motion.div style={{ y: y1 }} className="absolute -left-32 top-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none will-change-transform transform-gpu" />

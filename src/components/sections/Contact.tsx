@@ -46,7 +46,7 @@ export default function Contact() {
   });
 
   return (
-    <section id="contact" ref={containerRef} className="relative py-24 lg:py-32 w-full bg-surface">
+    <section ref={containerRef} className="relative py-24 lg:py-32 w-full bg-surface">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
         
         {/* ─── Section Header ─── */}
