@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 
 const contactInfo = [
@@ -33,6 +33,18 @@ const socialLinks = [
 
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [copiedLabel, setCopiedLabel] = useState<string | null>(null);
+
+  const handleCopy = async (info: typeof contactInfo[0]) => {
+    if (!info.href) return;
+    try {
+      await navigator.clipboard.writeText(info.value);
+      setCopiedLabel(info.label);
+      setTimeout(() => setCopiedLabel(null), 2000);
+    } catch (err) {
+      console.error("Failed to copy", err);
+    }
+  };
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -125,45 +137,69 @@ export default function Contact() {
 
           {/* Right Column: Contact List */}
           <div className="lg:col-span-7 flex flex-col border-t border-border-light/50">
-            {contactInfo.map((info, index) => (
-              <motion.div
-                key={info.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12 py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/30 transition-colors duration-500"
-              >
-                {/* Subtle Hover Glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+            {contactInfo.map((info, index) => {
+              return (
+                <motion.div
+                  key={info.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="w-full"
+                >
+                  {info.href ? (
+                    <a
+                      href={info.href}
+                      onClick={() => handleCopy(info)}
+                      className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12 py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/30 transition-colors duration-500 cursor-pointer block w-full"
+                    >
+                      {/* Subtle Hover Glow */}
+                      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
 
-                <div className="sm:w-1/3 shrink-0">
-                  <span className="text-sm font-semibold tracking-[0.2em] uppercase text-primary/60">
-                    {info.label}
-                  </span>
-                </div>
-                
-                <div className="sm:w-2/3 flex items-center justify-between">
-                  <div>
-                    {info.href ? (
-                      <a href={info.href} className="text-xl md:text-2xl font-bold text-heading group-hover:translate-x-2 transition-transform duration-500 ease-out inline-block">
-                        {info.value}
-                      </a>
-                    ) : (
-                      <span className="text-xl md:text-2xl font-bold text-heading group-hover:translate-x-2 transition-transform duration-500 ease-out inline-block">
-                        {info.value}
-                      </span>
-                    )}
-                    <p className="mt-2 text-sm text-body/80">
-                      {info.description}
-                    </p>
-                  </div>
-                  {info.href && (
-                    <ArrowUpRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 shrink-0" />
+                      <div className="sm:w-1/3 shrink-0">
+                        <span className="text-sm font-semibold tracking-[0.2em] uppercase text-primary/60">
+                          {info.label}
+                        </span>
+                      </div>
+                      
+                      <div className="sm:w-2/3 flex items-center justify-between">
+                        <div>
+                          <span className="text-xl md:text-2xl font-bold text-heading group-hover:translate-x-2 transition-transform duration-500 ease-out inline-block">
+                            {copiedLabel === info.label ? "Copied!" : info.value}
+                          </span>
+                          <p className={`mt-2 text-sm transition-colors duration-300 ${copiedLabel === info.label ? "text-primary" : "text-body/80"}`}>
+                            {copiedLabel === info.label ? "Saved to clipboard" : info.description}
+                          </p>
+                        </div>
+                        <ArrowUpRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 shrink-0" />
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12 py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/30 transition-colors duration-500 w-full">
+                      {/* Subtle Hover Glow */}
+                      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+
+                      <div className="sm:w-1/3 shrink-0">
+                        <span className="text-sm font-semibold tracking-[0.2em] uppercase text-primary/60">
+                          {info.label}
+                        </span>
+                      </div>
+                      
+                      <div className="sm:w-2/3 flex items-center justify-between">
+                        <div>
+                          <span className="text-xl md:text-2xl font-bold text-heading group-hover:translate-x-2 transition-transform duration-500 ease-out inline-block">
+                            {info.value}
+                          </span>
+                          <p className="mt-2 text-sm text-body/80">
+                            {info.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   )}
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
 
             {/* Socials Row */}
             <motion.div
