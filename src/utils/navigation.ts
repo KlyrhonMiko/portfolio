@@ -50,9 +50,25 @@ export const handleSmoothNavigation = async (
     
     e.preventDefault();
 
+    if (href === "#home") {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (onNavStart) onNavStart();
+        return;
+    }
+
     const target = document.querySelector(href);
     if (!target) return;
 
     if (onNavStart) onNavStart();
-    lenis?.scrollTo(href, { duration: 1.2 });
+    
+    // Force all lazy sections to mount before scrolling so layout shifts don't ruin the scroll offset
+    window.dispatchEvent(new CustomEvent("force-mount-sections"));
+
+    // Wait for React to render the components and update the DOM
+    setTimeout(() => {
+        // Force Lenis to recalculate document bounds before scrolling
+        // otherwise it clamps the destination to the old maxScroll limit
+        lenis?.resize();
+        lenis?.scrollTo(target, { duration: 1.2 });
+    }, 150);
 };

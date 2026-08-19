@@ -15,6 +15,7 @@ import type { LucideIcon } from "lucide-react";
 import { handleSmoothNavigation } from "@/utils/navigation";
 import Image from "next/image";
 import { useTheme } from "@ecosy/next-themes";
+import { useSmartInView } from "@/hooks/useSmartInView";
 
 /* ══════════════════════════════════════════════════
    Project Data
@@ -191,8 +192,7 @@ const AlgorithmVisualizerMockup = ({ project }: { project: Project }) => {
   const [frames, setFrames] = useState(() => generateBubbleSortFrames([80, 20, 60, 40, 90, 30, 70, 50]));
   const [frameIndex, setFrameIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { useInView } = require("framer-motion");
-  const isInView = useInView(containerRef, { once: false, margin: "0px 0px -100px 0px" });
+  const isInView = useSmartInView(containerRef, { once: false, margin: "0px 0px -100px 0px" });
 
   useEffect(() => {
     if (!isInView) return;
@@ -555,8 +555,7 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
   };
 
   const rowRef = useRef<HTMLDivElement>(null);
-  const { useInView } = require("framer-motion");
-  const isMockupInView = useInView(rowRef, { once: true, margin: "0px 0px 400px 0px" });
+  const isMockupInView = useSmartInView(rowRef, { once: true, margin: "0px 0px 400px 0px" });
 
   return (
     <div ref={rowRef} className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}>

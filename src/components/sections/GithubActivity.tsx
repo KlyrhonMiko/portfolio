@@ -1,12 +1,13 @@
 "use client";
 
 import { GitHubCalendar } from 'react-github-calendar';
-import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState, cloneElement } from "react";
+import { motion } from "framer-motion";
+import { useSmartInView } from "@/hooks/useSmartInView";
+import { useRef, useEffect, useState } from "react";
 
 export default function GithubActivity() {
-  const ref = useRef(null);
-  const isAnimInView = useInView(ref, { once: true, margin: "-80px" });
+  const ref = useRef<HTMLDivElement>(null);
+  const isAnimInView = useSmartInView(ref, { once: true, margin: "-80px" });
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
