@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { handleSmoothNavigation } from "@/utils/navigation";
+import Image from "next/image";
+import { useTheme } from "@ecosy/next-themes";
 
 /* ══════════════════════════════════════════════════
    Project Data
@@ -28,7 +30,7 @@ interface Project {
   accent: string;
   icon: LucideIcon;
   mockUrl: string;
-  mockupType: "desktop" | "mobile" | "algorithm";
+  mockupType: "desktop" | "mobile" | "algorithm" | "koin-app";
 }
 
 const projects: Project[] = [
@@ -43,7 +45,7 @@ const projects: Project[] = [
     accent: "#f59e0b",
     icon: Wallet,
     mockUrl: "klyrhon.me/koin",
-    mockupType: "mobile",
+    mockupType: "koin-app",
   },
   {
     title: "nulll",
@@ -450,6 +452,94 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
   </motion.div>
 );
 
+const KoinAppMockup = ({ project }: { project: Project }) => {
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return (
+    <motion.div
+      variants={mockupVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      className="relative w-[280px] sm:w-[320px] lg:w-[350px] perspective-[1200px] group mx-auto flex items-center justify-center min-h-[400px]"
+    >
+      {/* Ambient Glow */}
+      <div
+        className="absolute inset-0 blur-[60px] opacity-0 group-hover:opacity-20 transition-opacity duration-1000 rounded-full scale-150"
+        style={{ backgroundColor: project.accent }}
+      />
+
+      {mounted && (
+        <div className="relative w-[180px] sm:w-[220px] lg:w-[240px] flex items-center justify-center">
+          {/* Card 3: Budgets (Right - Behind) */}
+          <motion.div
+            animate={{
+              y: [0, -10, 0],
+              rotateZ: [8, 10, 8],
+            }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="absolute z-0 top-[5%] -right-[40%] sm:-right-[45%] w-[130px] sm:w-[160px] lg:w-[180px] rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl border-[3px] border-surface/50 bg-surface"
+          >
+            <Image
+              src={resolvedTheme === "dark" ? "/koin/budgets-dark.png" : "/koin/budgets-light.png"}
+              alt="Budgets"
+              width={1080}
+              height={2400}
+              className="w-full h-auto object-cover"
+              priority
+              unoptimized
+            />
+          </motion.div>
+
+          {/* Card 2: Activity (Left - Front) */}
+          <motion.div
+            animate={{
+              y: [0, 10, 0],
+              rotateZ: [-10, -12, -10],
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute z-20 bottom-[5%] -left-[40%] sm:-left-[45%] w-[130px] sm:w-[160px] lg:w-[180px] rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border-[3px] border-surface/50 bg-surface"
+          >
+            <Image
+              src={resolvedTheme === "dark" ? "/koin/activity-dark.png" : "/koin/activity-light.png"}
+              alt="Activity"
+              width={1080}
+              height={2400}
+              className="w-full h-auto object-cover"
+              priority
+              unoptimized
+            />
+          </motion.div>
+
+          {/* Main Card: Home (Center) */}
+          <motion.div
+            animate={{
+              y: [0, -8, 0],
+            }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="relative z-10 w-full rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border-[4px] border-surface/80 bg-surface"
+          >
+            <Image
+              src={resolvedTheme === "dark" ? "/koin/home-dark.png" : "/koin/home-light.png"}
+              alt="Home"
+              width={1080}
+              height={2400}
+              className="w-full h-auto object-cover"
+              priority
+              unoptimized
+            />
+          </motion.div>
+        </div>
+      )}
+    </motion.div>
+  );
+};
+
 /* ══════════════════════════════════════════════════
    Alternating Project Row
    ══════════════════════════════════════════════════ */
@@ -477,7 +567,9 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
       {/* Mockup Side */}
       <div className="w-full lg:w-1/2 flex justify-center relative z-10 min-h-[400px] lg:min-h-[500px]">
         {isMockupInView ? (
-          project.mockupType === "mobile" ? (
+          project.mockupType === "koin-app" ? (
+            <KoinAppMockup project={project} />
+          ) : project.mockupType === "mobile" ? (
             <MinimalMobileMockup project={project} />
           ) : project.mockupType === "algorithm" ? (
             <AlgorithmVisualizerMockup project={project} />
@@ -508,7 +600,7 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
             </span>
             <div className="h-px w-8" style={{ backgroundColor: project.accent, opacity: 0.5 }} />
             <span className="text-xs font-medium tracking-widest uppercase text-muted">
-              {project.mockupType === "mobile" ? "Mobile Application" : "Web Platform"}
+              {project.mockupType === "mobile" || project.mockupType === "koin-app" ? "Mobile Application" : "Web Platform"}
             </span>
           </motion.div>
 
