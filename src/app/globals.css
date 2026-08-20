@@ -25,11 +25,11 @@
   --glass-strong-border: rgba(255, 255, 255, 0.6);
 
   /* GitHub Calendar Colors */
-  --cal-0: #f0f7f3;
-  --cal-1: #b8d8c7;
-  --cal-2: #7ec8b8;
+  --cal-0: #e8eae9;
+  --cal-1: #c2dfd1;
+  --cal-2: #82c2a1;
   --cal-3: #6db38a;
-  --cal-4: #5a9c76;
+  --cal-4: #488a65;
 }
 
 :root.dark {
@@ -55,11 +55,11 @@
   --glass-strong-border: rgba(255, 255, 255, 0.12);
 
   /* GitHub Calendar Colors */
-  --cal-0: #162B1F;
-  --cal-1: #21402E;
-  --cal-2: #305C42;
-  --cal-3: #3E7857;
-  --cal-4: #5A9C76;
+  --cal-0: #1f221f;
+  --cal-1: #1b452c;
+  --cal-2: #286341;
+  --cal-3: #409462;
+  --cal-4: #7eca9d;
 }
 
 @theme inline {
