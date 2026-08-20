@@ -13,6 +13,18 @@ const certificates = [
     link: "https://certificates.cs50.io/ef106f39-6c3f-43b2-95ba-bc4662d9207d.pdf"
   },
   {
+    title: "Responsive Web Design Developer Certification",
+    issuer: "freeCodeCamp",
+    date: "Aug 2026",
+    link: "https://www.freecodecamp.org/certification/klyrhon/responsive-web-design-v9"
+  },
+  {
+    title: "Python Developer Certification",
+    issuer: "freeCodeCamp",
+    date: "Aug 2026",
+    link: "https://www.freecodecamp.org/certification/klyrhon/python-v9"
+  },
+  {
     title: "Claude 101",
     issuer: "Anthropic",
     date: "Aug 2026",
