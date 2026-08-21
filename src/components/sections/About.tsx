@@ -171,14 +171,14 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-12 py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/30 transition-colors duration-500"
+                className="group relative flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-12 py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/30 transition-colors duration-500"
               >
                 {/* Subtle Hover Glow */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
 
                 {/* Left Side: Category */}
-                <div className="lg:w-1/3 shrink-0 flex items-center gap-4 lg:gap-6">
-                  <span className="text-sm font-semibold tracking-[0.2em] text-primary/60 uppercase shrink-0">
+                <div className="lg:w-1/3 shrink-0 flex items-start gap-4 lg:gap-6 pt-2">
+                  <span className="text-sm font-semibold tracking-[0.2em] text-primary/60 uppercase shrink-0 mt-1">
                     0{index + 1}
                   </span>
                   <div>
@@ -191,16 +191,11 @@ export default function About() {
                   </div>
                 </div>
 
-                {/* Right Side: Skills */}
-                <div className="lg:w-2/3 flex flex-wrap gap-2 lg:gap-3">
-                  {skill.items.map((item) => (
-                    <span
-                      key={item}
-                      className="px-4 py-2 rounded-md text-xs sm:text-sm font-medium bg-surface-elevated border border-border-light text-body/80 group-hover:border-primary/30 group-hover:text-primary transition-colors cursor-default"
-                    >
-                      {item}
-                    </span>
-                  ))}
+                {/* Right Side: Skills - Editorial Prose */}
+                <div className="lg:w-2/3 lg:pt-2">
+                  <p className="text-lg md:text-xl lg:text-[22px] leading-[1.7] text-body/50 font-light group-hover:text-heading transition-colors duration-700">
+                    {skill.items.join(", ")}.
+                  </p>
                 </div>
               </motion.div>
             ))}
