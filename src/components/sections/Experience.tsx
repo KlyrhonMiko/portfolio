@@ -167,16 +167,11 @@ export default function Experience() {
                   </ul>
                 )}
 
-                {/* Skills */}
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {exp.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1.5 rounded-md text-[11px] font-medium bg-surface-elevated border border-border-light text-body/80 group-hover:border-primary/30 group-hover:text-primary transition-colors cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                {/* Skills - Editorial Prose */}
+                <div className="mt-auto pt-6 border-t border-border-light/30 group-hover:border-primary/20 transition-colors duration-500">
+                  <p className="text-sm md:text-[15px] leading-relaxed text-body/50 font-light group-hover:text-heading transition-colors duration-700">
+                    {exp.skills.join(", ")}.
+                  </p>
                 </div>
               </div>
 
