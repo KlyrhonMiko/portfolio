@@ -644,19 +644,14 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
             {project.description}
           </motion.p>
 
-          {/* Tags */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-2 mb-10">
-            {project.tags.map((tag, i) => (
-              <motion.span
-                key={tag}
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.2 }}
-                style={{ "--project-accent": project.accent } as React.CSSProperties}
-                className="px-3 py-1.5 rounded-md text-[11px] font-medium bg-surface-elevated border border-border-light text-body/80 cursor-default transition-all duration-200 hover:bg-surface hover:border-[var(--project-accent)] hover:text-[var(--project-accent)]"
-              >
-                {tag}
-              </motion.span>
-            ))}
+          {/* Tags - Editorial Prose */}
+          <motion.div variants={itemVariants} className="mb-10 w-full pt-4 border-t border-border-light/30 group/tags transition-colors duration-500 hover:border-border-light/60">
+            <p 
+              className="text-sm md:text-[15px] leading-relaxed text-body/50 font-light transition-colors duration-700 group-hover/tags:text-[var(--project-accent)]"
+              style={{ "--project-accent": project.accent } as React.CSSProperties}
+            >
+              {project.tags.join(", ")}.
+            </p>
           </motion.div>
 
           {/* Links */}

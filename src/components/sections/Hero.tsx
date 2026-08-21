@@ -82,6 +82,20 @@ export default function Hero() {
       <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
+      {/* Oversized Typographic Watermark */}
+      <div 
+        className="absolute right-4 lg:right-12 top-1/2 -translate-y-1/2 pointer-events-none select-none hidden md:flex gap-4 opacity-[0.03] dark:opacity-[0.05] z-0"
+        aria-hidden="true"
+        style={{ writingMode: 'vertical-rl' }}
+      >
+        <span 
+          className="text-[15vw] 2xl:text-[200px] font-black leading-[0.85] tracking-[-0.05em] uppercase text-transparent"
+          style={{ WebkitTextStroke: '2px var(--heading)' }}
+        >
+          KLYRHON
+        </span>
+      </div>
+
       <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-12 relative z-10">
         <motion.div
           variants={containerVariants}
