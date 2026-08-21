@@ -90,9 +90,10 @@ const projects: Project[] = [
     description:
       "A corporate website showcasing an extensive collection of high-end broadloom carpets, modular tiles, and luxury window treatments, built with a focus on fast load times and clean presentation.",
     tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
+    live: "https://jtci.vercel.app/",
     accent: "#b45309",
     icon: Layout,
-    mockUrl: "localhost:3000",
+    mockUrl: "jtci.vercel.app",
     mockupType: "desktop",
   },
 ];
@@ -156,7 +157,7 @@ const floatAnimation = {
 const generateBubbleSortFrames = (initialArray: number[]) => {
   const frames: { array: number[], active: number[], verified: number[] }[] = [];
   const arr = [...initialArray];
-  
+
   frames.push({ array: [...arr], active: [], verified: [] });
 
   for (let i = 0; i < arr.length - 1; i++) {
@@ -173,13 +174,13 @@ const generateBubbleSortFrames = (initialArray: number[]) => {
     }
     if (!swapped) break;
   }
-  
+
   const verified: number[] = [];
   for (let k = 0; k < arr.length; k++) {
     verified.push(k);
     frames.push({ array: [...arr], active: [], verified: [...verified] });
   }
-  
+
   for (let k = 0; k < 12; k++) {
     frames.push({ array: [...arr], active: [], verified: [...verified] });
   }
@@ -276,16 +277,16 @@ const AlgorithmVisualizerMockup = ({ project }: { project: Project }) => {
               <div className="h-2 w-2 rounded-full" style={{ backgroundColor: project.accent }} />
               <span className="text-xs font-mono text-muted">Visualization</span>
             </div>
-            
+
             {/* Sorting Animation */}
             <div className="flex-1 flex justify-center items-end gap-1.5 sm:gap-2 px-4 pb-4">
               {currentFrame.array.map((height, index) => {
                 const isActive = currentFrame.active.includes(index);
                 const isVerified = currentFrame.verified.includes(index);
-                
+
                 let bgColor = isActive ? project.accent : "var(--border-light)";
                 let opacity = isActive ? 1 : 0.3;
-                
+
                 if (isVerified) {
                   bgColor = "#10b981"; // Emerald-500
                   opacity = 1;
@@ -297,7 +298,7 @@ const AlgorithmVisualizerMockup = ({ project }: { project: Project }) => {
                     layout="position"
                     className="w-4 sm:w-6 rounded-t-sm origin-bottom"
                     style={{ height: `${height}%` }}
-                    animate={{ 
+                    animate={{
                       backgroundColor: bgColor,
                       opacity: opacity
                     }}
