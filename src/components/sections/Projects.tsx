@@ -83,19 +83,7 @@ const projects: Project[] = [
     icon: Shield,
     mockUrl: "localhost:3000",
     mockupType: "desktop",
-  },
-  {
-    title: "JTCI Gallery",
-    subtitle: "Premium Flooring & Interiors",
-    description:
-      "A corporate website showcasing an extensive collection of high-end broadloom carpets, modular tiles, and luxury window treatments, built with a focus on fast load times and clean presentation.",
-    tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-    live: "https://jtci.vercel.app/",
-    accent: "#b45309",
-    icon: Layout,
-    mockUrl: "jtci.vercel.app",
-    mockupType: "desktop",
-  },
+  }
 ];
 
 /* ══════════════════════════════════════════════════
@@ -647,7 +635,7 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
 
           {/* Tags - Editorial Prose */}
           <motion.div variants={itemVariants} className="mb-10 w-full pt-4 border-t border-border-light/30 group/tags transition-colors duration-500 hover:border-border-light/60">
-            <p 
+            <p
               className="text-sm md:text-[15px] leading-relaxed text-body/50 font-light transition-colors duration-700 group-hover/tags:text-[var(--project-accent)]"
               style={{ "--project-accent": project.accent } as React.CSSProperties}
             >
