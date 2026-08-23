@@ -9,67 +9,67 @@ const certificates = [
   {
     title: "CS50x: Intro to Computer Science and the Art of Programming",
     issuer: "Harvard University",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://certificates.cs50.io/ef106f39-6c3f-43b2-95ba-bc4662d9207d.pdf"
   },
   {
     title: "CS50: Intro to Artificial Intelligence with Python",
     issuer: "Harvard University",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://cs50.harvard.edu/certificates/63025dc0-e506-4ebc-ab38-e66466d52d34"
   },
   {
     title: "Responsive Web Design Developer Certification",
     issuer: "freeCodeCamp",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://www.freecodecamp.org/certification/klyrhon/responsive-web-design-v9"
   },
   {
     title: "Python Developer Certification",
     issuer: "freeCodeCamp",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://www.freecodecamp.org/certification/klyrhon/python-v9"
   },
   {
     title: "Claude 101",
     issuer: "Anthropic",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://verify.skilljar.com/c/wgk9ewiuyn66"
   },
   {
     title: "Claude Code 101",
     issuer: "Anthropic",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://verify.skilljar.com/c/i6x6r67puy7o"
   },
   {
     title: "Claude Code in Action",
     issuer: "Anthropic",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://verify.skilljar.com/c/zzv6mqrbqzj2",
   },
   {
     title: "AI Fluency: Framework & Foundations",
     issuer: "Anthropic",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://verify.skilljar.com/c/b95cnb4w5bda"
   },
   {
     title: "Introduction to agent skills",
     issuer: "Anthropic",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://verify.skilljar.com/c/2vzhg7kjzxxg"
   },
   {
     title: "Introduction to subagents",
     issuer: "Anthropic",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://verify.skilljar.com/c/nsbroi9399oc"
   },
   {
     title: "AI Fluency: Ai Capabilities & Limitations",
     issuer: "Anthropic",
-    date: "Aug 2026",
+    date: "2026",
     link: "https://verify.skilljar.com/c/c45jzpz2c3y9"
   }
 ];
