@@ -1,7 +1,7 @@
 "use client";
 
 import { GitHubCalendar } from 'react-github-calendar';
-import ActivityCalendar from 'react-activity-calendar';
+import { ActivityCalendar } from 'react-activity-calendar';
 import { motion } from "framer-motion";
 import { useSmartInView } from "@/hooks/useSmartInView";
 import { useRef, useEffect, useState } from "react";
