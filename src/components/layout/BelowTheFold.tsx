@@ -4,12 +4,13 @@ import { useRef, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useSmartInView } from "@/hooks/useSmartInView";
 
-import About from "@/components/sections/About";
-import Projects from "@/components/sections/Projects";
-import Experience from "@/components/sections/Experience";
-import Certificates from "@/components/sections/Certificates";
-import Contact from "@/components/sections/Contact";
-import Footer from "@/components/layout/Footer";
+// Dynamically import heavy sections so they don't block the initial page load JS payload.
+const DynamicAbout = dynamic(() => import("@/components/sections/About"));
+const DynamicProjects = dynamic(() => import("@/components/sections/Projects"));
+const DynamicExperience = dynamic(() => import("@/components/sections/Experience"));
+const DynamicCertificates = dynamic(() => import("@/components/sections/Certificates"));
+const DynamicContact = dynamic(() => import("@/components/sections/Contact"));
+const DynamicFooter = dynamic(() => import("@/components/layout/Footer"));
 
 function LazySection({ children, minHeight, id }: { children: React.ReactNode; minHeight: string; id?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -42,15 +43,15 @@ function LazySection({ children, minHeight, id }: { children: React.ReactNode; m
   );
 }
 
-export default function BelowTheFold() {
+export default function BelowTheFold({ githubData }: { githubData?: any }) {
   return (
     <>
-      <LazySection id="about" minHeight="100vh"><About /></LazySection>
-      <LazySection id="projects" minHeight="3000px"><Projects /></LazySection>
-      <LazySection id="experience" minHeight="1200px"><Experience /></LazySection>
-      <LazySection id="certificates" minHeight="1500px"><Certificates /></LazySection>
-      <LazySection id="contact" minHeight="800px"><Contact /></LazySection>
-      <LazySection minHeight="400px"><Footer /></LazySection>
+      <LazySection id="about" minHeight="100vh"><DynamicAbout githubData={githubData} /></LazySection>
+      <LazySection id="projects" minHeight="3000px"><DynamicProjects /></LazySection>
+      <LazySection id="experience" minHeight="1200px"><DynamicExperience /></LazySection>
+      <LazySection id="certificates" minHeight="1500px"><DynamicCertificates /></LazySection>
+      <LazySection id="contact" minHeight="800px"><DynamicContact /></LazySection>
+      <LazySection minHeight="400px"><DynamicFooter /></LazySection>
     </>
   );
 }

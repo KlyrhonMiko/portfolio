@@ -40,7 +40,7 @@ const traits = [
 ];
 
 /* ── Main About Section ── */
-export default function About() {
+export default function About({ githubData }: { githubData?: any }) {
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -143,7 +143,7 @@ export default function About() {
 
         {/* ── Github Activity ── */}
         <div className="mb-24 border-b border-border-light/50 pb-24">
-          <GithubActivity />
+          <GithubActivity githubData={githubData} />
         </div>
 
         {/* ── Skills & Technologies ── */}

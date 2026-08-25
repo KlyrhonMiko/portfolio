@@ -1,11 +1,12 @@
 "use client";
 
 import { GitHubCalendar } from 'react-github-calendar';
+import ActivityCalendar from 'react-activity-calendar';
 import { motion } from "framer-motion";
 import { useSmartInView } from "@/hooks/useSmartInView";
 import { useRef, useEffect, useState } from "react";
 
-export default function GithubActivity() {
+export default function GithubActivity({ githubData }: { githubData?: any[] | null }) {
   const ref = useRef<HTMLDivElement>(null);
   const isAnimInView = useSmartInView(ref, { once: true, margin: "-80px" });
   const [mounted, setMounted] = useState(false);
@@ -30,6 +31,21 @@ export default function GithubActivity() {
     return contributions;
   };
 
+  const calendarProps = {
+    colorScheme: "light" as const,
+    blockSize: isMobile ? 11 : 14,
+    blockMargin: isMobile ? 3 : 5,
+    fontSize: isMobile ? 12 : 14,
+    theme: {
+      light: ['var(--cal-0)', 'var(--cal-1)', 'var(--cal-2)', 'var(--cal-3)', 'var(--cal-4)'],
+      dark: ['var(--cal-0)', 'var(--cal-1)', 'var(--cal-2)', 'var(--cal-3)', 'var(--cal-4)'],
+    },
+    showWeekdayLabels: true,
+    labels: {
+      totalCount: '{{count}} contributions in the last year',
+    }
+  };
+
   return (
     <motion.div
       ref={ref}
@@ -50,22 +66,18 @@ export default function GithubActivity() {
       <div className="w-full flex lg:justify-start justify-center py-8">
         <div className="w-fit overflow-x-auto min-h-[160px] sm:min-h-[180px] flex items-center">
           {mounted && (
-            <GitHubCalendar
-              username="KlyrhonMiko"
-              colorScheme="light"
-              blockSize={isMobile ? 11 : 14}
-              blockMargin={isMobile ? 3 : 5}
-              fontSize={isMobile ? 12 : 14}
-              transformData={selectLastHalfYear}
-              theme={{
-                light: ['var(--cal-0)', 'var(--cal-1)', 'var(--cal-2)', 'var(--cal-3)', 'var(--cal-4)'],
-                dark: ['var(--cal-0)', 'var(--cal-1)', 'var(--cal-2)', 'var(--cal-3)', 'var(--cal-4)'],
-              }}
-              showWeekdayLabels={true}
-              labels={{
-                totalCount: '{{count}} contributions in the last year',
-              }}
-            />
+            githubData ? (
+              <ActivityCalendar
+                data={selectLastHalfYear(githubData)}
+                {...calendarProps}
+              />
+            ) : (
+              <GitHubCalendar
+                username="KlyrhonMiko"
+                transformData={selectLastHalfYear}
+                {...calendarProps}
+              />
+            )
           )}
         </div>
       </div>

@@ -478,8 +478,7 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               width={1080}
               height={2400}
               className="w-full h-auto object-cover dark:hidden"
-              priority
-              unoptimized
+              sizes="(max-width: 768px) 50vw, 33vw"
             />
             <Image
               src="/koin/budgets-dark.png"
@@ -487,8 +486,7 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               width={1080}
               height={2400}
               className="w-full h-auto object-cover hidden dark:block"
-              priority
-              unoptimized
+              sizes="(max-width: 768px) 50vw, 33vw"
             />
           </motion.div>
 
@@ -507,8 +505,7 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               width={1080}
               height={2400}
               className="w-full h-auto object-cover dark:hidden"
-              priority
-              unoptimized
+              sizes="(max-width: 768px) 50vw, 33vw"
             />
             <Image
               src="/koin/activity-dark.png"
@@ -516,8 +513,7 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               width={1080}
               height={2400}
               className="w-full h-auto object-cover hidden dark:block"
-              priority
-              unoptimized
+              sizes="(max-width: 768px) 50vw, 33vw"
             />
           </motion.div>
 
@@ -535,8 +531,7 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               width={1080}
               height={2400}
               className="w-full h-auto object-cover dark:hidden"
-              priority
-              unoptimized
+              sizes="(max-width: 768px) 50vw, 33vw"
             />
             <Image
               src="/koin/home-dark.png"
@@ -544,8 +539,7 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               width={1080}
               height={2400}
               className="w-full h-auto object-cover hidden dark:block"
-              priority
-              unoptimized
+              sizes="(max-width: 768px) 50vw, 33vw"
             />
           </motion.div>
         </div>
