@@ -10,6 +10,7 @@ import {
   Shield,
   Layout,
   Code2,
+  Terminal,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { handleSmoothNavigation } from "@/utils/navigation";
@@ -30,7 +31,7 @@ interface Project {
   accent: string;
   icon: LucideIcon;
   mockUrl: string;
-  mockupType: "desktop" | "mobile" | "algorithm" | "koin-app";
+  mockupType: "desktop" | "mobile" | "algorithm" | "koin-app" | "terminal";
 }
 
 const projects: Project[] = [
@@ -59,6 +60,19 @@ const projects: Project[] = [
     icon: Code2,
     mockUrl: "klyrhon.me/nulll",
     mockupType: "algorithm",
+  },
+  {
+    title: "Kly Skills Installer",
+    subtitle: "Interactive CLI for Agentic Workflows",
+    description:
+      "A guided command-line utility powered by @clack/prompts. It provides an interactive experience to seamlessly browse and install a curated collection of Antigravity AI skills into your local environment.",
+    tags: ["Node.js", "CLI", "@clack/prompts", "Agentic AI"],
+    github: "https://github.com/KlyrhonMiko/kly-skills",
+    live: "https://kly-skills.vercel.app",
+    accent: "#10b981",
+    icon: Terminal,
+    mockUrl: "npx kly-skills",
+    mockupType: "terminal",
   },
   {
     title: "P.A.C.E",
@@ -141,6 +155,150 @@ const floatAnimation = {
 /* ══════════════════════════════════════════════════
    Minimalist Mockup Components
    ══════════════════════════════════════════════════ */
+
+const TerminalMockup = ({ project }: { project: Project }) => {
+  const [step, setStep] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useSmartInView(containerRef, { once: false, margin: "0px 0px -100px 0px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+    const interval = setInterval(() => {
+      setStep((prev) => (prev < 4 ? prev + 1 : 0));
+    }, 2000); // Change step every 2 seconds
+    return () => clearInterval(interval);
+  }, [isInView]);
+
+  return (
+    <motion.div
+      ref={containerRef}
+      variants={mockupVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      className="w-full max-w-[600px] perspective-[1000px] relative group mx-auto"
+    >
+      {/* Ambient Glow */}
+      <div
+        className="absolute inset-0 blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-1000"
+        style={{ backgroundColor: project.accent }}
+      />
+
+      <motion.div
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="rounded-xl border border-border-light bg-[#0a0a0a] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] overflow-hidden transition-shadow duration-700 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] relative z-10"
+      >
+        {/* Terminal Chrome */}
+        <div className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-[#111111] border-b border-[#222]">
+          <div className="flex gap-1.5">
+            <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
+            <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+            <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
+          </div>
+          <div className="flex-1 flex justify-center">
+            <span className="text-xs text-muted/70 font-medium font-mono">agy ~ bash</span>
+          </div>
+        </div>
+
+        {/* Terminal Content */}
+        <div className="p-5 sm:p-6 h-[340px] sm:h-[380px] bg-[#0a0a0a] font-mono text-sm overflow-hidden flex flex-col gap-3">
+          {/* Command Entry */}
+          <div className="flex items-center gap-2 text-muted">
+            <span className="text-emerald-500 font-bold">➜</span>
+            <span className="text-blue-400 font-bold">portfolio</span>
+            <div className="relative">
+              <motion.span>
+                {step === 0 ? "" : "npx kly-skills"}
+              </motion.span>
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ repeat: Infinity, duration: 0.8 }}
+                className="inline-block w-2 h-4 bg-white/70 ml-1 translate-y-0.5"
+                style={{ display: step === 0 ? "inline-block" : "none" }}
+              />
+            </div>
+          </div>
+
+          {/* Interactive Menu Step */}
+          {step >= 1 && (
+            <motion.div
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-2 space-y-2"
+            >
+              <div className="text-emerald-400 font-bold">? <span className="text-white font-medium">Select skills to install:</span> <span className="text-muted/60 text-xs font-normal">(Press &lt;space&gt; to select, &lt;enter&gt; to proceed)</span></div>
+              <div className="pl-4 space-y-1 text-muted/80">
+                <div className="text-emerald-400">❯ ◉ animate</div>
+                <div>  ◯ apple-design</div>
+                <div className="text-emerald-400">  ◉ brandkit</div>
+                <div>  ◯ minimalist-ui</div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Installation Progress */}
+          {step >= 2 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="space-y-1.5 mt-2"
+            >
+              <div className="text-muted/60 mb-2">Installing selected skills...</div>
+              {[
+                { name: "animate", path: "skills/animate" },
+                { name: "brandkit", path: "skills/brandkit" },
+              ].map((skill, i) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.15 }}
+                  className="flex items-center gap-3 text-xs"
+                >
+                  <span className="text-emerald-500">✔</span>
+                  <span className="text-muted/60">Downloaded</span>
+                  <span className="text-emerald-400">{skill.name}</span>
+                  <span className="text-muted/40 hidden sm:inline">→ ~/.gemini/config/{skill.path}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Completion */}
+          {step >= 3 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mt-2 text-muted"
+            >
+              <span className="text-emerald-500 font-bold">✔</span> Successfully installed 2 skills.
+            </motion.div>
+          )}
+          
+          {/* Next prompt */}
+          {step >= 3 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="flex items-center gap-2 text-muted mt-2"
+            >
+              <span className="text-emerald-500 font-bold">➜</span>
+              <span className="text-blue-400 font-bold">portfolio</span>
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ repeat: Infinity, duration: 0.8 }}
+                className="inline-block w-2 h-4 bg-white/70 ml-1 translate-y-0.5"
+              />
+            </motion.div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const generateBubbleSortFrames = (initialArray: number[]) => {
   const frames: { array: number[], active: number[], verified: number[] }[] = [];
@@ -580,6 +738,8 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
             <MinimalMobileMockup project={project} />
           ) : project.mockupType === "algorithm" ? (
             <AlgorithmVisualizerMockup project={project} />
+          ) : project.mockupType === "terminal" ? (
+            <TerminalMockup project={project} />
           ) : (
             <MinimalDesktopMockup project={project} />
           )
@@ -607,7 +767,7 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
             </span>
             <div className="h-px w-8" style={{ backgroundColor: project.accent, opacity: 0.5 }} />
             <span className="text-xs font-medium tracking-widest uppercase text-muted">
-              {project.mockupType === "mobile" || project.mockupType === "koin-app" ? "Mobile Application" : "Web Platform"}
+              {project.mockupType === "mobile" || project.mockupType === "koin-app" ? "Mobile Application" : project.mockupType === "terminal" ? "Terminal Workflow" : "Web Platform"}
             </span>
           </motion.div>
 
