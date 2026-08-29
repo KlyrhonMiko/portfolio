@@ -34,7 +34,7 @@ function LazySection({ children, minHeight, id }: { children: React.ReactNode; m
     };
   }, []);
 
-  const shouldMount = canMount || forceMount;
+  const shouldMount = canMount || forceMount || isInView;
 
   return (
     <div ref={ref} id={id} style={{ minHeight: shouldMount ? undefined : minHeight }} className="relative w-full">
