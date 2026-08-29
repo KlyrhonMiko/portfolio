@@ -10,7 +10,7 @@ const certificates = [
     title: "CS50x: Intro to Computer Science and the Art of Programming",
     issuer: "Harvard University",
     date: "2026",
-    link: "https://certificates.cs50.io/ef106f39-6c3f-43b2-95ba-bc4662d9207d.pdf"
+    link: "https://certificates.cs50.io/ef106f39-6c3f-43b2-95ba-bc4662d9207d"
   },
   {
     title: "CS50: Intro to Artificial Intelligence with Python",
