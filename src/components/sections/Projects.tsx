@@ -11,6 +11,7 @@ import {
   Layout,
   Code2,
   Terminal,
+  FileText,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { handleSmoothNavigation } from "@/utils/navigation";
@@ -31,7 +32,7 @@ interface Project {
   accent: string;
   icon: LucideIcon;
   mockUrl: string;
-  mockupType: "desktop" | "mobile" | "algorithm" | "koin-app" | "terminal";
+  mockupType: "desktop" | "mobile" | "algorithm" | "koin-app" | "terminal" | "pars-app";
 }
 
 const projects: Project[] = [
@@ -47,6 +48,18 @@ const projects: Project[] = [
     icon: Wallet,
     mockUrl: "klyrhon.me/koin",
     mockupType: "koin-app",
+  },
+  {
+    title: "pars.",
+    subtitle: "AI-Enhanced ATS Resume Builder",
+    description:
+      "A modern ATS resume builder featuring a live preview editor and AI-powered bullet point optimization powered by Groq (Llama 3.1). Build professional, ATS-friendly resumes seamlessly.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Groq AI", "Supabase", "React PDF"],
+    live: "https://usepars.vercel.app",
+    accent: "#ffffff", // Monochrome white to match the app's minimalist design
+    icon: FileText,
+    mockUrl: "usepars.vercel.app",
+    mockupType: "pars-app",
   },
   {
     title: "nulll",
@@ -86,18 +99,6 @@ const projects: Project[] = [
     mockUrl: "localhost:3000",
     mockupType: "desktop",
   },
-  {
-    title: "HRMO System",
-    subtitle: "Personnel Digitization & Records Management",
-    description:
-      "A comprehensive human resource management system featuring role-based access, automated 201 file management, PDS data entry, and integrated analytics for local government units.",
-    tags: ["Next.js", "React", "FastAPI", "Recharts", "PostgreSQL"],
-    github: "https://github.com/KlyrhonMiko/hrmo",
-    accent: "#059669",
-    icon: Shield,
-    mockUrl: "localhost:3000",
-    mockupType: "desktop",
-  }
 ];
 
 /* ══════════════════════════════════════════════════
@@ -276,7 +277,7 @@ const TerminalMockup = ({ project }: { project: Project }) => {
               <span className="text-emerald-500 font-bold">✔</span> Successfully installed 2 skills.
             </motion.div>
           )}
-          
+
           {/* Next prompt */}
           {step >= 3 && (
             <motion.div
@@ -464,6 +465,109 @@ const AlgorithmVisualizerMockup = ({ project }: { project: Project }) => {
   );
 };
 
+const ParsAppMockup = ({ project }: { project: Project }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return (
+    <motion.div
+      variants={mockupVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      className="relative w-full max-w-[600px] group mx-auto flex items-center justify-center min-h-[500px] lg:min-h-[600px]"
+    >
+      {/* Ambient Glow */}
+      <div
+        className="absolute inset-0 blur-[100px] opacity-0 group-hover:opacity-20 transition-opacity duration-1000 rounded-full scale-110"
+        style={{ backgroundColor: project.accent }}
+      />
+
+      {mounted && (
+        <div className="relative w-full h-full">
+
+          {/* Layer 1 (Back): Landing */}
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0 }}
+            className="absolute z-0 left-[5%] right-[15%] top-[5%]"
+          >
+            <div className="w-full rounded-xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] border border-white/10 bg-[#0a0a0a] transition-all duration-700 ease-out group-hover:-translate-y-8 group-hover:-translate-x-6 group-hover:-rotate-6 group-hover:scale-105">
+              <div className="flex items-center gap-1.5 px-3 h-7 bg-white/[0.02] border-b border-white/[0.05]">
+                <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
+                <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
+                <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
+              </div>
+              <div className="relative">
+                <Image
+                  src="/pars/landing.jpeg"
+                  alt="Landing"
+                  width={1920}
+                  height={1080}
+                  className="w-full h-auto object-cover opacity-50 group-hover:opacity-100 transition-opacity duration-700"
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Layer 2 (Middle): Main Editor */}
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+            className="absolute z-10 left-[7.5%] right-[7.5%] top-[25%] lg:top-[30%]"
+          >
+            <div className="w-full rounded-xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] border border-white/15 bg-[#0a0a0a] transition-all duration-700 ease-out group-hover:scale-110 group-hover:-translate-y-2">
+              <div className="flex items-center gap-1.5 px-3 h-8 bg-white/[0.03] border-b border-white/[0.08]">
+                <div className="h-2 w-2 rounded-full bg-white/20" />
+                <div className="h-2 w-2 rounded-full bg-white/20" />
+                <div className="h-2 w-2 rounded-full bg-white/20" />
+              </div>
+              <div className="relative">
+                <Image
+                  src="/pars/main-view.jpeg"
+                  alt="Main Editor"
+                  width={1920}
+                  height={1080}
+                  className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                  priority
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Layer 3 (Front): Resume Grading */}
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.6 }}
+            className="absolute z-20 left-[15%] right-[5%] top-[45%] lg:top-[55%]"
+          >
+            <div className="w-full rounded-xl overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.9)] border border-white/20 bg-[#0a0a0a] transition-all duration-700 ease-out group-hover:translate-y-8 group-hover:translate-x-6 group-hover:rotate-6 group-hover:scale-105">
+              <div className="flex items-center gap-1.5 px-3 h-7 bg-white/[0.02] border-b border-white/[0.05]">
+                <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
+                <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
+                <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
+              </div>
+              <Image
+                src="/pars/resume-grading.jpeg"
+                alt="Resume Grading"
+                width={1920}
+                height={1080}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </motion.div>
+
+        </div>
+      )}
+    </motion.div>
+  );
+};
+
 const MinimalDesktopMockup = ({ project }: { project: Project }) => (
   <motion.div
     variants={mockupVariants}
@@ -628,24 +732,27 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               rotateZ: [8, 10, 8],
             }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute z-0 top-[5%] -right-[40%] sm:-right-[45%] w-[130px] sm:w-[160px] lg:w-[180px] rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl border-[3px] border-surface/50 bg-surface"
+            className="absolute z-0 top-[5%] -right-[40%] sm:-right-[45%] w-[130px] sm:w-[160px] lg:w-[180px]"
           >
-            <Image
-              src="/koin/budgets-light.png"
-              alt="Budgets"
-              width={1080}
-              height={2400}
-              className="w-full h-auto object-cover dark:hidden"
-              sizes="(max-width: 768px) 50vw, 33vw"
-            />
-            <Image
-              src="/koin/budgets-dark.png"
-              alt="Budgets"
-              width={1080}
-              height={2400}
-              className="w-full h-auto object-cover hidden dark:block"
-              sizes="(max-width: 768px) 50vw, 33vw"
-            />
+            <div className="w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl border-[3px] border-surface/50 bg-surface transition-all duration-700 ease-out group-hover:translate-x-6 group-hover:-translate-y-4 group-hover:rotate-6 group-hover:scale-105">
+              <Image
+                src="/koin/budgets-light.png"
+                alt="Budgets"
+                width={1080}
+                height={2400}
+                className="w-full h-auto object-cover dark:hidden"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+              <Image
+                src="/koin/budgets-dark.png"
+                alt="Budgets"
+                width={1080}
+                height={2400}
+                className="w-full h-auto object-cover hidden dark:block"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-black/10 dark:bg-black/40 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+            </div>
           </motion.div>
 
           {/* Card 2: Activity (Left - Front) */}
@@ -655,24 +762,26 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               rotateZ: [-10, -12, -10],
             }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute z-20 bottom-[5%] -left-[40%] sm:-left-[45%] w-[130px] sm:w-[160px] lg:w-[180px] rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border-[3px] border-surface/50 bg-surface"
+            className="absolute z-20 bottom-[5%] -left-[40%] sm:-left-[45%] w-[130px] sm:w-[160px] lg:w-[180px]"
           >
-            <Image
-              src="/koin/activity-light.png"
-              alt="Activity"
-              width={1080}
-              height={2400}
-              className="w-full h-auto object-cover dark:hidden"
-              sizes="(max-width: 768px) 50vw, 33vw"
-            />
-            <Image
-              src="/koin/activity-dark.png"
-              alt="Activity"
-              width={1080}
-              height={2400}
-              className="w-full h-auto object-cover hidden dark:block"
-              sizes="(max-width: 768px) 50vw, 33vw"
-            />
+            <div className="w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border-[3px] border-surface/50 bg-surface transition-all duration-700 ease-out group-hover:-translate-x-6 group-hover:translate-y-4 group-hover:-rotate-6 group-hover:scale-105">
+              <Image
+                src="/koin/activity-light.png"
+                alt="Activity"
+                width={1080}
+                height={2400}
+                className="w-full h-auto object-cover dark:hidden"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+              <Image
+                src="/koin/activity-dark.png"
+                alt="Activity"
+                width={1080}
+                height={2400}
+                className="w-full h-auto object-cover hidden dark:block"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+            </div>
           </motion.div>
 
           {/* Main Card: Home (Center) */}
@@ -681,24 +790,27 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               y: [0, -8, 0],
             }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-10 w-full rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border-[4px] border-surface/80 bg-surface"
+            className="relative z-10 w-full"
           >
-            <Image
-              src="/koin/home-light.png"
-              alt="Home"
-              width={1080}
-              height={2400}
-              className="w-full h-auto object-cover dark:hidden"
-              sizes="(max-width: 768px) 50vw, 33vw"
-            />
-            <Image
-              src="/koin/home-dark.png"
-              alt="Home"
-              width={1080}
-              height={2400}
-              className="w-full h-auto object-cover hidden dark:block"
-              sizes="(max-width: 768px) 50vw, 33vw"
-            />
+            <div className="w-full h-full rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border-[4px] border-surface/80 bg-surface transition-all duration-700 ease-out group-hover:-translate-y-2 group-hover:scale-105">
+              <Image
+                src="/koin/home-light.png"
+                alt="Home"
+                width={1080}
+                height={2400}
+                className="w-full h-auto object-cover dark:hidden"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+              <Image
+                src="/koin/home-dark.png"
+                alt="Home"
+                width={1080}
+                height={2400}
+                className="w-full h-auto object-cover hidden dark:block"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-black/5 dark:bg-black/20 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+            </div>
           </motion.div>
         </div>
       )}
@@ -732,7 +844,9 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
       {/* Mockup Side */}
       <div className="w-full lg:w-1/2 flex justify-center relative z-10 min-h-[400px] lg:min-h-[500px]">
         {isMockupInView ? (
-          project.mockupType === "koin-app" ? (
+          project.mockupType === "pars-app" ? (
+            <ParsAppMockup project={project} />
+          ) : project.mockupType === "koin-app" ? (
             <KoinAppMockup project={project} />
           ) : project.mockupType === "mobile" ? (
             <MinimalMobileMockup project={project} />

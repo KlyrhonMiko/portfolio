@@ -28,7 +28,7 @@ const renderBlock = (block: React.ReactElement, _activity: any) => {
     title: undefined,
     "data-tooltip-id": undefined,
     "data-tooltip-content": undefined,
-  });
+  } as any);
 };
 
 export default React.memo(function GithubActivity({ githubData }: { githubData?: any[] | null }) {
