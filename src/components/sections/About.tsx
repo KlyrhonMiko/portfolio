@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import GithubActivity from "./GithubActivity";
 
@@ -32,114 +32,15 @@ const skills = [
   },
 ];
 
-const traits = [
-  { label: "Problem Solver" },
-  { label: "Team Player" },
-  { label: "Fast Learner" },
-  { label: "Detail Oriented" },
-];
 
 /* ── Main About Section ── */
 export default function About({ githubData }: { githubData?: any }) {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const lineWidth = useSpring(useTransform(scrollYProgress, [0, 0.8], [0, 1]), {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
 
   return (
     <section ref={containerRef} className="relative py-24 lg:py-32 w-full bg-surface">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
-        
-        {/* ─── Section Header ─── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 lg:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8"
-        >
-          <div>
-            <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-primary/80">
-              About Me
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-heading tracking-tight mb-2">
-              Get to Know Me
-            </h2>
-          </div>
-          <p className="text-lg text-body max-w-md md:text-right leading-relaxed">
-            A glimpse into who I am, what I do, and the technologies I work with to build the web.
-          </p>
-        </motion.div>
-
-        {/* Dynamic separator line */}
-        <div className="w-full h-px bg-border-light/30 mb-24 relative">
-          <motion.div 
-            className="absolute top-0 left-0 h-full w-full bg-primary origin-left" 
-            style={{ scaleX: lineWidth, opacity: 0.5 }} 
-          />
-        </div>
-
-        {/* ── Bio Section ── */}
-        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 mb-24 border-b border-border-light/50 pb-24">
-          <div className="lg:col-span-5">
-             <motion.h3 
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true, margin: "-50px" }}
-               transition={{ duration: 0.6 }}
-               className="text-3xl md:text-4xl font-bold text-heading leading-[1.3] mb-12"
-             >
-               A passionate developer building for the web.
-             </motion.h3>
-             
-             <div className="flex flex-col gap-6">
-               {traits.map((trait, index) => (
-                 <motion.div 
-                   key={trait.label} 
-                   initial={{ opacity: 0, x: -20 }}
-                   whileInView={{ opacity: 1, x: 0 }}
-                   viewport={{ once: true, margin: "-50px" }}
-                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                   className="flex items-center gap-6 group cursor-default"
-                 >
-                   <span className="text-sm font-semibold tracking-[0.2em] text-primary/60 uppercase group-hover:text-primary transition-colors">
-                     0{index + 1}
-                   </span>
-                   <span className="text-lg tracking-[0.1em] uppercase font-semibold text-heading/80 group-hover:translate-x-2 transition-transform duration-500 ease-out">
-                     {trait.label}
-                   </span>
-                 </motion.div>
-               ))}
-             </div>
-          </div>
-          
-          <div className="lg:col-span-7 flex flex-col gap-8 text-lg md:text-xl text-body leading-relaxed font-light">
-             <motion.p
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true, margin: "-50px" }}
-               transition={{ duration: 0.6, delay: 0.2 }}
-             >
-               I'm an aspiring software engineer with a passion for creating elegant, user-friendly web applications. With a strong foundation in both frontend and backend technologies, I bring ideas to life through clean code and thoughtful design.
-             </motion.p>
-             <motion.p
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true, margin: "-50px" }}
-               transition={{ duration: 0.6, delay: 0.3 }}
-             >
-               When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge through technical writing. I believe in continuous learning and pushing the boundaries of what's possible on the web.
-             </motion.p>
-          </div>
-        </div>
 
         {/* ── Github Activity ── */}
         <div className="mb-24 border-b border-border-light/50 pb-24">
