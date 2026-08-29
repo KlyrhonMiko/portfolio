@@ -90,13 +90,13 @@ export default function ResumePage() {
 
               <div className="mt-2 mb-4">
                 <div className="mb-2">
-                  <h3 className="font-bold text-[15px] inline">P.A.C.E (Pasig Alumni Career & Employability)</h3>
-                  <span className="text-[13px]"> | Github: <a href="https://github.com/KlyrhonMiko/pace" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/pace</a></span>
+                  <h3 className="font-bold text-[15px] inline">Pars.</h3>
+                  <span className="text-[13px]"> | Live URL: <a href="https://usepars.vercel.app" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">usepars.vercel.app</a></span>
                 </div>
                 <ul className="pl-6 space-y-1 list-disc">
-                  <li>Spearheaded a comprehensive career platform using <strong>Next.js</strong> and <strong>Supabase</strong>, integrating external <strong>job market APIs</strong> to connect alumni with highly curated, localized employment opportunities.</li>
-                  <li>Programmed a real-time analytics dashboard using <strong>Python</strong> and <strong>FastAPI</strong>, leveraging <strong>machine learning algorithms</strong> to predict graduate career outcomes and give actionable insights.</li>
-                  <li>Established robust <strong>relational data tracking</strong> and <strong>dynamic visualization</strong>, enabling the monitoring of graduate career trajectories and optimizing institutional reporting.</li>
+                  <li>Architected a modern ATS-friendly resume builder utilizing <strong>Next.js</strong> and <strong>TypeScript</strong>, integrating a live preview editor that dynamically renders user data using <strong>React PDF</strong> for high-fidelity document generation.</li>
+                  <li>Engineered an AI-powered bullet point optimization engine leveraging <strong>Groq</strong> to provide instant, context-aware suggestions that enhance resume impact and readability.</li>
+                  <li>Implemented secure authentication and real-time data persistence using <strong>Supabase</strong>, coupled with a highly responsive, minimalist user interface styled with <strong>Tailwind CSS</strong>.</li>
                 </ul>
               </div>
 
