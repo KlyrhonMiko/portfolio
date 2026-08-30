@@ -734,7 +734,7 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             className="absolute z-0 top-[5%] -right-[40%] sm:-right-[45%] w-[130px] sm:w-[160px] lg:w-[180px]"
           >
-            <div className="w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl border-[3px] border-surface/50 bg-surface transition-all duration-700 ease-out group-hover:translate-x-6 group-hover:-translate-y-4 group-hover:rotate-6 group-hover:scale-105">
+            <div className="relative w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl border border-white/10 bg-surface transition-all duration-700 ease-out group-hover:translate-x-6 group-hover:-translate-y-4 group-hover:rotate-6 group-hover:scale-105">
               <Image
                 src="/koin/budgets-light.png"
                 alt="Budgets"
@@ -764,7 +764,7 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="absolute z-20 bottom-[5%] -left-[40%] sm:-left-[45%] w-[130px] sm:w-[160px] lg:w-[180px]"
           >
-            <div className="w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border-[3px] border-surface/50 bg-surface transition-all duration-700 ease-out group-hover:-translate-x-6 group-hover:translate-y-4 group-hover:-rotate-6 group-hover:scale-105">
+            <div className="relative w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border border-white/10 bg-surface transition-all duration-700 ease-out group-hover:-translate-x-6 group-hover:translate-y-4 group-hover:-rotate-6 group-hover:scale-105">
               <Image
                 src="/koin/activity-light.png"
                 alt="Activity"
@@ -792,7 +792,7 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             className="relative z-10 w-full"
           >
-            <div className="w-full h-full rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border-[4px] border-surface/80 bg-surface transition-all duration-700 ease-out group-hover:-translate-y-2 group-hover:scale-105">
+            <div className="relative w-full h-full rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border border-white/15 bg-surface transition-all duration-700 ease-out group-hover:-translate-y-2 group-hover:scale-105">
               <Image
                 src="/koin/home-light.png"
                 alt="Home"
