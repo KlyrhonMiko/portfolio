@@ -104,7 +104,7 @@ export default function Hero() {
           className="max-w-3xl flex flex-col items-start"
         >
           {/* Subheader */}
-          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-8">
+          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
             <div className="h-px w-8 bg-primary/50" />
             <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary/80">
               Hello, World
@@ -114,7 +114,7 @@ export default function Hero() {
           {/* Main Title */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-heading tracking-tight leading-[1.1] mb-12"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-heading tracking-tight leading-[1.1] mb-6"
           >
             I'm Klyrhon, a{" "}
             <br className="hidden sm:block" />
@@ -139,7 +139,7 @@ export default function Hero() {
           {/* Actions */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-4 mb-16"
+            className="flex flex-wrap items-center gap-4 mb-8"
           >
             <a
               href="#projects"
