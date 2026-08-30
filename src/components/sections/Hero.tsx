@@ -114,7 +114,7 @@ export default function Hero() {
           {/* Main Title */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-heading tracking-tight leading-[1.1] mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-heading tracking-tight leading-[1.1] mb-12"
           >
             I'm Klyrhon, a{" "}
             <br className="hidden sm:block" />
@@ -134,15 +134,7 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          {/* Description */}
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-body max-w-2xl leading-relaxed mb-10"
-          >
-            I build scalable APIs and backend systems with modern technologies.
-            Passionate about clean architecture, database design, and creating
-            reliable infrastructure that powers great products.
-          </motion.p>
+
 
           {/* Actions */}
           <motion.div
