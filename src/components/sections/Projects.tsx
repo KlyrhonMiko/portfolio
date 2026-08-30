@@ -22,7 +22,7 @@ import { useSmartInView } from "@/hooks/useSmartInView";
    Project Data
    ══════════════════════════════════════════════════ */
 
-interface Project {
+export interface Project {
   title: string;
   subtitle: string;
   description: string;
@@ -122,7 +122,7 @@ const itemVariants: Variants = {
   },
 };
 
-const mockupVariants: Variants = {
+export const mockupVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
@@ -465,19 +465,23 @@ const AlgorithmVisualizerMockup = ({ project }: { project: Project }) => {
   );
 };
 
-const ParsAppMockup = ({ project }: { project: Project }) => {
-  const [mounted, setMounted] = useState(false);
+export const layerVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { type: "spring", bounce: 0, duration: 0.8 } },
+  enter: { opacity: 0, y: 60, scale: 0.9, filter: "blur(4px)" },
+  center: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { type: "spring", bounce: 0.15, duration: 0.8 } },
+  exit: { opacity: 0, y: -60, scale: 0.9, filter: "blur(4px)", transition: { duration: 0.4, ease: [0.23, 1, 0.32, 1] } },
+};
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+export const ParsAppMockup = ({ project, isHero }: { project: Project; isHero?: boolean }) => {
   return (
     <motion.div
-      variants={mockupVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      {...(!isHero && {
+        variants: mockupVariants,
+        initial: "hidden",
+        whileInView: "visible",
+        viewport: { once: true, margin: "-100px" },
+      })}
       className="relative w-full max-w-[600px] group mx-auto flex items-center justify-center min-h-[500px] lg:min-h-[600px]"
     >
       {/* Ambient Glow */}
@@ -486,16 +490,15 @@ const ParsAppMockup = ({ project }: { project: Project }) => {
         style={{ backgroundColor: project.accent }}
       />
 
-      {mounted && (
-        <div className="relative w-full h-full">
+      <div className="relative w-full h-full">
 
           {/* Layer 1 (Back): Landing */}
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0 }}
-            className="absolute z-0 left-[5%] right-[15%] top-[5%]"
-          >
-            <div className="w-full rounded-xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] border border-white/10 bg-[#0a0a0a] transition-all duration-700 ease-out group-hover:-translate-y-8 group-hover:-translate-x-6 group-hover:-rotate-6 group-hover:scale-105">
+          <motion.div variants={layerVariants} className="absolute z-0 left-[5%] right-[15%] top-[5%]">
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0 }}
+              className="w-full h-full"
+            >  <div className="w-full rounded-xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] border border-white/10 bg-[#0a0a0a] transition-all duration-700 ease-out group-hover:-translate-y-8 group-hover:-translate-x-6 group-hover:-rotate-6 group-hover:scale-105">
               <div className="flex items-center gap-1.5 px-3 h-7 bg-white/[0.02] border-b border-white/[0.05]">
                 <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
                 <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
@@ -513,13 +516,15 @@ const ParsAppMockup = ({ project }: { project: Project }) => {
               </div>
             </div>
           </motion.div>
+          </motion.div>
 
           {/* Layer 2 (Middle): Main Editor */}
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-            className="absolute z-10 left-[7.5%] right-[7.5%] top-[25%] lg:top-[30%]"
-          >
+          <motion.div variants={layerVariants} className="absolute z-10 left-[7.5%] right-[7.5%] top-[25%] lg:top-[30%]">
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+              className="w-full"
+            >
             <div className="w-full rounded-xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] border border-white/15 bg-[#0a0a0a] transition-all duration-700 ease-out group-hover:scale-110 group-hover:-translate-y-2">
               <div className="flex items-center gap-1.5 px-3 h-8 bg-white/[0.03] border-b border-white/[0.08]">
                 <div className="h-2 w-2 rounded-full bg-white/20" />
@@ -539,14 +544,16 @@ const ParsAppMockup = ({ project }: { project: Project }) => {
               </div>
             </div>
           </motion.div>
+          </motion.div>
 
           {/* Layer 3 (Front): Resume Grading */}
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.6 }}
-            className="absolute z-20 left-[15%] right-[5%] top-[45%] lg:top-[55%]"
-          >
-            <div className="w-full rounded-xl overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.9)] border border-white/20 bg-[#0a0a0a] transition-all duration-700 ease-out group-hover:translate-y-8 group-hover:translate-x-6 group-hover:rotate-6 group-hover:scale-105">
+          <motion.div variants={layerVariants} className="absolute z-20 left-[15%] right-[5%] top-[45%] lg:top-[55%]">
+            <motion.div
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.6 }}
+              className="w-full"
+            >
+              <div className="w-full rounded-xl overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.9)] border border-white/20 bg-[#0a0a0a] transition-all duration-700 ease-out group-hover:translate-y-8 group-hover:translate-x-6 group-hover:rotate-6 group-hover:scale-105">
               <div className="flex items-center gap-1.5 px-3 h-7 bg-white/[0.02] border-b border-white/[0.05]">
                 <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
                 <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
@@ -559,11 +566,11 @@ const ParsAppMockup = ({ project }: { project: Project }) => {
                 height={1080}
                 className="w-full h-auto object-cover"
               />
-            </div>
+              </div>
+            </motion.div>
           </motion.div>
 
-        </div>
-      )}
+      </div>
     </motion.div>
   );
 };
@@ -702,19 +709,15 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
   </motion.div>
 );
 
-const KoinAppMockup = ({ project }: { project: Project }) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+export const KoinAppMockup = ({ project, isHero }: { project: Project; isHero?: boolean }) => {
   return (
     <motion.div
-      variants={mockupVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      {...(!isHero && {
+        variants: mockupVariants,
+        initial: "hidden",
+        whileInView: "visible",
+        viewport: { once: true, margin: "-100px" },
+      })}
       className="relative w-[280px] sm:w-[320px] lg:w-[350px] perspective-[1200px] group mx-auto flex items-center justify-center min-h-[400px]"
     >
       {/* Ambient Glow */}
@@ -723,17 +726,17 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
         style={{ backgroundColor: project.accent }}
       />
 
-      {mounted && (
-        <div className="relative w-[180px] sm:w-[220px] lg:w-[240px] flex items-center justify-center">
+      <div className="relative w-[180px] sm:w-[220px] lg:w-[240px] flex items-center justify-center">
           {/* Card 3: Budgets (Right - Behind) */}
-          <motion.div
-            animate={{
-              y: [0, -10, 0],
-              rotateZ: [8, 10, 8],
-            }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute z-0 top-[5%] -right-[40%] sm:-right-[45%] w-[130px] sm:w-[160px] lg:w-[180px]"
-          >
+          <motion.div variants={layerVariants} className="absolute z-0 top-[5%] -right-[40%] sm:-right-[45%] w-[130px] sm:w-[160px] lg:w-[180px]">
+            <motion.div
+              animate={{
+                y: [0, -10, 0],
+                rotateZ: [8, 10, 8],
+              }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="w-full h-full"
+            >
             <div className="relative w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl border border-white/10 bg-surface transition-all duration-700 ease-out group-hover:translate-x-6 group-hover:-translate-y-4 group-hover:rotate-6 group-hover:scale-105">
               <Image
                 src="/koin/budgets-light.png"
@@ -754,16 +757,18 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               <div className="absolute inset-0 bg-black/10 dark:bg-black/40 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
             </div>
           </motion.div>
+        </motion.div>
 
           {/* Card 2: Activity (Left - Front) */}
-          <motion.div
-            animate={{
-              y: [0, 10, 0],
-              rotateZ: [-10, -12, -10],
-            }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute z-20 bottom-[5%] -left-[40%] sm:-left-[45%] w-[130px] sm:w-[160px] lg:w-[180px]"
-          >
+          <motion.div variants={layerVariants} className="absolute z-20 bottom-[5%] -left-[40%] sm:-left-[45%] w-[130px] sm:w-[160px] lg:w-[180px]">
+            <motion.div
+              animate={{
+                y: [0, 10, 0],
+                rotateZ: [-10, -12, -10],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="w-full h-full"
+            >
             <div className="relative w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border border-white/10 bg-surface transition-all duration-700 ease-out group-hover:-translate-x-6 group-hover:translate-y-4 group-hover:-rotate-6 group-hover:scale-105">
               <Image
                 src="/koin/activity-light.png"
@@ -783,37 +788,37 @@ const KoinAppMockup = ({ project }: { project: Project }) => {
               />
             </div>
           </motion.div>
+        </motion.div>
 
           {/* Main Card: Home (Center) */}
-          <motion.div
-            animate={{
-              y: [0, -8, 0],
-            }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-10 w-full"
-          >
-            <div className="relative w-full h-full rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border border-white/15 bg-surface transition-all duration-700 ease-out group-hover:-translate-y-2 group-hover:scale-105">
-              <Image
-                src="/koin/home-light.png"
-                alt="Home"
-                width={1080}
-                height={2400}
-                className="w-full h-auto object-cover dark:hidden"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
-              <Image
-                src="/koin/home-dark.png"
-                alt="Home"
-                width={1080}
-                height={2400}
-                className="w-full h-auto object-cover hidden dark:block"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-black/5 dark:bg-black/20 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
-            </div>
+          <motion.div variants={layerVariants} className="relative z-10 w-full">
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-full"
+            >
+              <div className="relative w-full h-full rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border border-white/15 bg-surface transition-all duration-700 ease-out group-hover:-translate-y-2 group-hover:scale-105">
+                <Image
+                  src="/koin/home-light.png"
+                  alt="Home"
+                  width={1080}
+                  height={2400}
+                  className="w-full h-auto object-cover dark:hidden"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+                <Image
+                  src="/koin/home-dark.png"
+                  alt="Home"
+                  width={1080}
+                  height={2400}
+                  className="w-full h-auto object-cover hidden dark:block"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-black/5 dark:bg-black/20 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+              </div>
+            </motion.div>
           </motion.div>
-        </div>
-      )}
+      </div>
     </motion.div>
   );
 };
@@ -836,7 +841,7 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
   const isMockupInView = useSmartInView(rowRef, { once: true, margin: "0px 0px 400px 0px" });
 
   return (
-    <div ref={rowRef} className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}>
+    <div id={`project-${project.mockupType}`} ref={rowRef} className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}>
 
       {/* Connecting Scroll Line (Desktop only) */}
       <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border-light/30 hidden lg:block -z-10" />

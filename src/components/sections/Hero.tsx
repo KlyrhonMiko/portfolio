@@ -6,6 +6,7 @@ import { Github, Linkedin, Mail, Twitter, Sparkles, Facebook } from "lucide-reac
 import { useLenis } from "lenis/react";
 import { handleSmoothNavigation } from "@/utils/navigation";
 import { isMobileDevice } from "@/utils/device";
+import HeroMockupShowcase from "../ui/HeroMockupShowcase";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/KlyrhonMiko", label: "GitHub" },
@@ -96,12 +97,14 @@ export default function Hero() {
         </span>
       </div>
 
-      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-12 relative z-10">
+      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-12 relative z-10 grid lg:grid-cols-2 items-center gap-12 lg:gap-8">
+        
+        {/* Left Side (Text) */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-3xl flex flex-col items-start"
+          className="flex flex-col items-start relative z-30"
         >
           {/* Subheader */}
           <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
@@ -114,11 +117,11 @@ export default function Hero() {
           {/* Main Title */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-heading tracking-tight leading-[1.1] mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-heading tracking-tight leading-[1.1] mb-6"
           >
             I'm Klyrhon, a{" "}
             <br className="hidden sm:block" />
-            <span className="inline-flex flex-col h-[1.35em] overflow-hidden align-top text-primary">
+            <span className="inline-flex flex-col h-[1.35em] overflow-hidden align-top text-primary whitespace-nowrap">
               <AnimatePresence mode="popLayout">
                 <motion.span
                   key={roleIndex}
@@ -194,6 +197,11 @@ export default function Hero() {
             ))}
           </motion.div>
         </motion.div>
+
+        {/* Right Side (Alternating Mockups) */}
+        <div className="w-full h-[500px] lg:h-[600px] mt-8 lg:mt-0 relative z-20">
+          <HeroMockupShowcase />
+        </div>
       </div>
 
       {/* Scroll Indicator */}
