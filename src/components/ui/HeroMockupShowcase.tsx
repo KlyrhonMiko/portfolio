@@ -83,7 +83,7 @@ export default function HeroMockupShowcase() {
   };
 
   return (
-    <div className="relative w-full h-full min-h-[500px] flex items-center justify-center perspective-[1200px]">
+    <div className="relative w-full h-full min-h-[400px] sm:min-h-[450px] md:min-h-[500px] flex items-center justify-center perspective-[1200px]">
       <AnimatePresence>
         {showKoin ? (
           <motion.div
@@ -96,7 +96,7 @@ export default function HeroMockupShowcase() {
           >
             <div 
               onClick={() => scrollToProject(koinProject.mockupType)}
-              className="group/showcase relative w-full flex justify-center scale-[0.8] lg:scale-[0.9] xl:scale-100 origin-center cursor-pointer"
+              className="group/showcase relative w-full flex justify-center scale-[0.7] sm:scale-[0.8] lg:scale-[0.9] xl:scale-100 origin-center cursor-pointer"
             >
               <KoinAppMockup project={koinProject} isHero={true} />
               
@@ -121,7 +121,7 @@ export default function HeroMockupShowcase() {
           >
             <div 
               onClick={() => scrollToProject(parsProject.mockupType)}
-              className="group/showcase relative w-full flex justify-center scale-[0.8] lg:scale-[0.9] xl:scale-100 origin-center cursor-pointer"
+              className="group/showcase relative w-full flex justify-center scale-[0.7] sm:scale-[0.8] lg:scale-[0.9] xl:scale-100 origin-center cursor-pointer"
             >
               <ParsAppMockup project={parsProject} isHero={true} />
               

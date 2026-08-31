@@ -77,7 +77,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden"
+      className="relative flex min-h-[100dvh] flex-col overflow-hidden"
     >
       {/* Optional minimal background glow */}
       <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
@@ -97,7 +97,7 @@ export default function Hero() {
         </span>
       </div>
 
-      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-12 relative z-10 grid lg:grid-cols-2 items-center gap-12 lg:gap-8">
+      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-12 relative z-10 grid lg:grid-cols-2 items-center gap-8 lg:gap-8 my-auto pt-28 pb-16 lg:py-0">
         
         {/* Left Side (Text) */}
         <motion.div
@@ -199,7 +199,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Right Side (Alternating Mockups) */}
-        <div className="w-full h-[500px] lg:h-[600px] mt-8 lg:mt-0 relative z-20">
+        <div className="w-full h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px] mt-4 lg:mt-0 relative z-20">
           <HeroMockupShowcase />
         </div>
       </div>
