@@ -97,7 +97,7 @@ export default function Hero() {
         </span>
       </div>
 
-      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-12 relative z-10 grid lg:grid-cols-2 items-center gap-8 lg:gap-8 my-auto pt-28 pb-16 lg:py-0">
+      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-12 relative z-10 grid lg:grid-cols-2 items-center gap-0 lg:gap-8 my-auto pt-32 pb-32 lg:py-0">
         
         {/* Left Side (Text) */}
         <motion.div
@@ -119,8 +119,9 @@ export default function Hero() {
             variants={itemVariants}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-heading tracking-tight leading-[1.1] mb-6"
           >
-            I'm Klyrhon, a{" "}
-            <br className="hidden sm:block" />
+            I'm Klyrhon,
+            <br />
+            a{" "}
             <span className="inline-flex flex-col h-[1.35em] overflow-hidden align-top text-primary whitespace-nowrap">
               <AnimatePresence mode="popLayout">
                 <motion.span
@@ -199,7 +200,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Right Side (Alternating Mockups) */}
-        <div className="w-full h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px] mt-4 lg:mt-0 relative z-20">
+        <div className="w-full h-[320px] sm:h-[400px] md:h-[450px] lg:h-[600px] mt-8 lg:mt-0 relative z-20 flex items-start lg:items-center">
           <HeroMockupShowcase />
         </div>
       </div>
