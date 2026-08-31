@@ -212,10 +212,10 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer"
+        className="absolute top-[calc(100dvh-8.5rem)] right-6 lg:top-auto lg:bottom-8 lg:right-auto lg:left-1/2 lg:-translate-x-1/2 flex flex-col items-center gap-3 group cursor-pointer z-30"
         aria-label="Scroll to about section"
       >
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted group-hover:text-primary transition-colors duration-300">
+        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted group-hover:text-primary transition-colors duration-300 [writing-mode:vertical-rl] lg:[writing-mode:horizontal-tb]">
           Scroll
         </span>
         <div className="h-12 w-[1px] bg-border-light relative overflow-hidden">
