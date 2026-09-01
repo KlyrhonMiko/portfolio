@@ -96,7 +96,7 @@ export default function HeroMockupShowcase() {
           >
             <div 
               onClick={() => scrollToProject(koinProject.mockupType)}
-              className="group/showcase relative w-full flex justify-center scale-[0.75] min-[400px]:scale-[0.8] sm:scale-[0.85] md:scale-[0.9] lg:scale-[0.95] xl:scale-100 origin-top lg:origin-center cursor-pointer"
+              className="group/showcase relative w-full flex justify-center scale-[0.75] min-[400px]:scale-[0.8] sm:scale-[0.85] md:scale-[0.9] lg:scale-[0.95] xl:scale-[1.1] 2xl:scale-[1.2] origin-top lg:origin-center cursor-pointer"
             >
               <KoinAppMockup project={koinProject} isHero={true} />
               
@@ -121,7 +121,7 @@ export default function HeroMockupShowcase() {
           >
             <div 
               onClick={() => scrollToProject(parsProject.mockupType)}
-              className="group/showcase relative w-full flex justify-center scale-[0.7] min-[400px]:scale-[0.75] sm:scale-[0.8] md:scale-[0.85] lg:scale-[0.95] xl:scale-100 origin-top lg:origin-center cursor-pointer"
+              className="group/showcase relative w-full flex justify-center scale-[0.7] min-[400px]:scale-[0.75] sm:scale-[0.8] md:scale-[0.85] lg:scale-[0.95] xl:scale-[1.1] 2xl:scale-[1.2] origin-top lg:origin-center cursor-pointer"
             >
               <ParsAppMockup project={parsProject} isHero={true} />
               

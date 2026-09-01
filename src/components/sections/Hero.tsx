@@ -85,19 +85,24 @@ export default function Hero() {
 
       {/* Oversized Typographic Watermark */}
       <div 
-        className="absolute right-4 lg:right-12 top-1/2 -translate-y-1/2 pointer-events-none select-none hidden md:flex gap-4 opacity-[0.03] dark:opacity-[0.05] z-0"
+        className="absolute right-4 lg:right-12 top-1/2 -translate-y-1/2 pointer-events-none select-none hidden md:block opacity-[0.03] dark:opacity-[0.05] z-0"
         aria-hidden="true"
-        style={{ writingMode: 'vertical-rl' }}
+        style={{ 
+          writingMode: 'vertical-rl',
+          WebkitWritingMode: 'vertical-rl',
+          textOrientation: 'mixed',
+          WebkitTextOrientation: 'mixed'
+        } as React.CSSProperties}
       >
         <span 
-          className="text-[15vw] 2xl:text-[200px] font-black leading-[0.85] tracking-[-0.05em] uppercase text-transparent"
+          className="text-[15vw] 2xl:text-[200px] font-black leading-[0.85] tracking-[-0.05em] uppercase text-transparent block"
           style={{ WebkitTextStroke: '2px var(--heading)' }}
         >
           KLYRHON
         </span>
       </div>
 
-      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-12 relative z-10 grid lg:grid-cols-2 items-center gap-0 lg:gap-8 my-auto pt-32 pb-32 lg:py-0">
+      <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-12 relative z-10 grid lg:grid-cols-[1.2fr_0.8fr] items-center gap-0 lg:gap-8 my-auto pt-32 pb-32 lg:py-0">
         
         {/* Left Side (Text) */}
         <motion.div
@@ -117,7 +122,7 @@ export default function Hero() {
           {/* Main Title */}
           <motion.h1
             variants={itemVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-heading tracking-tight leading-[1.1] mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-heading tracking-tight leading-[1.1] mb-6"
           >
             I'm Klyrhon,
             <br />
