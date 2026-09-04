@@ -54,47 +54,42 @@ export default function About({ githubData }: { githubData?: any }) {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="mb-12 flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-            <h3 className="text-2xl md:text-4xl font-bold text-heading tracking-tight">
+          <div className="mb-16 max-w-3xl">
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-heading tracking-tighter mb-6">
               Skills & Technologies
             </h3>
-            <p className="text-lg text-body lg:text-right max-w-md">
+            <p className="text-base md:text-lg text-body leading-relaxed max-w-[65ch]">
               The tools, languages, and frameworks I use to build robust applications.
             </p>
           </div>
 
-          {/* ── Minimalist Category List ── */}
-          <div className="mt-12 flex flex-col border-t border-border-light/50">
+          {/* ── Typography-Heavy Minimalist Index ── */}
+          <div className="flex flex-col border-t border-border-light/50">
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.category}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-12 py-10 lg:py-12 border-b border-border-light/50 hover:border-primary/30 transition-colors duration-500"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group flex flex-col lg:flex-row lg:items-start py-10 md:py-16 border-b border-border-light/50 hover:bg-surface-elevated/30 transition-colors duration-300 -mx-6 px-6 lg:-mx-12 lg:px-12"
               >
-                {/* Subtle Hover Glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
-
-                {/* Left Side: Category */}
-                <div className="lg:w-1/3 shrink-0 flex items-start gap-4 lg:gap-6 pt-2">
-                  <span className="text-sm font-semibold tracking-[0.2em] text-primary/60 uppercase shrink-0 mt-1">
+                {/* Category Area */}
+                <div className="lg:w-1/3 flex flex-col mb-6 lg:mb-0 pr-8">
+                  <span className="text-[11px] font-mono tracking-[0.2em] text-primary/60 uppercase mb-6">
                     0{index + 1}
                   </span>
-                  <div>
-                    <h4 className="text-xl md:text-2xl font-bold text-heading group-hover:translate-x-2 transition-transform duration-500 ease-out">
-                      {skill.category}
-                    </h4>
-                    <p className="mt-1.5 text-sm text-body/80">
-                      {skill.description}
-                    </p>
-                  </div>
+                  <h4 className="text-3xl md:text-4xl lg:text-5xl font-bold text-heading tracking-tighter group-hover:text-primary transition-colors duration-300">
+                    {skill.category}
+                  </h4>
+                  <p className="mt-4 text-sm text-body/70 font-medium">
+                    {skill.description}
+                  </p>
                 </div>
 
-                {/* Right Side: Skills - Editorial Prose */}
-                <div className="lg:w-2/3 lg:pt-2">
-                  <p className="text-lg md:text-xl lg:text-[22px] leading-[1.7] text-body/50 font-light group-hover:text-heading transition-colors duration-700">
+                {/* Skills Area */}
+                <div className="lg:w-2/3 lg:mt-8">
+                  <p className="text-xl md:text-2xl lg:text-3xl leading-[1.6] tracking-tight text-body/80 group-hover:text-heading transition-colors duration-500">
                     {skill.items.join(", ")}.
                   </p>
                 </div>
