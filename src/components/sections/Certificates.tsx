@@ -31,6 +31,12 @@ const certificates = [
     link: "https://www.freecodecamp.org/certification/klyrhon/python-v9"
   },
   {
+    title: "Prompt Like an Engineer",
+    issuer: "Cisco Networking Academy",
+    date: "2026",
+    link: "https://www.credly.com/badges/50250e7d-dd3f-45b8-944a-0322efdd0456/public_url"
+  },
+  {
     title: "Claude 101",
     issuer: "Anthropic",
     date: "2026",
@@ -157,7 +163,7 @@ export default function Certificates() {
                 {/* Index & Date (Hidden on mobile) */}
                 <div className="w-1/6 hidden md:flex flex-col gap-2">
                   <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary/40">
-                    0{index + 1}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                   <span className="text-sm font-medium tracking-widest text-muted">
                     {cert.date}
