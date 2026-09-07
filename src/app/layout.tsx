@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   title: "Klyrhon Aurel | Portfolio",
   description:
     "Personal portfolio showcasing my projects, skills, and experience as a developer.",
+  icons: {
+    feat    icon: "/logo.png?v=2",
+    shortcut: "/favicon.ico?v=2",
+    apple: "/logo.png?v=2",
+  },
 };
 
 import SmoothScroll from "@/components/ui/SmoothScroll";
