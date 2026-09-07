@@ -4,6 +4,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import Background from "@/components/ui/Background";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
+import RouteTransitionHandler from "@/components/ui/RouteTransitionHandler";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,20 +20,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000")
+  ),
   title: "Klyrhon Aurel | Portfolio",
   description:
     "Personal portfolio showcasing my projects, skills, and experience as a developer.",
   icons: {
-    icon: "/logo.png?v=2",
-    shortcut: "/favicon.ico?v=2",
-    apple: "/logo.png?v=2",
+    icon: [
+      { url: "/icon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
   },
 };
-
-import SmoothScroll from "@/components/ui/SmoothScroll";
-import Background from "@/components/ui/Background";
-import { ThemeProvider } from "@/components/ui/ThemeProvider";
-import RouteTransitionHandler from "@/components/ui/RouteTransitionHandler";
 
 export default function RootLayout({
   children,
