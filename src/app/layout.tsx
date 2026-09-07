@@ -31,6 +31,25 @@ export const metadata: Metadata = {
   title: "Klyrhon Aurel | Portfolio",
   description:
     "Personal portfolio showcasing my projects, skills, and experience as a developer.",
+  keywords: ["software engineer", "full stack developer", "ai developer", "philippines", "Klyrhon Aurel", "portfolio"],
+  authors: [{ name: "Klyrhon Aurel", url: "https://github.com/KlyrhonMiko" }],
+  creator: "Klyrhon Aurel",
+  openGraph: {
+    title: "Klyrhon Aurel | Software Engineer & AI Developer",
+    description: "Personal portfolio showcasing my projects, skills, and experience as a full stack and AI developer in the Philippines.",
+    url: "/",
+    siteName: "Klyrhon Aurel Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Klyrhon Aurel | Software Engineer & AI Developer",
+    description: "Personal portfolio showcasing my projects, skills, and experience as a full stack and AI developer in the Philippines.",
+  },
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [
       { url: "/icon-48x48.png", sizes: "48x48", type: "image/png" },
