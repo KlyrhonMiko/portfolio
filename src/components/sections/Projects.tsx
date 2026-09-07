@@ -845,7 +845,7 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
     <div
       id={`project-${project.mockupType}`}
       ref={rowRef}
-      className={`project-row flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}
+      className={`project-row flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative [--project-accent:var(--project-accent-light)] dark:[--project-accent:var(--project-accent-dark)]`}
       style={{
         "--project-accent-light": project.accentLight || project.accent,
         "--project-accent-dark": project.accent,
@@ -918,7 +918,7 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
           {/* Tags - Editorial Prose */}
           <motion.div variants={itemVariants} className="mb-10 w-full pt-4 border-t border-border-light/30 group/tags transition-colors duration-500 hover:border-border-light/60">
             <p
-              className="text-sm md:text-[15px] leading-relaxed text-body/50 font-light transition-colors duration-700 group-hover/tags:text-[var(--project-accent)]"
+              className="text-sm md:text-[15px] leading-relaxed text-body/80 dark:text-body/50 font-light transition-colors duration-700 group-hover/tags:text-[var(--project-accent)]"
             >
               {project.tags.join(", ")}.
             </p>
