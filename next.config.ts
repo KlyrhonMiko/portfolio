@@ -55,6 +55,18 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: '/favicon.ico',
+        destination: '/icons/favicon.ico',
+      },
+      {
+        source: '/apple-touch-icon.png',
+        destination: '/icons/apple-touch-icon.png',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

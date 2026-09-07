@@ -508,7 +508,7 @@ export const ParsAppMockup = ({ project, isHero }: { project: Project; isHero?: 
               </div>
               <div className="relative">
                 <Image
-                  src="/pars/landing.jpeg"
+                  src="/projects/pars/landing.jpeg"
                   alt="Landing"
                   width={1920}
                   height={1080}
@@ -535,7 +535,7 @@ export const ParsAppMockup = ({ project, isHero }: { project: Project; isHero?: 
               </div>
               <div className="relative">
                 <Image
-                  src="/pars/main-view.jpeg"
+                  src="/projects/pars/main-view.jpeg"
                   alt="Main Editor"
                   width={1920}
                   height={1080}
@@ -562,7 +562,7 @@ export const ParsAppMockup = ({ project, isHero }: { project: Project; isHero?: 
                 <div className="h-1.5 w-1.5 rounded-full bg-white/20" />
               </div>
               <Image
-                src="/pars/resume-grading.jpeg"
+                src="/projects/pars/resume-grading.jpeg"
                 alt="Resume Grading"
                 width={1920}
                 height={1080}
@@ -741,7 +741,7 @@ export const KoinAppMockup = ({ project, isHero }: { project: Project; isHero?: 
             >
             <div className="relative w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl border border-white/10 bg-surface transition-all duration-700 ease-out group-hover:translate-x-6 group-hover:-translate-y-4 group-hover:rotate-6 group-hover:scale-105">
               <Image
-                src="/koin/budgets-light.png"
+                src="/projects/koin/budgets-light.png"
                 alt="Budgets"
                 width={1080}
                 height={2400}
@@ -749,7 +749,7 @@ export const KoinAppMockup = ({ project, isHero }: { project: Project; isHero?: 
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
               <Image
-                src="/koin/budgets-dark.png"
+                src="/projects/koin/budgets-dark.png"
                 alt="Budgets"
                 width={1080}
                 height={2400}
@@ -773,7 +773,7 @@ export const KoinAppMockup = ({ project, isHero }: { project: Project; isHero?: 
             >
             <div className="relative w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border border-white/10 bg-surface transition-all duration-700 ease-out group-hover:-translate-x-6 group-hover:translate-y-4 group-hover:-rotate-6 group-hover:scale-105">
               <Image
-                src="/koin/activity-light.png"
+                src="/projects/koin/activity-light.png"
                 alt="Activity"
                 width={1080}
                 height={2400}
@@ -781,7 +781,7 @@ export const KoinAppMockup = ({ project, isHero }: { project: Project; isHero?: 
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
               <Image
-                src="/koin/activity-dark.png"
+                src="/projects/koin/activity-dark.png"
                 alt="Activity"
                 width={1080}
                 height={2400}
@@ -801,7 +801,7 @@ export const KoinAppMockup = ({ project, isHero }: { project: Project; isHero?: 
             >
               <div className="relative w-full h-full rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border border-white/15 bg-surface transition-all duration-700 ease-out group-hover:-translate-y-2 group-hover:scale-105">
                 <Image
-                  src="/koin/home-light.png"
+                  src="/projects/koin/home-light.png"
                   alt="Home"
                   width={1080}
                   height={2400}
@@ -809,7 +809,7 @@ export const KoinAppMockup = ({ project, isHero }: { project: Project; isHero?: 
                   sizes="(max-width: 768px) 50vw, 33vw"
                 />
                 <Image
-                  src="/koin/home-dark.png"
+                  src="/projects/koin/home-dark.png"
                   alt="Home"
                   width={1080}
                   height={2400}

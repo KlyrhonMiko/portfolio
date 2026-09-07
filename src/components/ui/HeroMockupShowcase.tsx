@@ -95,12 +95,12 @@ export default function HeroMockupShowcase() {
             exit="exit"
             className="absolute inset-0 flex items-start lg:items-center justify-center"
           >
-            <div 
+            <div
               onClick={() => scrollToProject(koinProject.mockupType)}
               className="group/showcase relative w-full flex justify-center scale-[0.75] min-[400px]:scale-[0.8] sm:scale-[0.85] md:scale-[0.9] lg:scale-[0.95] xl:scale-[1.1] 2xl:scale-[1.2] origin-top lg:origin-center cursor-pointer"
             >
               <KoinAppMockup project={koinProject} isHero={true} />
-              
+
               {/* Editorial Typographic Label */}
               <div className="absolute bottom-4 right-4 lg:bottom-8 lg:right-8 flex flex-col items-end opacity-0 translate-x-4 group-hover/showcase:opacity-100 group-hover/showcase:translate-x-0 transition-all duration-700 ease-out z-50 pointer-events-none">
                 <div className="flex items-center gap-3 mb-1.5">
@@ -120,7 +120,7 @@ export default function HeroMockupShowcase() {
             exit="exit"
             className="absolute inset-0 flex items-start lg:items-center justify-center"
           >
-            <div 
+            <div
               onClick={() => scrollToProject(parsProject.mockupType)}
               className="project-row group/showcase relative w-full flex justify-center scale-[0.7] min-[400px]:scale-[0.75] sm:scale-[0.8] md:scale-[0.85] lg:scale-[0.95] xl:scale-[1.1] 2xl:scale-[1.2] origin-top lg:origin-center cursor-pointer"
               style={{
@@ -129,7 +129,7 @@ export default function HeroMockupShowcase() {
               } as React.CSSProperties}
             >
               <ParsAppMockup project={parsProject} isHero={true} />
-              
+
               {/* Editorial Typographic Label */}
               <div className="absolute bottom-4 left-4 lg:bottom-8 lg:left-8 flex flex-col items-start opacity-0 -translate-x-4 group-hover/showcase:opacity-100 group-hover/showcase:translate-x-0 transition-all duration-700 ease-out z-50 pointer-events-none">
                 <div className="flex items-center gap-3 mb-1.5">
