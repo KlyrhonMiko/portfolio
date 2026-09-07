@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description:
     "Personal portfolio showcasing my projects, skills, and experience as a developer.",
   icons: {
-    feat    icon: "/logo.png?v=2",
+    icon: "/logo.png?v=2",
     shortcut: "/favicon.ico?v=2",
     apple: "/logo.png?v=2",
   },
