@@ -20,27 +20,6 @@ export function ResumeBackButton() {
   );
 }
 
-export function DynamicDomainLink({ path, className = "hover:underline" }: { path: string; className?: string }) {
-  const [domain, setDomain] = useState("klyrhon.me");
-  const [protocol, setProtocol] = useState("https:");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setDomain(window.location.host);
-      setProtocol(window.location.protocol);
-    }
-  }, []);
-
-  const href = path ? `${protocol}//${domain}${path}` : `${protocol}//${domain}`;
-  const display = path ? `${protocol}//${domain}${path}` : domain;
-
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
-      {display}
-    </a>
-  );
-}
-
 export function ResumeScaler({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResumeBackButton, DynamicDomainLink, ResumeScaler } from '@/components/ui/ResumeClientLogic';
+import { ResumeBackButton, ResumeScaler } from '@/components/ui/ResumeClientLogic';
 import { Download } from 'lucide-react';
 
 export const metadata = {
@@ -32,7 +32,7 @@ export default function ResumePage() {
               <h1 className="text-[26px] font-bold mb-1 tracking-tight">Klyrhon Miko R. Aurel</h1>
               <p className="text-[12px]">
                 aurelklyrhonmiko@gmail.com | +63936 109 0745 |{' '}
-                <DynamicDomainLink path="" className="hover:underline" />{' '}
+                <a href="https://klyrhon.me" target="_blank" rel="noopener noreferrer" className="hover:underline">klyrhon.me</a>{' '}
                 |{' '}
                 <a href="https://github.com/KlyrhonMiko" target="_blank" rel="noopener noreferrer" className="hover:underline">github.com/KlyrhonMiko</a>
               </p>
@@ -103,7 +103,7 @@ export default function ResumePage() {
               <div className="mb-4">
                 <div className="mb-2">
                   <h3 className="font-bold text-[15px] inline">Koin</h3>
-                  <span className="text-[13px]"> | Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/koin</a> | Live URL: <DynamicDomainLink path="/koin" className="text-blue-700 hover:underline" /></span>
+                  <span className="text-[13px]"> | Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/koin</a> | Live URL: <a href="https://klyrhon.me/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">klyrhon.me/koin</a></span>
                 </div>
                 <ul className="pl-6 space-y-1 list-disc">
                   <li>Constructed an offline-first personal finance mobile application using <strong>Flutter</strong> and <strong>Dart</strong>, managing complex app state with <strong>Riverpod</strong> and ensuring reliable local data storage via <strong>SQLite</strong>.</li>
@@ -115,7 +115,7 @@ export default function ResumePage() {
               <div className="mb-4">
                 <div className="mb-2">
                   <h3 className="font-bold text-[15px] inline">Nulll</h3>
-                  <span className="text-[13px]"> | Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/nulll</a> | Live URL: <DynamicDomainLink path="/nulll" className="text-blue-700 hover:underline" /></span>
+                  <span className="text-[13px]"> | Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/nulll</a> | Live URL: <a href="https://klyrhon.me/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">klyrhon.me/nulll</a></span>
                 </div>
                 <ul className="pl-6 space-y-1 list-disc">
                   <li>Formulated an interactive algorithm visualization platform and code execution sandbox using <strong>Next.js</strong> and <strong>TypeScript</strong> to make complex data structures intuitive.</li>
