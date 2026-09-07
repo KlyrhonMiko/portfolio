@@ -9,8 +9,13 @@ export const handleSmoothNavigation = async (
     router?: AppRouterInstance,
     onNavStart?: () => void
 ) => {
+    // External links (projects, social links, etc.) should open directly without exit animation
+    if (href.startsWith("http://") || href.startsWith("https://") || href.startsWith("//") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+        return;
+    }
+
     if (!href.startsWith("#")) {
-        // For external pages like /resume, play the curtain animation then navigate
+        // For internal subpages like /resume, play the curtain animation then navigate
         e.preventDefault();
         if (onNavStart) onNavStart();
 
