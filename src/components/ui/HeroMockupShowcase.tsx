@@ -23,6 +23,7 @@ const parsProject: Project = {
   description: "",
   tags: [],
   accent: "#ffffff",
+  accentLight: "#090a09",
   icon: FileText,
   mockUrl: "pars.klyrhon.tech",
   mockupType: "pars-app",
@@ -121,14 +122,18 @@ export default function HeroMockupShowcase() {
           >
             <div 
               onClick={() => scrollToProject(parsProject.mockupType)}
-              className="group/showcase relative w-full flex justify-center scale-[0.7] min-[400px]:scale-[0.75] sm:scale-[0.8] md:scale-[0.85] lg:scale-[0.95] xl:scale-[1.1] 2xl:scale-[1.2] origin-top lg:origin-center cursor-pointer"
+              className="project-row group/showcase relative w-full flex justify-center scale-[0.7] min-[400px]:scale-[0.75] sm:scale-[0.8] md:scale-[0.85] lg:scale-[0.95] xl:scale-[1.1] 2xl:scale-[1.2] origin-top lg:origin-center cursor-pointer"
+              style={{
+                "--project-accent-light": parsProject.accentLight || parsProject.accent,
+                "--project-accent-dark": parsProject.accent,
+              } as React.CSSProperties}
             >
               <ParsAppMockup project={parsProject} isHero={true} />
               
               {/* Editorial Typographic Label */}
               <div className="absolute bottom-4 left-4 lg:bottom-8 lg:left-8 flex flex-col items-start opacity-0 -translate-x-4 group-hover/showcase:opacity-100 group-hover/showcase:translate-x-0 transition-all duration-700 ease-out z-50 pointer-events-none">
                 <div className="flex items-center gap-3 mb-1.5">
-                  <div className="w-8 h-[1px]" style={{ backgroundColor: parsProject.accent }} />
+                  <div className="w-8 h-[1px]" style={{ backgroundColor: "var(--project-accent, #090a09)" }} />
                   <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-heading">{parsProject.title}</span>
                 </div>
                 <span className="text-xs text-muted font-medium tracking-wide">{parsProject.subtitle}</span>

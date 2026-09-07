@@ -30,6 +30,7 @@ export interface Project {
   github?: string;
   live?: string;
   accent: string;
+  accentLight?: string;
   icon: LucideIcon;
   mockUrl: string;
   mockupType: "desktop" | "mobile" | "algorithm" | "koin-app" | "terminal" | "pars-app";
@@ -56,7 +57,8 @@ const projects: Project[] = [
       "A modern ATS resume builder featuring a live preview editor and AI-powered bullet point optimization powered by Groq (Llama 3.1). Build professional, ATS-friendly resumes seamlessly.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Groq AI", "Supabase", "React PDF"],
     live: "https://pars.klyrhon.tech?ref=portfolio",
-    accent: "#ffffff", // Monochrome white to match the app's minimalist design
+    accent: "#ffffff", // Monochrome white to match the app's minimalist design in dark mode
+    accentLight: "#090a09", // High-contrast monochrome black for light mode visibility
     icon: FileText,
     mockUrl: "pars.klyrhon.tech",
     mockupType: "pars-app",
@@ -487,7 +489,7 @@ export const ParsAppMockup = ({ project, isHero }: { project: Project; isHero?: 
       {/* Ambient Glow */}
       <div
         className="absolute inset-0 blur-[100px] opacity-0 group-hover:opacity-20 transition-opacity duration-1000 rounded-full scale-110"
-        style={{ backgroundColor: project.accent }}
+        style={{ backgroundColor: "var(--project-accent, " + project.accent + ")" }}
       />
 
       <div className="relative w-full h-full">
@@ -841,7 +843,15 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
   const isMockupInView = useSmartInView(rowRef, { once: true, margin: "0px 0px 400px 0px" });
 
   return (
-    <div id={`project-${project.mockupType}`} ref={rowRef} className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}>
+    <div
+      id={`project-${project.mockupType}`}
+      ref={rowRef}
+      className={`project-row flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-24 ${paddingClass} relative`}
+      style={{
+        "--project-accent-light": project.accentLight || project.accent,
+        "--project-accent-dark": project.accent,
+      } as React.CSSProperties}
+    >
 
       {/* Connecting Scroll Line (Desktop only) */}
       <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border-light/30 hidden lg:block -z-10" />
@@ -880,11 +890,11 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
           <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
             <span
               className="text-sm font-semibold tracking-[0.2em] uppercase"
-              style={{ color: project.accent }}
+              style={{ color: "var(--project-accent, " + project.accent + ")" }}
             >
               0{index + 1}
             </span>
-            <div className="h-px w-8" style={{ backgroundColor: project.accent, opacity: 0.5 }} />
+            <div className="h-px w-8" style={{ backgroundColor: "var(--project-accent, " + project.accent + ")", opacity: 0.5 }} />
             <span className="text-xs font-medium tracking-widest uppercase text-muted">
               {project.mockupType === "mobile" || project.mockupType === "koin-app" ? "Mobile Application" : project.mockupType === "terminal" ? "Terminal Workflow" : "Web Platform"}
             </span>
@@ -893,7 +903,7 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
           {/* Title */}
           <motion.h3 variants={itemVariants} className="text-3xl sm:text-4xl lg:text-5xl font-bold text-heading tracking-tight mb-4 group inline-block">
             {project.title}
-            <div className="h-0.5 w-0 group-hover:w-full transition-all duration-500 ease-out mt-1" style={{ backgroundColor: project.accent }} />
+            <div className="h-0.5 w-0 group-hover:w-full transition-all duration-500 ease-out mt-1" style={{ backgroundColor: "var(--project-accent, " + project.accent + ")" }} />
           </motion.h3>
 
           {/* Subtitle */}
@@ -910,7 +920,6 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
           <motion.div variants={itemVariants} className="mb-10 w-full pt-4 border-t border-border-light/30 group/tags transition-colors duration-500 hover:border-border-light/60">
             <p
               className="text-sm md:text-[15px] leading-relaxed text-body/50 font-light transition-colors duration-700 group-hover/tags:text-[var(--project-accent)]"
-              style={{ "--project-accent": project.accent } as React.CSSProperties}
             >
               {project.tags.join(", ")}.
             </p>
@@ -923,9 +932,9 @@ const ProjectRow = ({ project: projectData, currentDomain, protocol, index }: { 
                 href={project.live}
                 onClick={(e) => handleSmoothNavigation(e, project.live!, null)}
                 className="group relative inline-flex items-center gap-2 text-sm font-semibold overflow-hidden px-4 py-2 rounded-full transition-all"
-                style={{ color: project.accent }}
+                style={{ color: "var(--project-accent, " + project.accent + ")" }}
               >
-                <div className="absolute inset-0 rounded-full opacity-10 scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" style={{ backgroundColor: project.accent }} />
+                <div className="absolute inset-0 rounded-full opacity-10 scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" style={{ backgroundColor: "var(--project-accent, " + project.accent + ")" }} />
                 <span className="relative z-10">View Project</span>
                 <ArrowUpRight className="relative z-10 w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>

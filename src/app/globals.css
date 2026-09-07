@@ -87,6 +87,15 @@ html {
   overflow-x: hidden;
 }
 
+.project-row {
+  --project-accent: var(--project-accent-light);
+}
+
+:root.dark .project-row,
+.dark .project-row {
+  --project-accent: var(--project-accent-dark);
+}
+
 /* Scale compensation for high-DPI / OS-scaled displays (e.g. 125%, 150%) */
 @media (-webkit-min-device-pixel-ratio: 1.25),
 (min-resolution: 120dpi) {
