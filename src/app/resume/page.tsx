@@ -91,10 +91,10 @@ export default function ResumePage() {
               <div className="mt-2 mb-4">
                 <div className="mb-2">
                   <h3 className="font-bold text-[15px] inline">Pars.</h3>
-                  <span className="text-[13px]"> | Live URL: <a href="https://pars.klyrhon.tech" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">pars.klyrhon.tech</a></span>
+                  <span className="text-[13px]"> | Live URL: <a href="https://pars.klyrhon.me" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">pars.klyrhon.me</a></span>
                 </div>
                 <ul className="pl-6 space-y-1 list-disc">
-                  <li>Architected a modern ATS-friendly resume builder utilizing <strong>Next.js</strong> and <strong>TypeScript</strong>, integrating a live preview editor that dynamically renders user data using <strong>React PDF</strong> for high-fidelity document generation.</li>
+                  <li>Built a modern ATS-friendly resume builder utilizing <strong>Next.js</strong> and <strong>TypeScript</strong>, integrating a live preview editor that dynamically renders user data using <strong>React PDF</strong> for high-fidelity document generation.</li>
                   <li>Engineered an AI-powered bullet point optimization engine leveraging <strong>Groq</strong> to provide instant, context-aware suggestions that enhance resume impact and readability.</li>
                   <li>Implemented secure authentication and real-time data persistence using <strong>Supabase</strong>, coupled with a highly responsive, minimalist user interface styled with <strong>Tailwind CSS</strong>.</li>
                 </ul>
@@ -103,7 +103,7 @@ export default function ResumePage() {
               <div className="mb-4">
                 <div className="mb-2">
                   <h3 className="font-bold text-[15px] inline">Koin</h3>
-                  <span className="text-[13px]"> | Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/koin</a> | Live URL: <a href="https://koin.klyrhon.tech" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">koin.klyrhon.tech</a></span>
+                  <span className="text-[13px]"> | Github: <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/koin</a> | Live URL: <a href="https://koin.klyrhon.me" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">koin.klyrhon.me</a></span>
                 </div>
                 <ul className="pl-6 space-y-1 list-disc">
                   <li>Constructed an offline-first personal finance mobile application using <strong>Flutter</strong> and <strong>Dart</strong>, managing complex app state with <strong>Riverpod</strong> and ensuring reliable local data storage via <strong>SQLite</strong>.</li>
@@ -115,7 +115,7 @@ export default function ResumePage() {
               <div className="mb-4">
                 <div className="mb-2">
                   <h3 className="font-bold text-[15px] inline">Nulll</h3>
-                  <span className="text-[13px]"> | Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/nulll</a> | Live URL: <a href="https://nulll.klyrhon.tech" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">nulll.klyrhon.tech</a></span>
+                  <span className="text-[13px]"> | Github: <a href="https://github.com/KlyrhonMiko/nulll" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">github.com/KlyrhonMiko/nulll</a> | Live URL: <a href="https://nulll.klyrhon.me" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">nulll.klyrhon.me</a></span>
                 </div>
                 <ul className="pl-6 space-y-1 list-disc">
                   <li>Formulated an interactive algorithm visualization platform and code execution sandbox using <strong>Next.js</strong> and <strong>TypeScript</strong> to make complex data structures intuitive.</li>
