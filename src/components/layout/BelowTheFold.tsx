@@ -1,8 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { useSmartInView } from "@/hooks/useSmartInView";
 
 // Dynamically import heavy sections so they don't block the initial page load JS payload.
 const DynamicAbout = dynamic(() => import("@/components/sections/About"));
@@ -13,32 +11,13 @@ const DynamicContact = dynamic(() => import("@/components/sections/Contact"));
 const DynamicFooter = dynamic(() => import("@/components/layout/Footer"));
 
 function LazySection({ children, minHeight, id }: { children: React.ReactNode; minHeight: string; id?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  // Trigger loading when the section is 800px below the viewport
-  const isInView = useSmartInView(ref, { once: true, margin: "0px 0px 800px 0px" });
-  const [canMount, setCanMount] = useState(false);
-  const [forceMount, setForceMount] = useState(false);
-
-  useEffect(() => {
-    // Guarantee the main thread stays free during the 1.5s Hero entrance animation
-    const timer = setTimeout(() => {
-      setCanMount(true);
-    }, 1500);
-    
-    const handleForceMount = () => setForceMount(true);
-    window.addEventListener("force-mount-sections", handleForceMount);
-    
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("force-mount-sections", handleForceMount);
-    };
-  }, []);
-
-  const shouldMount = canMount || forceMount || isInView;
-
+  // Removed shouldMount gating for SEO purposes.
+  // By rendering children unconditionally, Next.js includes these sections in the initial HTML payload (SSR),
+  // which is critical for search engines to index the content.
+  // The JS bundles are still code-split via the 'dynamic' imports above.
   return (
-    <div ref={ref} id={id} style={{ minHeight: shouldMount ? undefined : minHeight }} className="relative w-full">
-      {shouldMount ? children : null}
+    <div id={id} className="relative w-full">
+      {children}
     </div>
   );
 }
