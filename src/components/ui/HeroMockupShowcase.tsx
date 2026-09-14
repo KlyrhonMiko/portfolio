@@ -13,7 +13,7 @@ const koinProject: Project = {
   tags: [],
   accent: "#14d2a5",
   icon: Wallet,
-  mockUrl: "koin.klyrhon.tech",
+  mockUrl: "koin.klyrhon.me",
   mockupType: "koin-app",
 };
 
@@ -25,7 +25,7 @@ const parsProject: Project = {
   accent: "#ffffff",
   accentLight: "#090a09",
   icon: FileText,
-  mockUrl: "pars.klyrhon.tech",
+  mockUrl: "pars.klyrhon.me",
   mockupType: "pars-app",
 };
 
