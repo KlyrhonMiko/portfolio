@@ -54,6 +54,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ];
+  },
 };
 
 export default nextConfig;
