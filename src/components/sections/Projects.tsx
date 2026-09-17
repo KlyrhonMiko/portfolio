@@ -43,10 +43,10 @@ const projects: Project[] = [
       "A sophisticated personal finance tracker built with Flutter. Designed to offer a premium and effortless experience for managing money, featuring automated categorization and rich, interactive analytics.",
     tags: ["Flutter", "Dart", "Riverpod", "SQLite", "NLP", "Voice Recognition"],
     github: "https://github.com/KlyrhonMiko/koin",
-    live: "https://koin.klyrhon.tech",
+    live: "https://koin.klyrhon.me",
     accent: "#14d2a5",
     icon: Wallet,
-    mockUrl: "koin.klyrhon.tech",
+    mockUrl: "koin.klyrhon.me",
     mockupType: "koin-app",
   },
   {
@@ -55,11 +55,11 @@ const projects: Project[] = [
     description:
       "A modern ATS resume builder featuring a live preview editor and AI-powered bullet point optimization powered by Groq (Llama 3.1). Build professional, ATS-friendly resumes seamlessly.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Groq AI", "Supabase", "React PDF"],
-    live: "https://pars.klyrhon.tech",
+    live: "https://pars.klyrhon.me",
     accent: "#ffffff", // Monochrome white to match the app's minimalist design in dark mode
     accentLight: "#090a09", // High-contrast monochrome black for light mode visibility
     icon: FileText,
-    mockUrl: "pars.klyrhon.tech",
+    mockUrl: "pars.klyrhon.me",
     mockupType: "pars-app",
   },
   {
@@ -69,10 +69,10 @@ const projects: Project[] = [
       "An in-browser Python execution environment and visualizer. It allows users to write Python code and interactively step through its execution, visualizing algorithms and data structures in real-time.",
     tags: ["Next.js", "TypeScript", "Pyodide", "Web Workers", "D3.js", "Framer Motion"],
     github: "https://github.com/KlyrhonMiko/nulll",
-    live: "https://nulll.klyrhon.tech",
+    live: "https://nulll.klyrhon.me",
     accent: "#3b82f6",
     icon: Code2,
-    mockUrl: "nulll.klyrhon.tech",
+    mockUrl: "nulll.klyrhon.me",
     mockupType: "algorithm",
   },
   {
@@ -82,7 +82,7 @@ const projects: Project[] = [
       "A guided command-line utility powered by @clack/prompts. It provides an interactive experience to seamlessly browse and install a curated collection of Antigravity AI skills into your local environment.",
     tags: ["Node.js", "CLI", "@clack/prompts", "Agentic AI"],
     github: "https://github.com/KlyrhonMiko/kly-skills",
-    live: "https://skills.klyrhon.tech",
+    live: "https://skills.klyrhon.me",
     accent: "#10b981",
     icon: Terminal,
     mockUrl: "npx kly-skills",

@@ -50,17 +50,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  icons: {
-    icon: [
-      { url: "/icons/icon-48x48.png", sizes: "48x48", type: "image/png" },
-      { url: "/icons/icon-96x96.png", sizes: "96x96", type: "image/png" },
-      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
-    ],
-    apple: [
-      { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-    shortcut: "/icons/favicon.ico",
-  },
 };
 
 export default function RootLayout({

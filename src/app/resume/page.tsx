@@ -5,11 +5,50 @@ import { Download } from 'lucide-react';
 export const metadata = {
   title: 'Resume | Klyrhon Miko R. Aurel',
   description: 'View and download the resume of Klyrhon Miko R. Aurel.',
+  openGraph: {
+    title: "Resume | Klyrhon Miko R. Aurel",
+    description: "View and download the resume of Klyrhon Miko R. Aurel.",
+    url: "/resume",
+    siteName: "Klyrhon Aurel Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Resume | Klyrhon Miko R. Aurel",
+    description: "View and download the resume of Klyrhon Miko R. Aurel.",
+  },
+  alternates: {
+    canonical: "/resume",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Klyrhon Miko R. Aurel",
+  "jobTitle": "Software Engineer & AI Programmer",
+  "url": "https://klyrhon.me",
+  "email": "aurelklyrhonmiko@gmail.com",
+  "telephone": "+639361090745",
+  "sameAs": [
+    "https://github.com/KlyrhonMiko",
+    "https://www.linkedin.com/in/klyrhon/",
+    "https://www.facebook.com/aurelklyrhon"
+  ],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Pamantasan ng Lungsod ng Pasig"
+  }
 };
 
 export default function ResumePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="min-h-screen bg-gray-200 py-8 px-4 sm:px-8 font-sans text-black">
         {/* Top Actions Area */}
         <div className="w-full max-w-[794px] mx-auto mb-6 flex justify-between items-center">
