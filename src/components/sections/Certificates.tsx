@@ -204,12 +204,12 @@ export default function Certificates() {
                 </div>
 
                 {/* Text Content Area */}
-                <div className="flex-1 transition-[padding] duration-700 ease-[0.16,1,0.3,1]">
-                  <h3 className="text-2xl md:text-4xl font-light text-heading group-hover:text-primary transition-all duration-500 group-hover:translate-x-2 ease-out transform-gpu">
+                <div className="flex-1 transition-[padding] duration-300 ease-out">
+                  <h3 className="text-2xl md:text-4xl font-light text-heading group-hover:text-primary transition-transform duration-300 group-hover:translate-x-2 ease-out transform-gpu">
                     {cert.title}
                   </h3>
                   <div className="mt-3 flex items-center gap-4">
-                    <span className="text-xs md:text-sm uppercase tracking-[0.15em] font-medium text-muted/80 group-hover:translate-x-2 transition-all duration-500 delay-75 ease-out transform-gpu">
+                    <span className="text-xs md:text-sm uppercase tracking-[0.15em] font-medium text-muted/80 group-hover:translate-x-2 transition-transform duration-300 delay-75 ease-out transform-gpu">
                       {cert.issuer}
                     </span>
                     <span className="md:hidden text-xs uppercase tracking-widest text-muted/60">
@@ -218,9 +218,9 @@ export default function Certificates() {
                   </div>
 
                   {/* Expanded Description */}
-                  <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out group-hover:translate-x-2 transform-gpu">
+                  <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows,transform] duration-300 ease-out group-hover:translate-x-2 transform-gpu">
                     <div className="overflow-hidden">
-                      <p className="pt-4 text-sm md:text-base text-muted/70 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 max-w-xl">
+                      <p className="pt-4 text-sm md:text-base text-muted/70 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 max-w-xl">
                         {cert.description || "Comprehensive certification covering fundamental concepts, advanced techniques, and practical applications in this domain."}
                       </p>
                     </div>
@@ -228,10 +228,10 @@ export default function Certificates() {
                 </div>
 
                 {/* Right Side: Expanding Image Container */}
-                <div className="flex items-center justify-end shrink-0 relative transition-[width] duration-700 ease-[0.16,1,0.3,1] w-8 md:w-12 group-hover:w-32 md:group-hover:w-64 lg:group-hover:w-80 h-full">
+                <div className="flex items-center justify-end shrink-0 relative transition-[width] duration-300 ease-out w-8 md:w-12 group-hover:w-32 md:group-hover:w-64 lg:group-hover:w-80 h-full">
                   
                   {/* Floating Certificate Image (Visible on Hover) */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:rotate-[-4deg] group-hover:scale-100 scale-95 transition-all duration-700 ease-[0.16,1,0.3,1] pointer-events-none hidden md:block z-20 origin-center">
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:rotate-[-4deg] group-hover:scale-100 scale-95 transition-[transform,opacity] duration-300 ease-out pointer-events-none hidden md:block z-20 origin-right">
                     <div className="w-64 lg:w-80 border border-border-light/30 rounded-lg shadow-2xl overflow-hidden flex flex-col items-center justify-center bg-transparent">
                       {cert.image ? (
                         <img src={cert.image} alt={cert.title} className="w-full h-auto object-cover" />
