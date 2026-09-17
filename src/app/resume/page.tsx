@@ -4,10 +4,10 @@ import { Download } from 'lucide-react';
 
 export const metadata = {
   title: 'Resume | Klyrhon Miko R. Aurel',
-  description: 'View and download the resume of Klyrhon Miko R. Aurel.',
+  description: 'View the resume of Klyrhon Miko R. Aurel, a Software Engineer and AI Programmer specializing in full-stack web development with React, Next.js, Python, and Flutter.',
   openGraph: {
     title: "Resume | Klyrhon Miko R. Aurel",
-    description: "View and download the resume of Klyrhon Miko R. Aurel.",
+    description: "View the resume of Klyrhon Miko R. Aurel, a Software Engineer and AI Programmer specializing in full-stack web development with React, Next.js, Python, and Flutter.",
     url: "/resume",
     siteName: "Klyrhon Aurel Portfolio",
     locale: "en_US",
@@ -16,7 +16,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Resume | Klyrhon Miko R. Aurel",
-    description: "View and download the resume of Klyrhon Miko R. Aurel.",
+    description: "View the resume of Klyrhon Miko R. Aurel, a Software Engineer and AI Programmer specializing in full-stack web development with React, Next.js, Python, and Flutter.",
   },
   alternates: {
     canonical: "/resume",

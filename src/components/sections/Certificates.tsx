@@ -12,6 +12,7 @@ type Certificate = {
   link: string;
   description?: string;
   image?: string;
+  target?: string;
 };
 
 const certificates: Certificate[] = [
