@@ -126,20 +126,22 @@ export default function Hero() {
           >
             I'm Klyrhon,
             <br />
-            a{" "}
-            <span className="inline-flex flex-col h-[1.35em] overflow-hidden align-top text-primary whitespace-nowrap">
-              <AnimatePresence mode="popLayout">
-                <motion.span
-                  key={roleIndex}
-                  initial={{ opacity: 0, y: 40, rotateX: -90 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  exit={{ opacity: 0, y: -40, rotateX: 90 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="origin-center pb-2 inline-block will-change-transform"
-                >
-                  {roles[roleIndex]}
-                </motion.span>
-              </AnimatePresence>
+            <span data-nosnippet>
+              a{" "}
+              <span className="inline-flex flex-col h-[1.35em] overflow-hidden align-top text-primary whitespace-nowrap">
+                <AnimatePresence mode="popLayout">
+                  <motion.span
+                    key={roleIndex}
+                    initial={{ opacity: 0, y: 40, rotateX: -90 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    exit={{ opacity: 0, y: -40, rotateX: 90 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="origin-center pb-2 inline-block will-change-transform"
+                  >
+                    {roles[roleIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
             </span>
           </motion.h1>
 

@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   keywords: ["software engineer", "full stack developer", "ai developer", "philippines", "Klyrhon Aurel", "portfolio"],
   authors: [{ name: "Klyrhon Aurel", url: "https://github.com/KlyrhonMiko" }],
   creator: "Klyrhon Aurel",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "Klyrhon Aurel | Software Engineer & AI Developer",
     description: "Personal portfolio showcasing my projects, skills, and experience as a full stack and AI developer in the Philippines.",
