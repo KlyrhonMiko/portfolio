@@ -68,7 +68,7 @@ const certificates: Certificate[] = [
     title: "Claude Code 101",
     issuer: "Anthropic",
     date: "2026",
-    link: "https://verify.skilljar.com/c/i6x6r67puy7o",
+    link: "https://academy.claude.com/verify/83c44c290f581e8592c3004d2d411b0a",
     image: "/certificates/claude-code-101.png",
     description: "Learned the essentials of leveraging Claude for software development, code generation, and debugging."
   },
