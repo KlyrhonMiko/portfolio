@@ -60,7 +60,7 @@ const certificates: Certificate[] = [
     title: "Claude 101",
     issuer: "Anthropic",
     date: "2026",
-    link: "https://verify.skilljar.com/c/wgk9ewiuyn66",
+    link: "https://academy.claude.com/verify/6a704a07c0e2fe8aae12ac9c6140d1d8",
     image: "/certificates/claude-101.png",
     description: "Foundational certification covering Anthropic's Claude AI models, their capabilities, and ethical AI principles."
   },
