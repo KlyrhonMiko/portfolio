@@ -30,29 +30,63 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    let frame = 0;
+    let needsMeasure = true;
+    let sectionPositions: { id: string; top: number }[] = [];
+    let previousScrolled = false;
+    let previousSection = "home";
 
-  useEffect(() => {
-    const updateActiveSection = () => {
-      const sections = document.querySelectorAll("section[id]");
-      const triggerOffset = 180;
-
+    const updateNavigation = () => {
+      frame = 0;
+      const scrollY = window.scrollY;
+      // Layout reads are only needed when content or viewport dimensions change.
+      if (needsMeasure) {
+        sectionPositions = Array.from(document.querySelectorAll("section[id]"), (section) => ({
+          id: section.id,
+          top: section.getBoundingClientRect().top + scrollY,
+        }));
+        needsMeasure = false;
+      }
+      const nextScrolled = scrollY > 20;
       let current = "home";
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= triggerOffset) {
+      sectionPositions.forEach((section) => {
+        if (section.top <= scrollY + 180) {
           current = section.id;
         }
       });
-      setActiveSection(current);
+      if (nextScrolled !== previousScrolled) {
+        previousScrolled = nextScrolled;
+        setScrolled(nextScrolled);
+      }
+      if (current !== previousSection) {
+        previousSection = current;
+        setActiveSection(current);
+      }
     };
 
-    updateActiveSection();
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    return () => window.removeEventListener("scroll", updateActiveSection);
+    const scheduleUpdate = () => {
+      if (!frame) frame = requestAnimationFrame(updateNavigation);
+    };
+    const invalidatePositions = () => {
+      needsMeasure = true;
+      scheduleUpdate();
+    };
+    const resizeObserver = new ResizeObserver(invalidatePositions);
+    const main = document.querySelector("main");
+    if (main) {
+      resizeObserver.observe(main);
+      Array.from(main.children).forEach((section) => resizeObserver.observe(section));
+    }
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", invalidatePositions);
+    return () => {
+      cancelAnimationFrame(frame);
+      resizeObserver.disconnect();
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", invalidatePositions);
+    };
   }, []);
 
   // Lock body scroll when mobile menu is open

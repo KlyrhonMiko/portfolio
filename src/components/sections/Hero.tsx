@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useInView, Variants } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { Github, Linkedin, Mail, Twitter, Sparkles, Facebook } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { handleSmoothNavigation } from "@/utils/navigation";
@@ -42,6 +42,8 @@ const itemVariants: Variants = {
 };
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { margin: "200px" });
   const [roleIndex, setRoleIndex] = useState(0);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const lenis = useLenis();
@@ -68,14 +70,16 @@ export default function Hero() {
   };
 
   useEffect(() => {
+    if (!isInView) return;
     const interval = setInterval(() => {
       setRoleIndex((prev) => (prev + 1) % roles.length);
     }, 3500);
     return () => clearInterval(interval);
-  }, []);
+  }, [isInView]);
 
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative flex min-h-[100dvh] flex-col overflow-hidden"
     >
@@ -228,7 +232,9 @@ export default function Hero() {
         <div className="h-12 w-[1px] bg-border-light relative overflow-hidden">
           <motion.div
             className="absolute top-0 left-0 w-full h-1/3 bg-primary"
-            animate={{ top: ['-50%', '150%'] }}
+            initial={{ y: "-150%" }}
+            whileInView={{ y: ['-150%', '450%'] }}
+            viewport={{ margin: "200px" }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
           />
         </div>

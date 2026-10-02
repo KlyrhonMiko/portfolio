@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { memo, useRef, useState, useEffect } from "react";
+import { motion, AnimatePresence, useInView, Variants } from "framer-motion";
 import { KoinAppMockup, ParsAppMockup, Project } from "../sections/Projects";
 import { Wallet, FileText } from "lucide-react";
 
@@ -29,15 +29,18 @@ const parsProject: Project = {
   mockupType: "pars-app",
 };
 
-export default function HeroMockupShowcase() {
+function HeroMockupShowcase() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { margin: "200px" });
   const [showKoin, setShowKoin] = useState(true);
 
   useEffect(() => {
+    if (!isInView) return;
     const interval = setInterval(() => {
       setShowKoin((prev) => !prev);
     }, 6000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isInView]);
 
   const scrollToProject = (mockupType: string) => {
     const el = document.getElementById(`project-${mockupType}`);
@@ -84,7 +87,7 @@ export default function HeroMockupShowcase() {
   };
 
   return (
-    <div className="relative w-full h-full flex items-start lg:items-center justify-center perspective-[1200px]">
+    <div ref={containerRef} className="relative w-full h-full flex items-start lg:items-center justify-center perspective-[1200px]">
       <AnimatePresence>
         {showKoin ? (
           <motion.div
@@ -145,3 +148,5 @@ export default function HeroMockupShowcase() {
     </div>
   );
 }
+
+export default memo(HeroMockupShowcase);

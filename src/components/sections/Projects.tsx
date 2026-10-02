@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring, Variants } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useSpring, Variants } from "framer-motion";
 import {
   Github,
   ArrowUpRight,
@@ -161,7 +161,7 @@ const floatAnimation = {
 const TerminalMockup = ({ project }: { project: Project }) => {
   const [step, setStep] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useSmartInView(containerRef, { once: false, margin: "0px 0px -100px 0px" });
+  const isInView = useInView(containerRef, { margin: "200px" });
 
   useEffect(() => {
     if (!isInView) return;
@@ -214,7 +214,8 @@ const TerminalMockup = ({ project }: { project: Project }) => {
                 {step === 0 ? "" : "npx kly-skills"}
               </motion.span>
               <motion.span
-                animate={{ opacity: [1, 0] }}
+                whileInView={{ opacity: [1, 0] }}
+                viewport={{ margin: "200px" }}
                 transition={{ repeat: Infinity, duration: 0.8 }}
                 className="inline-block w-2 h-4 bg-white/70 ml-1 translate-y-0.5"
                 style={{ display: step === 0 ? "inline-block" : "none" }}
@@ -290,7 +291,8 @@ const TerminalMockup = ({ project }: { project: Project }) => {
               <span className="text-emerald-500 font-bold">➜</span>
               <span className="text-blue-400 font-bold">portfolio</span>
               <motion.span
-                animate={{ opacity: [1, 0] }}
+                whileInView={{ opacity: [1, 0] }}
+                viewport={{ margin: "200px" }}
                 transition={{ repeat: Infinity, duration: 0.8 }}
                 className="inline-block w-2 h-4 bg-white/70 ml-1 translate-y-0.5"
               />
@@ -340,7 +342,7 @@ const AlgorithmVisualizerMockup = ({ project }: { project: Project }) => {
   const [frames, setFrames] = useState(() => generateBubbleSortFrames([80, 20, 60, 40, 90, 30, 70, 50]));
   const [frameIndex, setFrameIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useSmartInView(containerRef, { once: false, margin: "0px 0px -100px 0px" });
+  const isInView = useInView(containerRef, { margin: "200px" });
 
   useEffect(() => {
     if (!isInView) return;
@@ -496,7 +498,8 @@ export const ParsAppMockup = ({ project, isHero }: { project: Project; isHero?: 
           {/* Layer 1 (Back): Landing */}
           <motion.div variants={layerVariants} className="absolute z-0 left-[5%] right-[15%] top-[5%]">
             <motion.div
-              animate={{ y: [0, -8, 0] }}
+              whileInView={{ y: [0, -8, 0] }}
+              viewport={{ margin: "200px" }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0 }}
               className="w-full h-full"
             >  <div className="w-full rounded-xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] border border-white/10 bg-[#0a0a0a] transition-all duration-700 ease-out group-hover:-translate-y-8 group-hover:-translate-x-6 group-hover:-rotate-6 group-hover:scale-105">
@@ -522,7 +525,8 @@ export const ParsAppMockup = ({ project, isHero }: { project: Project; isHero?: 
           {/* Layer 2 (Middle): Main Editor */}
           <motion.div variants={layerVariants} className="absolute z-10 left-[7.5%] right-[7.5%] top-[25%] lg:top-[30%]">
             <motion.div
-              animate={{ y: [0, -10, 0] }}
+              whileInView={{ y: [0, -10, 0] }}
+              viewport={{ margin: "200px" }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
               className="w-full"
             >
@@ -550,7 +554,8 @@ export const ParsAppMockup = ({ project, isHero }: { project: Project; isHero?: 
           {/* Layer 3 (Front): Resume Grading */}
           <motion.div variants={layerVariants} className="absolute z-20 left-[15%] right-[5%] top-[45%] lg:top-[55%]">
             <motion.div
-              animate={{ y: [0, -12, 0] }}
+              whileInView={{ y: [0, -12, 0] }}
+              viewport={{ margin: "200px" }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.6 }}
               className="w-full"
             >
@@ -591,7 +596,8 @@ const MinimalDesktopMockup = ({ project }: { project: Project }) => (
     />
 
     <motion.div
-      animate={floatAnimation}
+      whileInView={floatAnimation}
+      viewport={{ margin: "200px" }}
       className="rounded-xl border border-border-light bg-surface shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-700 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] group-hover:-translate-y-2 relative z-10"
     >
       {/* Browser Chrome */}
@@ -636,7 +642,8 @@ const MinimalDesktopMockup = ({ project }: { project: Project }) => (
           <motion.div
             className="absolute inset-0 opacity-0 group-hover/box:opacity-100 transition-opacity duration-1000"
             style={{ background: `linear-gradient(45deg, transparent, ${project.accent}10, transparent)` }}
-            animate={{ x: ['-100%', '100%'] }}
+            whileInView={{ x: ['-100%', '100%'] }}
+            viewport={{ margin: "200px" }}
             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
           />
         </motion.div>
@@ -660,7 +667,8 @@ const MinimalMobileMockup = ({ project }: { project: Project }) => (
     />
 
     <motion.div
-      animate={{ y: [0, -8, 0], rotateZ: [0, 1, 0] }}
+      whileInView={{ y: [0, -8, 0], rotateZ: [0, 1, 0] }}
+      viewport={{ margin: "200px" }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" as const }}
       className="relative rounded-[2.5rem] sm:rounded-[3rem] border-[6px] sm:border-[10px] border-surface-elevated bg-surface shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-700 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.12)] group-hover:-translate-y-2 z-10"
     >
@@ -731,10 +739,11 @@ export const KoinAppMockup = ({ project, isHero }: { project: Project; isHero?: 
           {/* Card 3: Budgets (Right - Behind) */}
           <motion.div variants={layerVariants} className="absolute z-0 top-[5%] -right-[40%] sm:-right-[45%] w-[130px] sm:w-[160px] lg:w-[180px]">
             <motion.div
-              animate={{
+              whileInView={{
                 y: [0, -10, 0],
                 rotateZ: [8, 10, 8],
               }}
+              viewport={{ margin: "200px" }}
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               className="w-full h-full"
             >
@@ -763,10 +772,11 @@ export const KoinAppMockup = ({ project, isHero }: { project: Project; isHero?: 
           {/* Card 2: Activity (Left - Front) */}
           <motion.div variants={layerVariants} className="absolute z-20 bottom-[5%] -left-[40%] sm:-left-[45%] w-[130px] sm:w-[160px] lg:w-[180px]">
             <motion.div
-              animate={{
+              whileInView={{
                 y: [0, 10, 0],
                 rotateZ: [-10, -12, -10],
               }}
+              viewport={{ margin: "200px" }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               className="w-full h-full"
             >
@@ -794,7 +804,8 @@ export const KoinAppMockup = ({ project, isHero }: { project: Project; isHero?: 
           {/* Main Card: Home (Center) */}
           <motion.div variants={layerVariants} className="relative z-10 w-full">
             <motion.div
-              animate={{ y: [0, -8, 0] }}
+              whileInView={{ y: [0, -8, 0] }}
+              viewport={{ margin: "200px" }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               className="w-full"
             >
