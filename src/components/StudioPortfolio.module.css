@@ -596,3 +596,7 @@
   margin: 4px 0 12px;
 }
 @media (max-width: 800px) { .creativeLink { margin: 0; } }
+
+.koinVisual .darkScreenshot { display: none; }
+:global(.dark) .koinVisual .lightScreenshot { display: none; }
+:global(.dark) .koinVisual .darkScreenshot { display: block; }

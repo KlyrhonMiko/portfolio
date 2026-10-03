@@ -41,9 +41,12 @@ export default function StudioPortfolio() {
           <article className={styles.project} aria-labelledby="koin-title">
             <div className={styles.projectHeader}><div className={styles.projectIdentity}><Image className={styles.appIcon} src="/projects/koin/icon.png" width={44} height={44} alt="" sizes="44px" /><div><h2 id="koin-title">Koin</h2><p>Personal finance tracker</p></div></div><ExternalLink href="https://koin.klyrhon.me">Visit project</ExternalLink></div>
             <div className={styles.koinVisual}>
-              <Image src="/projects/koin/home-dark.png" width={1080} height={2400} alt="Koin home screen with balance and spending overview" sizes="(max-width: 600px) 29vw, 176px" priority />
-              <Image src="/projects/koin/activity-dark.png" width={1080} height={2400} alt="Koin expense history" sizes="(max-width: 600px) 29vw, 176px" priority />
-              <Image src="/projects/koin/budgets-dark.png" width={1080} height={2400} alt="Koin category budgets" sizes="(max-width: 600px) 29vw, 176px" priority />
+              <Image className={styles.lightScreenshot} src="/projects/koin/home-light.png" width={1080} height={2400} alt="Koin home screen with balance and spending overview" sizes="(max-width: 600px) 29vw, 176px" priority />
+              <Image className={styles.darkScreenshot} src="/projects/koin/home-dark.png" width={1080} height={2400} alt="Koin home screen with balance and spending overview" sizes="(max-width: 600px) 29vw, 176px" priority />
+              <Image className={styles.lightScreenshot} src="/projects/koin/activity-light.png" width={1080} height={2400} alt="Koin expense history" sizes="(max-width: 600px) 29vw, 176px" priority />
+              <Image className={styles.darkScreenshot} src="/projects/koin/activity-dark.png" width={1080} height={2400} alt="Koin expense history" sizes="(max-width: 600px) 29vw, 176px" priority />
+              <Image className={styles.lightScreenshot} src="/projects/koin/budgets-light.png" width={1080} height={2400} alt="Koin category budgets" sizes="(max-width: 600px) 29vw, 176px" priority />
+              <Image className={styles.darkScreenshot} src="/projects/koin/budgets-dark.png" width={1080} height={2400} alt="Koin category budgets" sizes="(max-width: 600px) 29vw, 176px" priority />
             </div>
             <p className={styles.description}>Expenses, budgets, and spending patterns in one app, with automated categorization and interactive analytics.</p>
             <div className={styles.projectMeta}><p>Flutter · Dart · Riverpod · SQLite · NLP · Voice recognition</p><ExternalLink href="https://github.com/KlyrhonMiko/koin">Source</ExternalLink></div>
@@ -82,3 +85,4 @@ export default function StudioPortfolio() {
     </div>
   </div>;
 }
+
