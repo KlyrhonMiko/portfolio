@@ -96,21 +96,6 @@ html {
   --project-accent: var(--project-accent-dark);
 }
 
-/* Scale compensation for high-DPI / OS-scaled displays (e.g. 125%, 150%) */
-@media (-webkit-min-device-pixel-ratio: 1.25),
-(min-resolution: 120dpi) {
-  html {
-    font-size: 14px;
-  }
-}
-
-@media (-webkit-min-device-pixel-ratio: 1.5),
-(min-resolution: 144dpi) {
-  html {
-    font-size: 12.8px;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -213,7 +198,7 @@ html[data-theme-transition="true"] .noise-overlay {
   opacity: 0 !important;
 }
 
-/* Disable backdrop-filter during view transitions. 
+/* Disable backdrop-filter during view transitions.
    Chromium has a massive performance hit when snapshotting elements with backdrop-filter */
 html[data-theme-transition="true"] * {
   backdrop-filter: none !important;
@@ -381,19 +366,6 @@ html[data-theme-transition="true"] * {
   animation-play-state: paused;
 }
 
-/* ===== Hide native scrollbar (Lenis handles scroll) ===== */
-html {
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* IE/Edge */
-}
-
-html::-webkit-scrollbar {
-  display: none;
-  /* Chrome / Safari */
-}
-
 /* ===== Hide scrollbar for components ===== */
 .scrollbar-hide {
   scrollbar-width: none;
@@ -483,4 +455,6 @@ html[data-theme-transition="true"]::view-transition-new(root) {
     -webkit-clip-path: circle(120% at var(--theme-x, 100%) var(--theme-y, 0%));
   }
 }
-
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

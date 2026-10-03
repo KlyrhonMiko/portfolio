@@ -1,13 +1,15 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
-import SmoothScroll from "@/components/ui/SmoothScroll";
-import Background from "@/components/ui/Background";
+
+
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import RouteTransitionHandler from "@/components/ui/RouteTransitionHandler";
+
+const plex = IBM_Plex_Sans({ variable: "--font-plex", subsets: ["latin"], weight: ["400", "500", "600"], display: "swap" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
   ),
   title: "Klyrhon Aurel | Portfolio",
   description:
-    "Personal portfolio showcasing my projects, skills, and experience as a developer.",
+    "Selected software projects and field notes by Klyrhon Aurel, an independent web and mobile developer in the Philippines.",
   keywords: ["software engineer", "full stack developer", "ai developer", "philippines", "Klyrhon Aurel", "portfolio"],
   authors: [{ name: "Klyrhon Aurel", url: "https://github.com/KlyrhonMiko" }],
   creator: "Klyrhon Aurel",
@@ -59,15 +61,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${plex.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Background />
-          <SmoothScroll>{children}</SmoothScroll>
+
+          {children}
         </ThemeProvider>
         <RouteTransitionHandler />
         <Analytics />
