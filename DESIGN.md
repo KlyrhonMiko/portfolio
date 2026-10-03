@@ -9,3 +9,7 @@ Warm neutral canvas #fcfcfa, foreground #282925, secondary #666761. Dark equival
 Projects carry descriptions, technology lists, direct links, and native expandable build notes. Motion is restricted to short control feedback. Keep reduced-motion support, visible focus, semantic headings, and readable text at narrow widths.
 
 Certificates are always visible as a compact list under About; no disclosure or extra click.
+
+The résumé route shares the portfolio's IBM Plex Sans, neutral theme, sidebar alignment, and reading column. It reflows on mobile without scaling. Printing hides navigation and uses a plain light document. The existing downloadable PDF remains a separate asset.
+
+The preserved animated portfolio runs at creative.klyrhon.me in production and /creative locally. The studio remains at klyrhon.me. Version links connect the two; creative restores the original animated certificate section independently of the studio list.

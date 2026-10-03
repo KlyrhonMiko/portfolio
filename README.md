@@ -56,3 +56,16 @@ To run this project locally, follow these steps:
 - `/src/app`: Next.js App Router pages, layouts, and global styles.
 - `/public`: Static assets like images and fonts.
 
+
+## Portfolio versions
+
+The studio portfolio is served at `klyrhon.me`. The animated portfolio is served at `creative.klyrhon.me`. Both domains can point to the same deployment; hostname routing serves the creative page at the subdomain root. If using separate deployments, deploy this repository to both and attach each domain to its corresponding deployment.
+
+Keep these values the same in both deployments:
+
+```env
+NEXT_PUBLIC_SITE_URL=https://klyrhon.me
+NEXT_PUBLIC_CREATIVE_SITE_URL=https://creative.klyrhon.me
+```
+
+These are the defaults when the variables are omitted. Version links use the domains in production. Local development uses `/` and `/creative`. The downloadable résumé remains available at `/resume.pdf`.

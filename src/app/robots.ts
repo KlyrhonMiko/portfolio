@@ -1,7 +1,8 @@
+import { STUDIO_SITE_URL } from "@/config/sites";
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.klyrhon.me";
+  const siteUrl = STUDIO_SITE_URL;
 
   return {
     rules: {

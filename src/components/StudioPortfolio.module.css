@@ -570,3 +570,29 @@
   }
 }
 
+
+.projectIdentity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.appIcon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+@media (max-width: 420px) {
+  .projectIdentity { gap: 10px; }
+  .appIcon { width: 40px; height: 40px; border-radius: 9px; }
+}
+
+.creativeLink {
+  display: flex !important;
+  width: fit-content;
+  min-height: 36px;
+  color: var(--ink);
+  margin: 4px 0 12px;
+}
+@media (max-width: 800px) { .creativeLink { margin: 0; } }

@@ -1,3 +1,4 @@
+import { creativeVersionHref } from "@/config/sites";
 import Image from "next/image";
 import Link from "next/link";
 import Certificates from "@/components/sections/Certificates";
@@ -31,6 +32,7 @@ export default function StudioPortfolio() {
         <div className={styles.sidebarBottom}>
           <p>Pasig City, Philippines</p>
           <div className={styles.sidebarLinks}><Link href="/resume">Résumé<Arrow /></Link><ExternalLink href="https://github.com/KlyrhonMiko">GitHub</ExternalLink></div>
+          <Link href={creativeVersionHref} className={styles.creativeLink}>Creative version<Arrow /></Link>
           <StudioThemeToggle />
         </div>
       </aside>
@@ -38,7 +40,7 @@ export default function StudioPortfolio() {
         <section id="projects" aria-labelledby="work-title">
           <header className={styles.sectionHeader}><h1 id="work-title">Selected work</h1><p>A few things I’ve built.</p></header>
           <article className={styles.project} aria-labelledby="koin-title">
-            <div className={styles.projectHeader}><div><h2 id="koin-title">Koin</h2><p>Personal finance tracker</p></div><ExternalLink href="https://koin.klyrhon.me">Visit project</ExternalLink></div>
+            <div className={styles.projectHeader}><div className={styles.projectIdentity}><Image className={styles.appIcon} src="/projects/koin/icon.png" width={44} height={44} alt="" sizes="44px" /><div><h2 id="koin-title">Koin</h2><p>Personal finance tracker</p></div></div><ExternalLink href="https://koin.klyrhon.me">Visit project</ExternalLink></div>
             <div className={styles.koinVisual}>
               <Image src="/projects/koin/home-dark.png" width={1080} height={2400} alt="Koin home screen with balance and spending overview" sizes="(max-width: 600px) 29vw, 176px" priority />
               <Image src="/projects/koin/activity-dark.png" width={1080} height={2400} alt="Koin expense history" sizes="(max-width: 600px) 29vw, 176px" priority />
@@ -49,7 +51,7 @@ export default function StudioPortfolio() {
             <FieldNote title="Build notes"><p>Flutter handles the interface, Riverpod manages application state, and SQLite provides local storage. NLP and voice recognition support expense entry.</p><p>Activity history, category budgets, and analytics connect individual transactions to the bigger picture.</p></FieldNote>
           </article>
           <article className={styles.project} aria-labelledby="pars-title">
-            <div className={styles.projectHeader}><div><h2 id="pars-title">pars.</h2><p>AI-assisted résumé builder</p></div><ExternalLink href="https://pars.klyrhon.me">Visit project</ExternalLink></div>
+            <div className={styles.projectHeader}><div className={styles.projectIdentity}><Image className={styles.appIcon} src="/projects/pars/icon.png" width={44} height={44} alt="" sizes="44px" /><div><h2 id="pars-title">pars.</h2><p>AI-assisted résumé builder</p></div></div><ExternalLink href="https://pars.klyrhon.me">Visit project</ExternalLink></div>
             <div className={styles.parsVisual}><Image src="/projects/pars/main-view.jpeg" width={1600} height={1000} sizes="(max-width: 800px) 95vw, 720px" alt="pars. editor with resume fields alongside a live document preview" /></div>
             <p className={styles.description}>Write your résumé alongside a live preview, then refine bullet points with AI assistance.</p>
             <div className={styles.projectMeta}><p>Next.js · TypeScript · Tailwind CSS · Groq · Supabase · React PDF</p></div>
