@@ -1,4 +1,3 @@
-import { creativeVersionHref } from "@/config/sites";
 import Image from "next/image";
 import Link from "next/link";
 import Certificates from "@/components/sections/Certificates";
@@ -32,7 +31,7 @@ export default function StudioPortfolio() {
         <div className={styles.sidebarBottom}>
           <p>Pasig City, Philippines</p>
           <div className={styles.sidebarLinks}><Link href="/resume">Résumé<Arrow /></Link><ExternalLink href="https://github.com/KlyrhonMiko">GitHub</ExternalLink></div>
-          <Link href={creativeVersionHref} className={styles.creativeLink}>Creative version<Arrow /></Link>
+          <a href="https://creative.klyrhon.me" className={styles.creativeLink}>Creative version<Arrow /></a>
           <StudioThemeToggle />
         </div>
       </aside>

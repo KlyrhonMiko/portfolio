@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
-import { STUDIO_SITE_URL } from "@/config/sites";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.klyrhon.me";
   return [
-    { url: `${STUDIO_SITE_URL}/`, lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
-    { url: `${STUDIO_SITE_URL}/resume`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${siteUrl}/`, lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
+    { url: `${siteUrl}/resume`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
   ];
 }

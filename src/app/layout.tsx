@@ -1,4 +1,3 @@
-import { STUDIO_SITE_URL } from "@/config/sites";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -23,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(STUDIO_SITE_URL),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.klyrhon.me"),
   title: "Klyrhon Aurel | Portfolio",
   description:
     "Selected software projects and field notes by Klyrhon Aurel, an independent web and mobile developer in the Philippines.",
