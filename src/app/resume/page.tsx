@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import StudioThemeToggle from "@/components/StudioThemeToggle";
 import styles from "./resume.module.css";
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Resume | Klyrhon Miko R. Aurel',
   description: 'View the resume of Klyrhon Miko R. Aurel, a Software Engineer and AI Programmer specializing in full-stack web development with React, Next.js, Python, and Flutter.',
   openGraph: {
@@ -11,9 +12,16 @@ export const metadata = {
     siteName: "Klyrhon Aurel Portfolio",
     locale: "en_US",
     type: "website",
+    images: [{
+      url: "/resume-preview.png",
+      width: 1730,
+      height: 909,
+      alt: "Klyrhon Miko R. Aurel — Software Engineer & AI Programmer resume",
+    }],
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/resume-preview.png"],
     title: "Resume | Klyrhon Miko R. Aurel",
     description: "View the resume of Klyrhon Miko R. Aurel, a Software Engineer and AI Programmer specializing in full-stack web development with React, Next.js, Python, and Flutter.",
   },

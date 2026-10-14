@@ -41,9 +41,16 @@ export const metadata: Metadata = {
     siteName: "Klyrhon Aurel Portfolio",
     locale: "en_US",
     type: "website",
+    images: [{
+      url: "/portfolio-preview.png",
+      width: 1730,
+      height: 909,
+      alt: "Klyrhon Miko R. Aurel — Software Engineer & AI Programmer portfolio",
+    }],
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/portfolio-preview.png"],
     title: "Klyrhon Aurel | Software Engineer & AI Developer",
     description: "Personal portfolio showcasing my projects, skills, and experience as a full stack and AI developer in the Philippines.",
   },
