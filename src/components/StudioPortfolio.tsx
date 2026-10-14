@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Certificates from "@/components/sections/Certificates";
 import StudioThemeToggle from "./StudioThemeToggle";
+import StudioNav from "./StudioNav";
+import { KoinShowcase, CodeShowcase } from "./ProjectShowcases";
 import styles from "./StudioPortfolio.module.css";
 
 function Arrow() {
@@ -27,7 +29,7 @@ export default function StudioPortfolio() {
           <p className={styles.role}>Software developer</p>
         </div>
         <p className={styles.intro}>I build web and mobile apps.<br /> Currently working on tools for personal finance, résumés, and learning to code.</p>
-        <nav className={styles.nav} aria-label="Main navigation"><a href="#projects">Selected work</a><a href="#about">About me</a><a href="#contact">Get in touch</a></nav>
+        <StudioNav />
         <div className={styles.sidebarBottom}>
           <p>Pasig City, Philippines</p>
           <div className={styles.sidebarLinks}><Link href="/resume">Résumé<Arrow /></Link><ExternalLink href="https://github.com/KlyrhonMiko">GitHub</ExternalLink></div>
@@ -40,33 +42,29 @@ export default function StudioPortfolio() {
           <header className={styles.sectionHeader}><h1 id="work-title">Selected work</h1><p>A few things I’ve built.</p></header>
           <article className={styles.project} aria-labelledby="koin-title">
             <div className={styles.projectHeader}><div className={styles.projectIdentity}><Image className={styles.appIcon} src="/projects/koin/icon.png" width={44} height={44} alt="" sizes="44px" /><div><h2 id="koin-title">Koin</h2><p>Personal finance tracker</p></div></div><ExternalLink href="https://koin.klyrhon.me">Visit project</ExternalLink></div>
-            <div className={styles.koinVisual}>
-              <Image className={styles.lightScreenshot} src="/projects/koin/home-light.png" width={1080} height={2400} alt="Koin home screen with balance and spending overview" sizes="(max-width: 600px) 29vw, 176px" priority />
-              <Image className={styles.darkScreenshot} src="/projects/koin/home-dark.png" width={1080} height={2400} alt="Koin home screen with balance and spending overview" sizes="(max-width: 600px) 29vw, 176px" priority />
-              <Image className={styles.lightScreenshot} src="/projects/koin/activity-light.png" width={1080} height={2400} alt="Koin expense history" sizes="(max-width: 600px) 29vw, 176px" priority />
-              <Image className={styles.darkScreenshot} src="/projects/koin/activity-dark.png" width={1080} height={2400} alt="Koin expense history" sizes="(max-width: 600px) 29vw, 176px" priority />
-              <Image className={styles.lightScreenshot} src="/projects/koin/budgets-light.png" width={1080} height={2400} alt="Koin category budgets" sizes="(max-width: 600px) 29vw, 176px" priority />
-              <Image className={styles.darkScreenshot} src="/projects/koin/budgets-dark.png" width={1080} height={2400} alt="Koin category budgets" sizes="(max-width: 600px) 29vw, 176px" priority />
-            </div>
+            <KoinShowcase />
             <p className={styles.description}>Expenses, budgets, and spending patterns in one app, with automated categorization and interactive analytics.</p>
+            <p className={styles.buildDecision}>Built around local storage, with SQLite keeping transaction data on your device.</p>
             <div className={styles.projectMeta}><p>Flutter · Dart · Riverpod · SQLite · NLP · Voice recognition</p><ExternalLink href="https://github.com/KlyrhonMiko/koin">Source</ExternalLink></div>
             <FieldNote title="Build notes"><p>Flutter handles the interface, Riverpod manages application state, and SQLite provides local storage. NLP and voice recognition support expense entry.</p><p>Activity history, category budgets, and analytics connect individual transactions to the bigger picture.</p></FieldNote>
           </article>
           <article className={styles.project} aria-labelledby="pars-title">
             <div className={styles.projectHeader}><div className={styles.projectIdentity}><Image className={styles.appIcon} src="/projects/pars/icon.png" width={44} height={44} alt="" sizes="44px" /><div><h2 id="pars-title">pars.</h2><p>AI-assisted résumé builder</p></div></div><ExternalLink href="https://pars.klyrhon.me">Visit project</ExternalLink></div>
-            <div className={styles.parsVisual}><Image src="/projects/pars/main-view.jpeg" width={1600} height={1000} sizes="(max-width: 800px) 95vw, 720px" alt="pars. editor with resume fields alongside a live document preview" /></div>
+            <div className={styles.parsVisual}>
+              <div className={styles.parsEditor}><Image src="/projects/pars/main-view.jpeg" width={1763} height={860} sizes="(max-width: 800px) 90vw, 650px" alt="pars. editor with résumé fields alongside a live document preview" /></div>
+              <div className={styles.parsDocument} aria-hidden="true"><Image src="/projects/pars/main-view.jpeg" width={1763} height={860} sizes="(max-width: 600px) 100vw, 780px" alt="" /></div>
+              <p className={styles.parsCaption}>From your next edit<br />to your next opportunity.</p>
+            </div>
             <p className={styles.description}>Write your résumé alongside a live preview, then refine bullet points with AI assistance.</p>
+            <p className={styles.buildDecision}>One editing flow, from live document preview to PDF output.</p>
             <div className={styles.projectMeta}><p>Next.js · TypeScript · Tailwind CSS · Groq · Supabase · React PDF</p></div>
             <FieldNote title="Build notes"><p>The live preview connects each edit to the document. Groq-powered suggestions help refine bullet points, while React PDF handles the résumé output.</p></FieldNote>
           </article>
           <article className={styles.project} aria-labelledby="nulll-title">
             <div className={styles.projectHeader}><div><h2 id="nulll-title">nulll</h2><p>Python execution visualizer</p></div><ExternalLink href="https://nulll.klyrhon.me">Visit project</ExternalLink></div>
-            <div className={styles.codeVisual}>
-              <pre aria-label="Python example"><code><span>numbers = [4, 2, 8, 1]</span>{'\n'}<span>for n in numbers:</span>{'\n'}<span className={styles.activeLine}>    print(n)</span></code></pre>
-              <div className={styles.execution}><p>Current value: n = 2</p><div className={styles.cells}><span>4</span><span className={styles.activeCell}>2</span><span>8</span><span>1</span></div></div>
-              <p className={styles.previewCaption}>Illustration of stepping through a list</p>
-            </div>
+            <CodeShowcase />
             <p className={styles.description}>An in-browser Python environment for stepping through code and visualizing algorithms and data structures.</p>
+            <p className={styles.buildDecision}>Python runs in the browser through Pyodide, with execution handled by Web Workers.</p>
             <div className={styles.projectMeta}><p>Next.js · TypeScript · Pyodide · Web Workers · D3.js · Framer Motion</p><ExternalLink href="https://github.com/KlyrhonMiko/nulll">Source</ExternalLink></div>
             <FieldNote title="Build notes"><p>Pyodide provides the Python runtime, with Web Workers for execution and D3.js for visualization. Learners can inspect execution one step at a time.</p></FieldNote>
           </article>

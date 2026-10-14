@@ -1,61 +1,38 @@
 # Portfolio
 
-A modern, minimal, and highly interactive personal portfolio built with Next.js, Framer Motion, and Tailwind CSS.
+Klyrhon Aurel’s project-first portfolio, built with Next.js, React, TypeScript, and CSS Modules.
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
-![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
+## Features
 
-## Overview
+- Selected projects with real product screenshots and expandable build notes.
+- A mobile screen gallery for Koin and an interactive Python loop illustration for nulll.
+- Section-aware navigation, light and dark themes, and reduced-motion support.
+- A responsive résumé page with a print layout and downloadable PDF.
+- Visible certificates and direct project, source, and contact links.
 
-This repository contains the source code for my personal portfolio. It is designed to showcase my selected works, featuring smooth scroll animations, parallax effects, and a clean, minimalist aesthetic. The architecture focuses on performance and seamless user experiences across all devices.
+## Development
 
-## Key Features
+```sh
+npm ci
+npm run dev
+```
 
-- **Fluid Animations**: Complex orchestrations powered by Framer Motion and GSAP.
-- **Smooth Scrolling**: Implemented with Lenis for a buttery-smooth navigation experience.
-- **Responsive Design**: Fully responsive UI built with Tailwind CSS v4.
-- **Interactive Mockups**: Custom wireframe device mockups crafted with pure CSS and React.
-- **Dark/Light Mode**: Seamless theme switching supported by `next-themes`.
+Open [localhost:3000](http://localhost:3000).
 
-## Technologies Used
+```sh
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/), [GSAP](https://gsap.com/)
-- **Scrolling**: [Lenis](https://lenis.studiofreight.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
+## Structure
 
-## Getting Started
-
-To run this project locally, follow these steps:
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/KlyrhonMiko/portfolio.git
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Project Structure
-
-- `/src/components`: Reusable UI elements (Projects, Navigation, Animations).
-- `/src/app`: Next.js App Router pages, layouts, and global styles.
-- `/public`: Static assets like images and fonts.
+- `src/app`: portfolio and résumé routes, metadata, and global styles.
+- `src/components`: portfolio presentation, interactive showcases, certificates, and theme provider.
+- `public`: product screenshots, certificate assets, icons, and the résumé PDF.
+- `DESIGN.md`: the current visual system.
+- `PRODUCT.md`: portfolio purpose and requirements.
 
 ## Portfolio versions
 
-This branch contains the studio portfolio for klyrhon.me. The Creative version link points to https://creative.klyrhon.me, where the previous design branch is deployed separately.
+This branch contains the portfolio for [klyrhon.me](https://klyrhon.me). The previous animated design lives on the `creative` branch and is deployed at [creative.klyrhon.me](https://creative.klyrhon.me).
