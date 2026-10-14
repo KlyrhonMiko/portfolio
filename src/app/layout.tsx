@@ -1,28 +1,29 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Geist_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
 
 
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
-import RouteTransitionHandler from "@/components/ui/RouteTransitionHandler";
 
 const plex = IBM_Plex_Sans({ variable: "--font-plex", subsets: ["latin"], weight: ["400", "500", "600"], display: "swap" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
+// Match Vercel's production redirect even when the environment uses the apex domain.
+const metadataBase = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.klyrhon.me");
+if (metadataBase.hostname === "klyrhon.me") {
+  metadataBase.hostname = "www.klyrhon.me";
+  metadataBase.protocol = "https:";
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.klyrhon.me"),
+  metadataBase,
   title: "Klyrhon Aurel | Portfolio",
   description:
     "Selected software projects and field notes by Klyrhon Aurel, an independent web and mobile developer in the Philippines.",
@@ -66,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${plex.variable} antialiased`}>
+      <body suppressHydrationWarning className={`${geistMono.variable} ${plex.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -76,7 +77,6 @@ export default function RootLayout({
 
           {children}
         </ThemeProvider>
-        <RouteTransitionHandler />
         <Analytics />
         <SpeedInsights />
       </body>
