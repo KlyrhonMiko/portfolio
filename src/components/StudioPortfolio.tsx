@@ -28,7 +28,7 @@ export default function StudioPortfolio() {
           <a className={styles.name} href="#home">Klyrhon Aurel</a>
           <p className={styles.role}>Software developer</p>
         </div>
-        <p className={styles.intro}>I build web and mobile apps.<br /> Currently working on tools for personal finance, résumés, and learning to code.</p>
+        <p className={styles.intro}>I build web and mobile apps.</p>
         <StudioNav />
         <div className={styles.sidebarBottom}>
           <p>Pasig City, Philippines</p>
@@ -73,7 +73,7 @@ export default function StudioPortfolio() {
             <article className={styles.indexRow}><div><h3>P.A.C.E</h3><p>Connecting Pasig City alumni with jobs and career opportunities through machine learning.</p><p className={styles.indexTech}>Next.js · Supabase · Python · FastAPI · Machine learning</p></div><ExternalLink href="https://github.com/KlyrhonMiko/pace">Source</ExternalLink></article>
           </div>
         </section>
-        <section id="about" className={styles.about} aria-labelledby="about-title"><h2 id="about-title">About me</h2><p>I’m a freelance full stack developer and Information Technology student based in Pasig City. I work across web and mobile, from personal finance tools to interactive learning environments.</p>
+        <section id="about" className={styles.about} aria-labelledby="about-title"><h2 id="about-title">About me</h2><p>I’m a freelance full-stack developer and IT student based in Pasig City, building web and mobile apps.</p>
           <div id="experience" className={styles.experience}><div><h3>Freelance Full Stack Developer</h3><p>Independent · Remote</p><span>2025 — Present</span></div><div><h3>B.S. Information Technology</h3><p>Pamantasan ng Lungsod ng Pasig</p><span>2023 — Present</span></div></div>
           <Link className={styles.resume} href="/resume">View résumé<Arrow /></Link><Certificates />
         </section>

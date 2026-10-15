@@ -106,13 +106,35 @@ const certificates: Certificate[] = [
         description: "Gained a deep understanding of what current AI models can achieve, alongside their technical limitations and safety considerations."
     }
 ];
-export default function Certificates() {
-    return <section id="certificates" className={styles.credentials} aria-labelledby="certificates-title">
-    <h3 id="certificates-title">Certificates <span>({certificates.length})</span></h3>
-    <ul className={styles.credentialList}>{certificates.map(certificate => <li key={certificate.link}>
-      <a href={certificate.link} target="_blank" rel="noopener noreferrer">{certificate.title} ↗</a>
-      <small>{certificate.issuer} · {certificate.date}</small>
-    </li>)}</ul>
-  </section>;
-}
+const certificateGroups = Array.from(new Set(certificates.map(({ issuer }) => issuer))).map(issuer => ({
+    issuer,
+    certificates: certificates.filter(certificate => certificate.issuer === issuer),
+}));
 
+export default function Certificates() {
+    return (
+        <section id="certificates" className={styles.credentials} aria-labelledby="certificates-title">
+            <h3 id="certificates-title">Certificates <span>({certificates.length})</span></h3>
+            {certificateGroups.map(group => (
+                <div className={styles.credentialGroup} key={group.issuer}>
+                    <div className={styles.credentialIssuer}>
+                        <h4>{group.issuer}</h4>
+                        <span>{Array.from(new Set(group.certificates.map(({ date }) => date))).join(" · ")}</span>
+                    </div>
+                    <ul className={styles.credentialList}>
+                        {group.certificates.map(certificate => (
+                            <li key={certificate.link}>
+                                <a href={certificate.link} target="_blank" rel="noopener noreferrer">
+                                    <span>{certificate.title}</span>
+                                    <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M7 17 17 7M7 7h10v10" />
+                                    </svg>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </section>
+    );
+}

@@ -516,22 +516,61 @@
   color: var(--muted);
   font-weight: 400;
 }
-.credentialList {
+.credentialGroup {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 24px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+.credentialIssuer h4 {
   margin: 0;
-  padding: 0 0 20px;
-  list-style: none;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
 }
-.credentialList li+li {
-  margin-top: 16px;
-}
-.credentialList a {
-  font-size: 14px;
-}
-.credentialList small {
-  display: block;
+.credentialIssuer>span {
   font-size: 12px;
   color: var(--muted);
-  margin-top: 2px;
+}
+.credentialList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.credentialList a {
+  align-items: baseline;
+  min-height: 44px;
+  padding: 6px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.credentialList a span {
+  overflow-wrap: anywhere;
+}
+.credentialList a svg {
+  color: var(--muted);
+}
+@media (min-width: 801px) and (max-width: 1100px), (max-width: 600px) {
+  .credentialGroup {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .credentialIssuer {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+}
+@media (max-width: 420px) {
+  .credentialList {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 }
 .email {
   font-size: clamp(16px, 2vw, 23px);
