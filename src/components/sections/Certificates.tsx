@@ -42,6 +42,24 @@ const certificates: Certificate[] = [
         description: "Developed proficiency in Python programming, covering data structures, object-oriented principles, and application development."
     },
     {
+        title: "Python Developer Associate",
+        issuer: "DataCamp",
+        date: "2026",
+        link: "https://www.datacamp.com/certificate/PDEVA0017292373297",
+    },
+    {
+        title: "Introduction to Python",
+        issuer: "DataCamp",
+        date: "2026",
+        link: "https://www.datacamp.com/completed/statement-of-accomplishment/course/580bd79789123c2dacbf8e4d5d4e3ef335147751",
+    },
+    {
+        title: "Intermediate Python",
+        issuer: "DataCamp",
+        date: "2026",
+        link: "https://www.datacamp.com/completed/statement-of-accomplishment/course/8cc2b3df6afd6bcdb56c1d62366fb3c22eb25026",
+    },
+    {
         title: "Prompt Like an Engineer",
         issuer: "Cisco Networking Academy",
         date: "2026",
