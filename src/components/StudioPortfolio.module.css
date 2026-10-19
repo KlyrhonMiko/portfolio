@@ -197,93 +197,140 @@
   min-height: 40px;
   color: var(--accent);
 }
-.koinVisual {
-  background: #deebe3;
+.koinShowcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.koinIndex {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
-  padding: 34px 28px 28px;
-  border-radius: 12px;
-  overflow: hidden;
+  padding: 36px 28px;
 }
-:global(.dark) .koinVisual { background: #263c30; }
-.phone {
-  width: 25%;
-  max-width: 156px;
-  margin: 50px 0 0;
-  flex-shrink: 0;
+.koinIndex h3 {
+  font-size: clamp(26px, 2.6vw, 34px);
+  line-height: 1.1;
+  letter-spacing: -.045em;
 }
-.phone[data-screen="home"] {
-  width: 34%;
-  max-width: 210px;
-  margin-top: 0;
-}
-.phone[data-screen="budgets"] { margin-top: 86px; }
-.phone img {
-  display: block;
+.koinControls {
+  display: grid;
+  gap: 6px;
   width: 100%;
-  height: auto;
-  border-radius: 17px;
-  box-shadow: 0 14px 28px -14px #19342350;
+  margin: 32px 0;
 }
-.phone figcaption {
-  color: #395744;
-  text-align: center;
+.koinControls button {
+  border: 0;
+  border-left: 2px solid var(--line);
+  padding: 10px 0 10px 16px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.koinControls button[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+.koinControls button > span:first-child { font-size: 16px; font-weight: 500; }
+.screenDetail {
+  display: block;
+  max-width: 22ch;
+  margin-top: 4px;
   font-size: 12px;
-  margin-top: 13px;
+  line-height: 1.5;
+  color: var(--muted);
 }
-:global(.dark) .phone figcaption { color: #b7d0bf; }
-.screenControls { display: none; }
-.parsVisual {
-  position: relative;
-  aspect-ratio: 1.65;
-  overflow: hidden;
-  border-radius: 12px;
-  background: #eae7e0;
+.koinFootnote {
+  margin-top: auto !important;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
 }
-.parsEditor {
-  position: absolute;
-  top: 28px;
-  left: 28px;
-  width: 88%;
-  overflow: hidden;
-  border-radius: 6px;
+.koinStage {
+  display: grid;
+  place-items: center;
+  padding: 30px 24px;
+  background: #dce9df;
 }
-.parsEditor img {
-  display: block;
+:global(.dark) .koinStage { background: #24382e; }
+.koinScreen { width: 100%; max-width: 240px; margin: 0; }
+.koinScreen[hidden] { display: none; }
+.koinScreen img {
   width: 100%;
   height: auto;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 16px 32px -16px #0c201b66;
 }
-.parsDocument {
-  position: absolute;
-  right: 24px;
-  bottom: -14px;
-  width: 53%;
-  height: 70%;
+.koinScreen .darkScreenshot { display: none; }
+:global(.dark) .koinScreen .lightScreenshot { display: none; }
+:global(.dark) .koinScreen .darkScreenshot { display: block; }
+.parsShowcase {
+  border: 1px solid var(--line);
+  border-radius: 8px;
   overflow: hidden;
-  border-radius: 3px;
-  background: #fff;
-  box-shadow: 0 12px 36px #302b2526;
+  background: var(--surface);
 }
-.parsDocument img {
-  position: absolute;
-  width: 220%;
-  max-width: none;
-  height: auto;
-  left: -82%;
-  top: -22%;
+.parsToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 20px;
 }
-.parsCaption {
-  position: absolute;
-  bottom: 30px;
-  left: 28px;
-  color: #5b5144;
-  font-size: 15px;
-  line-height: 1.5;
+.parsControls { display: flex; gap: 22px; }
+.parsControls button {
+  min-height: 56px;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
 }
-:global(.dark) .parsVisual { background: #38362f; }
-:global(.dark) .parsCaption { color: #ddd5c6; }
+.parsControls button[aria-pressed="true"] { color: var(--ink); border-color: var(--ink); }
+.parsToolbar > a { color: var(--muted); font-size: 12px; min-height: 44px; white-space: nowrap; }
+.parsPreview { margin: 0; }
+.parsImageViewport { overflow-x: auto; scrollbar-width: thin; }
+.parsImageViewport:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.studio .parsImageLink { display: block; background: #090909; }
+.parsImageLink img { display: block; width: 100%; height: auto; }
+.parsPreview figcaption { padding: 16px 20px; font-size: 13px; color: var(--muted); }
+@media (hover: hover) {
+  .koinControls button:hover { color: var(--ink); border-color: var(--accent); }
+  .parsControls button:hover { color: var(--ink); }
+}
+@media (max-width: 1100px) and (min-width: 801px) {
+  .koinIndex { padding: 28px 18px; }
+  .koinStage { padding: 28px 18px; }
+  .koinControls { margin: 24px 0; }
+  .screenDetail { font-size: 11px; }
+}
+@media (max-width: 600px) {
+  .koinShowcase { grid-template-columns: 1fr; }
+  .koinIndex { padding: 24px 24px 0; }
+  .koinIndex h3 { font-size: 28px; }
+  .koinIndex h3 br { display: none; }
+  .koinControls { display: flex; gap: 24px; margin: 20px 0 0; }
+  .koinControls button { border-left: 0; border-bottom: 2px solid transparent; padding: 10px 0; min-height: 44px; }
+  .koinControls button > span:first-child { font-size: 14px; }
+  .screenDetail, .koinFootnote { display: none; }
+  .koinStage { padding: 28px; }
+  .koinScreen { max-width: 220px; }
+  .parsImageLink { min-width: 600px; }
+  .parsToolbar { padding: 0 16px; gap: 8px; }
+  .parsControls { gap: 16px; }
+  .parsControls button { font-size: 12px; min-height: 48px; }
+  .parsPreview figcaption { padding: 14px 16px; font-size: 12px; }
+}
 .buildDecision {
   font-size: 14px;
   color: var(--accent);
@@ -618,13 +665,6 @@
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .koinVisual {
-    gap: 14px;
-    padding: 24px 18px;
-  }
-  .phone img {
-    border-radius: 12px;
-  }
 }
 @media (max-width: 800px) {
   .studio {
@@ -686,7 +726,6 @@
     grid-template-columns: 1fr 1fr;
     padding: 24px;
   }
-  .parsCaption { bottom: 24px; left: 24px; }
   .experience span {
     font-size: 12px;
   }
@@ -738,22 +777,7 @@
   }
 }
 @media (max-width: 600px) {
-  .koinVisual { padding: 28px 20px 22px; border-radius: 12px 12px 0 0; }
-  .phone, .phone[data-screen="home"], .phone[data-screen="budgets"] { display: none; margin: 0; width: min(76%, 230px); max-width: 230px; }
-  .phone[data-selected="true"] { display: block; }
-  .phone img { border-radius: 18px; }
-  .phone figcaption { display: none; }
-  .screenControls { display: flex; justify-content: center; gap: 4px; padding: 0 16px 18px; background: #deebe3; border-radius: 0 0 12px 12px; }
-  :global(.dark) .screenControls { background: #263c30; }
-  .screenControls button { font: inherit; font-size: 13px; min-height: 44px; padding: 8px 14px; border: 1px solid transparent; background: transparent; color: #395744; border-radius: 5px; cursor: pointer; }
-  .screenControls button[aria-pressed="true"] { background: #fcfcfa; border-color: #a7beb0; color: #234f39; }
-  :global(.dark) .screenControls button { color: #bed7c7; }
-  :global(.dark) .screenControls button[aria-pressed="true"] { background: #1c2c23; color: #e1f0e6; border-color: #7b9d88; }
-  .parsVisual { aspect-ratio: 1.15; }
-  .parsEditor { top: 18px; left: 18px; width: 90%; }
-  .parsDocument { width: 62%; height: 60%; right: 18px; bottom: -10px; }
-  .parsDocument img { top: -19%; }
-  .parsCaption { left: 18px; bottom: 22px; font-size: 12px; max-width: 25%; }
+
   .codeVisual { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
   .demoFooter { gap: 12px; }
   .demoFooter>span { max-width: 90px; }
@@ -766,7 +790,6 @@
     scroll-behavior: auto !important;
   }
 }
-
 
 .projectIdentity {
   display: flex;
@@ -793,7 +816,3 @@
   margin: 4px 0 12px;
 }
 @media (max-width: 800px) { .creativeLink { margin: 0; } }
-
-.koinVisual .darkScreenshot { display: none; }
-:global(.dark) .koinVisual .lightScreenshot { display: none; }
-:global(.dark) .koinVisual .darkScreenshot { display: block; }

@@ -5,25 +5,58 @@ import { useState } from "react";
 import styles from "./StudioPortfolio.module.css";
 
 const screens = [
-  { id: "activity", label: "Activity", alt: "Koin expense history" },
-  { id: "home", label: "Overview", alt: "Koin balance and spending overview" },
-  { id: "budgets", label: "Budgets", alt: "Koin category budgets" },
+  { id: "home", label: "Overview", detail: "Balances, accounts, and what’s coming up.", alt: "Koin balance and spending overview" },
+  { id: "activity", label: "Activity", detail: "See where your money goes, week by week.", alt: "Koin spending activity and weekly chart" },
+  { id: "budgets", label: "Budgets", detail: "Set a limit. Keep each category in view.", alt: "Koin monthly category budgets" },
 ];
 
 export function KoinShowcase() {
   const [selected, setSelected] = useState("home");
 
-  return <div>
-    <div className={styles.koinVisual} id="koin-screens">
-      {screens.map((screen) => <figure key={screen.id} className={styles.phone} data-screen={screen.id} data-selected={selected === screen.id}>
-        <Image className={styles.lightScreenshot} src={`/projects/koin/${screen.id}-light.png`} width={1080} height={2400} alt={screen.alt} sizes="(max-width: 600px) 230px, 210px" priority={screen.id === "home"} />
-        <Image className={styles.darkScreenshot} src={`/projects/koin/${screen.id}-dark.png`} width={1080} height={2400} alt={screen.alt} sizes="(max-width: 600px) 230px, 210px" priority={screen.id === "home"} />
-        <figcaption>{screen.label}</figcaption>
+  return <div className={styles.koinShowcase}>
+    <div className={styles.koinIndex}>
+      <h3>Your money,<br /> in view.</h3>
+      <div className={styles.koinControls} role="group" aria-label="Choose a Koin screen">
+        {screens.map((screen) => <button key={screen.id} type="button" aria-pressed={selected === screen.id} aria-controls="koin-screens" onClick={() => setSelected(screen.id)}>
+          <span>{screen.label}</span>
+          <span className={styles.screenDetail}>{screen.detail}</span>
+        </button>)}
+      </div>
+      <p className={styles.koinFootnote}>Stored on your device.<br />Available offline.</p>
+    </div>
+    <div className={styles.koinStage} id="koin-screens">
+      {screens.map((screen) => <figure key={screen.id} className={styles.koinScreen} hidden={selected !== screen.id}>
+        <Image className={styles.lightScreenshot} src={`/projects/koin/${screen.id}-light.png`} width={1080} height={2400} alt={screen.alt} sizes="(max-width: 500px) 220px, 240px" />
+        <Image className={styles.darkScreenshot} src={`/projects/koin/${screen.id}-dark.png`} width={1080} height={2400} alt={screen.alt} sizes="(max-width: 500px) 220px, 240px" />
       </figure>)}
     </div>
-    <div className={styles.screenControls} role="group" aria-label="Koin screens">
-      {[screens[1], screens[0], screens[2]].map((screen) => <button key={screen.id} type="button" aria-pressed={selected === screen.id} aria-controls="koin-screens" onClick={() => setSelected(screen.id)}>{screen.label}</button>)}
+  </div>;
+}
+
+const parsViews = [
+  { id: "editor", label: "Editor", src: "main-view.jpeg", alt: "The pars. editor with personal details beside the live résumé preview", caption: "Edit your experience. See the page take shape." },
+  { id: "review", label: "Résumé review", src: "resume-grading.jpeg", alt: "The pars. résumé review with feedback on impact and clarity", caption: "Review feedback on impact, clarity, and wording." },
+];
+
+export function ParsShowcase() {
+  const [selected, setSelected] = useState("editor");
+  const view = parsViews.find((item) => item.id === selected)!;
+
+  return <div className={styles.parsShowcase}>
+    <div className={styles.parsToolbar}>
+      <div className={styles.parsControls} role="group" aria-label="Choose a pars. preview">
+        {parsViews.map((item) => <button key={item.id} type="button" aria-pressed={selected === item.id} aria-controls="pars-preview" onClick={() => setSelected(item.id)}>{item.label}</button>)}
+      </div>
+      <a href={`/projects/pars/${view.src}`} target="_blank" rel="noopener noreferrer">Full size <span aria-hidden="true">↗</span></a>
     </div>
+    <figure className={styles.parsPreview} id="pars-preview">
+      <div className={styles.parsImageViewport} tabIndex={0} role="region" aria-label="Product screenshot. Scroll horizontally on small screens to explore.">
+      <a className={styles.parsImageLink} href={`/projects/pars/${view.src}`} target="_blank" rel="noopener noreferrer" aria-label={`View full-size pars. ${view.label} screenshot`}>
+        <Image key={view.id} src={`/projects/pars/${view.src}`} width={1763} height={860} alt={view.alt} sizes="(max-width: 800px) 100vw, 720px" />
+      </a>
+      </div>
+      <figcaption aria-live="polite">{view.caption}</figcaption>
+    </figure>
   </div>;
 }
 

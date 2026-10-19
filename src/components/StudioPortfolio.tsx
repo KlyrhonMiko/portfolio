@@ -3,7 +3,7 @@ import Link from "next/link";
 import Certificates from "@/components/sections/Certificates";
 import StudioThemeToggle from "./StudioThemeToggle";
 import StudioNav from "./StudioNav";
-import { KoinShowcase, CodeShowcase } from "./ProjectShowcases";
+import { KoinShowcase, ParsShowcase, CodeShowcase } from "./ProjectShowcases";
 import styles from "./StudioPortfolio.module.css";
 
 function Arrow() {
@@ -50,11 +50,7 @@ export default function StudioPortfolio() {
           </article>
           <article className={styles.project} aria-labelledby="pars-title">
             <div className={styles.projectHeader}><div className={styles.projectIdentity}><Image className={styles.appIcon} src="/projects/pars/icon.png" width={44} height={44} alt="" sizes="44px" /><div><h2 id="pars-title">pars.</h2><p>AI-assisted résumé builder</p></div></div><ExternalLink href="https://pars.klyrhon.me">Visit project</ExternalLink></div>
-            <div className={styles.parsVisual}>
-              <div className={styles.parsEditor}><Image src="/projects/pars/main-view.jpeg" width={1763} height={860} sizes="(max-width: 800px) 90vw, 650px" alt="pars. editor with résumé fields alongside a live document preview" /></div>
-              <div className={styles.parsDocument} aria-hidden="true"><Image src="/projects/pars/main-view.jpeg" width={1763} height={860} sizes="(max-width: 600px) 100vw, 780px" alt="" /></div>
-              <p className={styles.parsCaption}>From your next edit<br />to your next opportunity.</p>
-            </div>
+            <ParsShowcase />
             <p className={styles.description}>Write your résumé alongside a live preview, then refine bullet points with AI assistance.</p>
             <p className={styles.buildDecision}>One editing flow, from live document preview to PDF output.</p>
             <div className={styles.projectMeta}><p>Next.js · TypeScript · Tailwind CSS · Groq · Supabase · React PDF</p></div>
