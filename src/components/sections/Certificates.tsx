@@ -68,6 +68,13 @@ const certificates: Certificate[] = [
         description: "Gained expertise in advanced prompt engineering techniques, understanding how to effectively communicate with large language models to solve complex problems."
     },
     {
+        title: "AWS Educate Introduction to Generative AI",
+        issuer: "Amazon Web Services Training and Certification",
+        date: "2026",
+        link: "https://www.credly.com/badges/4f2bb7ba-a801-4ef0-8227-63105c7fcf9c",
+        description: "Completed training and assessment in generative AI concepts, foundation models, and generative AI use cases."
+    },
+    {
         title: "Claude 101",
         issuer: "Anthropic",
         date: "2026",
