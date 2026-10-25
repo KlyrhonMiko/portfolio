@@ -34,7 +34,13 @@ const certificates: Certificate[] = [
         description: "Mastered the foundations of modern web design, including HTML5, CSS3, Flexbox, CSS Grid, and responsive layout techniques."
     },
     {
-        title: "Python Developer Certification",
+        title: "Front End Development Libraries Certification",
+        issuer: "freeCodeCamp",
+        date: "2026",
+        link: "https://www.freecodecamp.org/certification/klyrhon/front-end-development-libraries-v9",
+    },
+    {
+        title: "Python Developer",
         issuer: "freeCodeCamp",
         date: "2026",
         link: "https://www.freecodecamp.org/certification/klyrhon/python-v9",
