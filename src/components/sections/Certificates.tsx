@@ -40,7 +40,7 @@ const certificates: Certificate[] = [
         link: "https://www.freecodecamp.org/certification/klyrhon/front-end-development-libraries-v9",
     },
     {
-        title: "Python Developer",
+        title: "Python Developer Certification",
         issuer: "freeCodeCamp",
         date: "2026",
         link: "https://www.freecodecamp.org/certification/klyrhon/python-v9",
