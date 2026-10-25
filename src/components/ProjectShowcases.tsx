@@ -26,8 +26,8 @@ export function KoinShowcase() {
     </div>
     <div className={styles.koinStage} id="koin-screens">
       {screens.map((screen) => <figure key={screen.id} className={styles.koinScreen} hidden={selected !== screen.id}>
-        <Image className={styles.lightScreenshot} src={`/projects/koin/${screen.id}-light.png`} width={1080} height={2400} alt={screen.alt} sizes="(max-width: 500px) 220px, 240px" />
-        <Image className={styles.darkScreenshot} src={`/projects/koin/${screen.id}-dark.png`} width={1080} height={2400} alt={screen.alt} sizes="(max-width: 500px) 220px, 240px" />
+        <Image className={styles.lightScreenshot} src={`/projects/koin/${screen.id}-light.png`} width={1170} height={2532} alt={screen.alt} sizes="(max-width: 500px) 220px, 240px" />
+        <Image className={styles.darkScreenshot} src={`/projects/koin/${screen.id}-dark.png`} width={1170} height={2532} alt={screen.alt} sizes="(max-width: 500px) 220px, 240px" />
       </figure>)}
     </div>
   </div>;
